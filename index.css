@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures footer stays at the bottom */
+}
+
+header, footer {
+  background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  flex: 1; /* Takes up all available space */
+  padding: 20px;
+}
