@@ -6,26 +6,49 @@
     <title>About the creators: A Vast Journey Into the Wonders of Teyvat</title>
     <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
+
+            :root{
+      --bg:#fff9cc;
+      --card:#fdfdfd;
+      --accent:#4a55a2;
+      --muted:#6b7280;
+      --text:#111827;
+      --box:#fffdf5;
+      --radius:14px;
+    }
+    :root.dark{
+      --bg:#3b0000;
+      --card:#1a0000;
+      --accent:#ff7070;
+      --muted:#d1bdbd;
+      --text:#f8eaea;
+      --box:#2b0000;
+    }
+       * {box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:Inter, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      transition:background .35s ease,color .35s ease;
+    }
+
         .wrapper {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
-        header {
-            /* Using a simple indigo color */
-            background-color: #4A55A2;
-            color: white;
-            padding: 10px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      background:linear-gradient(90deg,var(--accent),#6a73d2);
+      color:white;
+    }
         header h1 {
             margin: 0;
             font-size: 1.5em;
@@ -47,12 +70,13 @@
             max-width: 900px;
             margin: 0 auto; /* Center the main content */
         }
-        footer {
-            background-color: #4A55A2;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-        }
+      footer{
+        padding:18px 28px;
+        background:linear-gradient(90deg,var(--accent),#6a73d2);
+        color:white;
+        text-align:center;
+        margin-top:auto
+    }
     </style>
 </head>
 <body>
