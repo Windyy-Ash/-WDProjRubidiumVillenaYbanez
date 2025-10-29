@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wonders of Teyvat — References</title>
+  <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+  <style>
+    :root {
+      --bg:#fff9cc;
+      --card:#fdfdfd;
+      --accent:#4a55a2;
+      --muted:#6b7280;
+      --text:#111827;
+      --box:#fffdf5;
+      --radius:14px;
+    }
+    :root.dark {
+      --bg:#141313;
+      --card:#920c0c;
+      --accent:#621010;
+      --muted:#161414;
+      --text:#f8eaea;
+      --box:#4e0505;
+    }
+
+    *{box-sizing:border-box;
+        margin:0;
+        padding:0
+    }
+
+    html,body{
+        height:100%
+    }
+
+    body {
+      font-family:Inter, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      transition:background .35s ease,color .35s ease;
+    }
+
+    header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      background:linear-gradient(90deg,var(--accent),#6a73d2);
+      color:white;
+    }
+
+    .brand { 
+        display:flex; 
+        align-items:center; 
+        gap:14px; 
+    }
+
+    .brand img { 
+        width:42px; 
+        height:42px; 
+        border-radius:8px; 
+        object-fit:cover; 
+    }
+
+    .brand h1 { 
+        font-size:1.15rem; 
+        margin:0 
+    }
+
+    nav { 
+        display:flex; 
+        align-items:center; 
+        gap:12px; 
+    }
+
+    .nav-links { 
+        display:flex; 
+        gap:8px; 
+    }
+
+    .nav-links a {
+      color:white; 
+      text-decoration:none; 
+      padding:8px 12px;
+      border-radius:8px; 
+      font-weight:600;
+    }
+
+    .btn {
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.2);
+      padding:8px 10px;
+      border-radius:10px;
+      color:white;
+      cursor:pointer;
+    }
+
+    main {
+      flex:1;
+      padding:36px 20px;
+      max-width:900px;
+      margin:0 auto;
+      width:100%;
+      text-align:center;
+    }
+
+    h2 {
+      margin-bottom:24px;
+      font-size:1.8rem;
+    }
+
+    p {
+      max-width:700px;
+      margin:0 auto 30px;
+      font-size:1rem;
+      color:var(--text);
+    }
+
+    .reference-list {
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      align-items:center;
+    }
+
+    .reference-card {
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:0 8px 24px rgba(0,0,0,0.08);
+      padding:20px;
+      width:100%;
+      text-align:left;
+      transition:transform .3s ease;
+      border:2px solid rgba(0,0,0,0.05);
+    }
+
+    .reference-card:hover {
+      transform:translateY(-5px);
+    }
+
+    .reference-card a {
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    footer {
+      padding:18px 28px;
+      background:linear-gradient(90deg,var(--accent),#6a73d2);
+      color:white;
+      text-align:center;
+      margin-top:auto;
+    }
+
+    @media(max-width:720px) {
+      .nav-links{display:none}
+      .reference-card{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <button class="btn" id="themeBtn" aria-label="Toggle theme">🌗</button>
+      <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="logo" />
+      <div>
+        <h1>Wonders of Teyvat</h1>
+        <div style="font-size:0.85rem;opacity:.9">A fan-made compendium for recipes, nations & lore</div>
+      </div>
+    </div>
+
+    <nav>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="overview.html">Genshin Overview</a>
+        <a href="archonq.html">Archon Quests</a>
+        <a href="guide.html">Guides</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About Us</a>
+        <a href="references.html"><b>References</b></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h2>References</h2>
+    <p>Here are the sources we used in creating this website. These references guided us in building the Wonders of Teyvat project.</p>
+
+    <div class="reference-list">
+      <div class="reference-card">
+        <b>1.</b> 
+        <a href="" target="_blank"></a>
+      </div>
+
+      <div class="reference-card">
+        <b>2.</b> 
+        <a href="" target="_blank"></a>
+      </div>
+
+      <div class="reference-card">
+        <b>3.</b>
+        <a href="" target="_blank"></a>
+      </div>
+
+      <div class="reference-card">
+        <b>4.</b>
+        <a href="" target="_blank"></a>
+      </div>
+
+      <div class="reference-card">
+        <b>5.</b>
+        <a href="" target="_blank"></a>
+      </div>
+    </div>
+  </main>
+
+  <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
+
+  <script>
+    (function(){
+      const btn = document.getElementById('themeBtn');
+      const root = document.documentElement;
+      const key = 'teyvat-theme';
+      function apply(t){
+        root.classList.toggle('dark', t === 'dark');
+        localStorage.setItem(key, t);
+      }
+      const saved = localStorage.getItem(key) ||
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      apply(saved);
+      btn.addEventListener('click', () => {
+        const isDark = root.classList.contains('dark');
+        apply(isDark ? 'light' : 'dark');
+      });
+    })();
+  </script>
+</body>
+</html>
