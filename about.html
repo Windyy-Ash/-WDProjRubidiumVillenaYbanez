@@ -6,7 +6,6 @@
   <title>Wonders of Teyvat — About the Creators</title>
   <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
   <style>
-
     :root {
       --bg:#fff9cc;
       --card:#fdfdfd;
@@ -38,47 +37,57 @@
       transition:background .35s ease,color .35s ease;
     }
 
- 
-
-    .brand { 
-        display:flex; 
-        align-items:center; 
-        gap:14px; 
+    header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      background:linear-gradient(90deg,var(--accent),#6a73d2);
+      color:white;
     }
 
-    .brand img { 
-        width:42px; 
-        height:42px; 
-        border-radius:8px; 
-        object-fit:cover; 
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:14px;
     }
 
-    .brand h1 { 
-        font-size:1.15rem; 
-        margin:0 
+    .brand img {
+      width:42px;
+      height:42px;
+      border-radius:8px;
+      object-fit:cover;
+      box-shadow:0 6px 18px rgba(74,85,162,.16);
     }
 
-    nav { 
-        display:flex; 
-        align-items:center; 
-        gap:12px; 
+    .brand h1 {
+      font-size:1.15rem;
+      margin:0;
     }
 
-    .nav-links { 
-        display:flex; 
-        gap:8px; 
+    .brand div {
+      display:flex;
+      flex-direction:column;
     }
 
-    .nav-links a {
-      color:white; 
-      text-decoration:none; 
+    nav {
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    nav a {
+      color:white;
+      text-decoration:none;
       padding:8px 12px;
-      border-radius:8px; 
+      border-radius:8px;
       font-weight:600;
     }
-nav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
+
+    nav a:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+
     .btn {
       background:transparent;
       border:1px solid rgba(255,255,255,0.2);
@@ -147,11 +156,17 @@ nav a:hover {
       line-height:1.5;
     }
 
-  
+    footer {
+      padding:18px 28px;
+      background:linear-gradient(90deg,var(--accent),#6a73d2);
+      color:white;
+      text-align:center;
+      margin-top:auto;
+    }
 
     @media(max-width:720px) {
-      .nav-links{display:none}
-      .creator-card{width:100%}
+      nav{flex-direction:column; gap:8px;}
+      .creator-card{width:100%;}
     }
   </style>
 </head>
@@ -167,39 +182,33 @@ nav a:hover {
     </div>
 
     <nav>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="overview.html">Genshin Overview</a>
-        <a href="archonq.html">Archon Quests</a>
-        <a href="guide.html">Guides</a>
-        <a href="community.html">Community</a>
-        <a href="about.html">About Us</a>
-        <a href="references.html">References</a>
-      </div>
+      <a href="index.html">Home</a>
+      <a href="overview.html">Genshin Overview</a>
+      <a href="archonq.html">Archon Quests</a>
+      <a href="guide.html">Guides</a>
+      <a href="community.html">Community</a>
+      <a href="about.html">About Us</a>
+      <a href="references.html">References</a>
     </nav>
   </header>
 
   <main>
     <h2>Meet the (Un)Lovely Creators</h2>
     <p style="margin-bottom:30px;max-width:700px;margin-left:auto;margin-right:auto;">
-      This project was created by two fans of Genshin Impact who wanted to show the beauty Teyvat's world.
+      This project was created by two fans of Genshin Impact who wanted to show the beauty of Teyvat's world.
     </p>
 
     <div class="creators">
       <div class="creator-card">
         <img src="https://i.pinimg.com/736x/52/1c/6b/521c6bdb9c46c7642cde17a8e8da8563.jpg" alt="Creator 1">
         <div class="creator-name">Raiza</div>
-        <div class="creator-intro">
-          Hi po uwuwuwuuwuwuwu
-        </div>
+        <div class="creator-intro">Hi po uwuwuwuuwuwuwu</div>
       </div>
 
       <div class="creator-card">
         <img src="https://i.pinimg.com/736x/0c/11/aa/0c11aa33b33823dbec2a02152846abf5.jpg" alt="Creator 2">
-        <div class="creator-name">what is ashley's name</div>
-        <div class="creator-intro">
-          uwuw
-        </div>
+        <div class="creator-name">Ashley</div>
+        <div class="creator-intro">uwuw</div>
       </div>
     </div>
   </main>
