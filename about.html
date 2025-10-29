@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About the creators: A Vast Journey Into the Wonders of Teyvat</title>
-    <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png">
-    <style>
-
-    :root{
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wonders of Teyvat — About the Creators</title>
+  <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+  <style>
+    :root {
       --bg:#fff9cc;
       --card:#fdfdfd;
       --accent:#4a55a2;
@@ -16,15 +15,16 @@
       --box:#fffdf5;
       --radius:14px;
     }
-    :root.dark{
-      --bg:#3b0000;
-      --card:#1a0000;
-      --accent:#ff7070;
-      --muted:#d1bdbd;
+    :root.dark {
+      --bg:#141313;
+      --card:#920c0c;
+      --accent:#621010;
+      --muted:#161414;
       --text:#f8eaea;
-      --box:#2b0000;
+      --box:#4e0505;
     }
-       * {box-sizing:border-box;margin:0;padding:0}
+
+    *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
       font-family:Inter, Arial, sans-serif;
@@ -36,12 +36,7 @@
       transition:background .35s ease,color .35s ease;
     }
 
-        .wrapper {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header{
+    header {
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -49,59 +44,194 @@
       background:linear-gradient(90deg,var(--accent),#6a73d2);
       color:white;
     }
-        header h1 {
-            margin: 0;
-            font-size: 1.5em;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        main {
-            flex: 1;
-            padding: 2em;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-      footer{
-        padding:18px 28px;
-        background:linear-gradient(90deg,var(--accent),#6a73d2);
-        color:white;
-        text-align:center;
-        margin-top:auto
+
+    .brand { 
+        display:flex; 
+        align-items:center; 
+        gap:14px; 
     }
-    </style>
+
+    .brand img { 
+        width:42px; 
+        height:42px; 
+        border-radius:8px; 
+        object-fit:cover; 
+    }
+
+    .brand h1 { 
+        font-size:1.15rem; 
+        margin:0 
+    }
+
+    nav { 
+        display:flex; 
+        align-items:center; 
+        gap:12px; 
+    }
+
+    .nav-links { 
+        display:flex; 
+        gap:8px; 
+    }
+
+    .nav-links a {
+      color:white; 
+      text-decoration:none; 
+      padding:8px 12px;
+      border-radius:8px; 
+      font-weight:600;
+    }
+
+    .btn {
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.2);
+      padding:8px 10px;
+      border-radius:10px;
+      color:white;
+      cursor:pointer;
+    }
+
+    main {
+      flex:1;
+      padding:36px 20px;
+      max-width:900px;
+      margin:0 auto;
+      width:100%;
+      text-align:center;
+    }
+
+    h2 {
+      margin-bottom:24px;
+      font-size:1.8rem;
+    }
+
+    .creators {
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .creator-card {
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:0 8px 24px rgba(0,0,0,0.08);
+      padding:20px;
+      width:340px;
+      text-align:center;
+      transition:transform .3s ease;
+    }
+
+    .creator-card:hover {
+      transform:translateY(-5px);
+    }
+
+    .creator-card img {
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      object-fit:cover;
+      margin-bottom:16px;
+      box-shadow:0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .creator-name {
+      font-size:1.3rem;
+      font-weight:700;
+      margin-bottom:10px;
+    }
+
+    .creator-intro {
+      background:var(--box);
+      padding:14px;
+      border-radius:var(--radius);
+      font-size:0.95rem;
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    footer {
+      padding:18px 28px;
+      background:linear-gradient(90deg,var(--accent),#6a73d2);
+      color:white;
+      text-align:center;
+      margin-top:auto;
+    }
+
+    @media(max-width:720px) {
+      .nav-links{display:none}
+      .creator-card{width:100%}
+    }
+  </style>
 </head>
 <body>
-
-    <div class="wrapper">
-        <header>
-            <h1>About the Creators</h1>
-            <nav>
-                <a href="index.html">Home 🏡</a>
-                <a href="overview.html">Genshin Overview</a>
-                <a href="about.html">About the Creators 😎</a>
-                <a href="submit.html">Submit your Recipe</a>
-                <a href="references.html">References 📑 </a>
-            </nav>
-        </header>
-
-        <main>
-            <p>Main content of the page goes here. This is the simple index page structure, ready for content.</p>
-        </main>
-
-        
-        <footer>
-            <p>Copyright &copy; 2025</p>
-        </footer>
+  <header>
+    <div class="brand">
+      <button class="btn" id="themeBtn" aria-label="Toggle theme">🌗</button>
+      <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="logo" />
+      <div>
+        <h1>Wonders of Teyvat</h1>
+        <div style="font-size:0.85rem;opacity:.9">A fan-made compendium for recipes, nations & lore</div>
+      </div>
     </div>
 
+    <nav>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="overview.html">Genshin Overview</a>
+        <a href="archonq.html">Archon Quests</a>
+        <a href="guide.html">Guides</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About Us</a>
+        <a href="references.html">References</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Meet the (Un)Lovely Creators</h2>
+    <p style="margin-bottom:30px;max-width:700px;margin-left:auto;margin-right:auto;">
+      This project was created by two fans of Genshin Impact who wanted to show the beauty Teyvat's world.
+    </p>
+
+    <div class="creators">
+      <div class="creator-card">
+        <img src="https://i.pinimg.com/736x/52/1c/6b/521c6bdb9c46c7642cde17a8e8da8563.jpg" alt="Creator 1">
+        <div class="creator-name">Raiza</div>
+        <div class="creator-intro">
+          Hi po uwuwuwuuwuwuwu
+        </div>
+      </div>
+
+      <div class="creator-card">
+        <img src="https://i.pinimg.com/736x/0c/11/aa/0c11aa33b33823dbec2a02152846abf5.jpg" alt="Creator 2">
+        <div class="creator-name">what is ashley's name</div>
+        <div class="creator-intro">
+          uwuw
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
+
+  <script>
+    (function(){
+      const btn = document.getElementById('themeBtn');
+      const root = document.documentElement;
+      const key = 'teyvat-theme';
+      function apply(t){
+        root.classList.toggle('dark', t === 'dark');
+        localStorage.setItem(key, t);
+      }
+      const saved = localStorage.getItem(key) ||
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      apply(saved);
+      btn.addEventListener('click', () => {
+        const isDark = root.classList.contains('dark');
+        apply(isDark ? 'light' : 'dark');
+      });
+    })();
+  </script>
 </body>
 </html>
