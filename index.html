@@ -1,79 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Vast Journey Into the Wonders of Teyvat</title>
-    <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-        .wrapper {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            background-color: #4A55A2;
-            color: white;
-            padding: 10px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 1.5em;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        main {
-            flex: 1;
-            padding: 2em;
-            max-width: 900px;
-            margin: 0 auto; 
-        }
-        footer {
-            background-color: #4A55A2;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wonders of Teyvat — Recipe Selector</title>
+  <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+  <style>
+    :root{
+      --bg:#fff9cc;
+      --card:#fdfdfd;
+      --accent:#4a55a2;
+      --muted:#6b7280;
+      --text:#111827;
+      --box:#fffdf5;
+      --radius:14px;
+    }
+    :root.dark{
+      --bg:#3b0000;
+      --card:#1a0000;
+      --accent:#ff7070;
+      --muted:#d1bdbd;
+      --text:#f8eaea;
+      --box:#2b0000;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:Inter, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      transition:background .35s ease,color .35s ease;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      background:linear-gradient(90deg,var(--accent),#6a73d2);
+      color:white;
+    }
+
+    .brand{
+        display:flex;
+        align-items:center;
+        gap:14px
+    }
+
+    .brand img{
+        width:42px;
+        height:42px;
+        border-radius:8px;
+        object-fit:cover;
+        box-shadow:0 6px 18px rgba(74,85,162,.16)
+    }
+
+    .brand h1{
+        font-size:1.15rem;
+        margin:0}
+
+    nav{
+        display:flex;
+        align-items:center;
+        gap:12px
+    }
+
+    .nav-links{
+        display:flex;
+        gap:8px
+    }
+
+    .nav-links a{
+        color:white;
+        text-decoration:none;
+        padding:8px 12px;
+        border-radius:8px;
+        font-weight:600
+    }
+
+    .btn{
+        background:transparent;
+        border:1px solid rgba(255,255,255,0.2);
+        padding:8px 10px;
+        border-radius:10px;
+        color:white;
+        cursor:pointer
+    }
+
+    main{
+        flex:1;
+        padding:36px 20px;
+        max-width:880px;
+        margin:0 auto;
+        width:100%;
+        text-align:center
+    }
+    
+    .card{
+        background:var(--card);
+        padding:22px;
+        border-radius:var(--radius);
+        box-shadow:0 8px 24px rgba(0,0,0,0.08);
+        margin-bottom:20px
+    }
+
+    select{padding:10px 14px;
+        font-size:1rem;
+        border-radius:8px;
+        border:1px solid #ccc;
+        background:white;
+        cursor:pointer;
+        margin-top:12px;
+        outline:none
+    }
+
+    .result-box{
+        margin-top:16px;
+        padding:18px;
+        border-radius:12px;
+        background:var(--box);
+        box-shadow:0 6px 18px rgba(0,0,0,0.06);
+        display:none
+    }
+
+    .result-box img{
+        margin-top:10px;
+        max-width:320px;
+        border-radius:10px;
+        display:block;
+        margin-left:auto;
+        margin-right:auto
+    }
+
+    footer{
+        padding:18px 28px;
+        background:linear-gradient(90deg,var(--accent),#6a73d2);
+        color:white;
+        text-align:center;
+        margin-top:auto
+    }
+
+    @media(max-width:720px){ 
+        .nav-links{display:none} 
+    }
+  </style>
 </head>
 <body>
-
-    <div class="wrapper">
-        <header>
-            <h1>Wonders of Teyvat</h1>
-            <nav>
-                <a href="index.html">Home 🏡</a>
-                <a href="about.html">About the Creators 😎</a>
-                <a href="references.html">References 📑 </a>
-            </nav>
-        </header>
-
-        <main>
-            <p>Main content of the page goes here. This is the simple index page structure, ready for content.</p>
-        </main>
-
-        <footer>
-            <p>Copyright &copy; 2025</p>
-        </footer>
+  <header>
+    <div class="brand">
+      <button class="btn" id="themeBtn" aria-label="Toggle theme">🌗</button>
+      <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="logo" />
+      <div>
+        <h1>Wonders of Teyvat</h1>
+        <div style="font-size:0.85rem;opacity:.9">A fan-made compendium for recipes, nations & lore</div>
+      </div>
     </div>
 
+    <nav>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="overview.html">Genshin Overview</a>
+        <a href="archonq.html">Archon Quests</a>
+        <a href="guide.html">Guides</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About us</a>
+        <a href="references.html">References</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>Nation / Group</h2>
+      <p style="margin-top:10px">In this box, you must choose between the nations of Teyvat or the Harbingers/Non-beings.</p>
+      <select id="firstSelect" aria-label="Choose 1 to 9">
+        <option value="">Choose…</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <h2>Character</h2>
+      <p style="margin-top:10px">In this box, you can choose a character based on your previous selection.</p>
+      <select id="secondSelect" style="display:none" aria-label="Character choices">
+      </select>
+    </div>
+
+    <div class="result-box" id="resultBox" aria-live="polite">
+      <h3 id="foodText">The food you get is…</h3>
+      <img id="foodImage" src="" alt="Recipe image">
+    </div>
+  </main>
+
+  <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
+
+  <script>
+    (function(){
+      const btn = document.getElementById('themeBtn');
+      const root = document.documentElement;
+      const key = 'teyvat-theme';
+
+      function apply(t){
+        root.classList.toggle('dark', t === 'dark');
+        localStorage.setItem(key, t);
+      }
+
+      const saved = localStorage.getItem(key) || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      apply(saved);
+
+      btn.addEventListener('click', () => {
+        const isDark = root.classList.contains('dark');
+        apply(isDark ? 'light' : 'dark');
+      });
+    })();
+
+    const firstSelect = document.getElementById('firstSelect');
+    const secondSelect = document.getElementById('secondSelect');
+    const resultBox = document.getElementById('resultBox');
+    const foodText = document.getElementById('foodText');
+    const foodImage = document.getElementById('foodImage');
+
+    function clearSecond(){
+      secondSelect.innerHTML = '';
+      secondSelect.style.display = 'none';
+      resultBox.style.display = 'none';
+    }
+
+    firstSelect.addEventListener('change', () => {
+      const v = parseInt(firstSelect.value, 10);
+      clearSecond();
+
+      if (!v || isNaN(v)) return;
+
+      let start = null, end = null;
+
+      if (v >= 1 && v <= 6) {
+        start = (v - 1) * 5 + 1;
+        end = start + 4;
+      } else if (v === 7) {
+        start = 31; end = 34;
+      } else if (v === 8) {
+        start = 35; end = 37;
+      } else if (v === 9) {
+        start = 38; end = 38;
+      }
+
+      if (start === null || end === null || start > end) return;
+
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = 'Choose character…';
+      placeholder.selected = true;
+      placeholder.disabled = true;
+      secondSelect.appendChild(placeholder);
+
+      for (let i = start; i <= end; i++){
+        const opt = document.createElement('option');
+        opt.value = `-${i}`;
+        opt.textContent = `-${i}`;
+        secondSelect.appendChild(opt);
+      }
+
+      secondSelect.style.display = 'inline-block';
+    });
+
+    secondSelect.addEventListener('change', () => {
+      const a = firstSelect.value;
+      const b = secondSelect.value;
+      if (!a || !b) {
+        resultBox.style.display = 'none';
+        return;
+      }
+
+      // Example result text & placeholder image -- replace with real content
+      foodText.textContent = `The food you get is based on your choices: ${a} and ${b}. The recipe and what it is shown below.`;
+      foodImage.src = 'https://thumbs.dreamstime.com/b/no-emoticon-29087585.jpg';
+      resultBox.style.display = 'block';
+    });
+
+    clearSecond();
+  </script>
 </body>
 </html>
