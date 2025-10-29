@@ -7,24 +7,39 @@
   <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
   <style>
     :root {
-      --bg: #ffffff;
-      --card: #fdfdfd;
-      --accent: #4a55a2;
-      --muted: #6b7280;
-      --text: #111827;
-      --box: #f7f7f7;
-      --glass: rgba(255, 255, 255, 0.6);
-      --radius: 14px;
+      --bg:#fff9cc;
+      --card:#fdfdfd;
+      --accent:#4a55a2;
+      --muted:#6b7280;
+      --text:#111827;
+      --box:#fffdf5;
+      --radius:14px;
     }
 
     :root.dark {
-      --bg: #0b1020;
-      --card: #11192d;
-      --accent: #7b7dff;
-      --muted: #9ca3af;
-      --text: #e6eef8;
-      --box: #16223a;
-      --glass: rgba(255, 255, 255, 0.08);
+      --bg:#141313;
+      --card:#920c0c;
+      --accent:#621010;
+      --muted:#161414;
+      --text:#f8eaea;
+      --box:#4e0505;
+    }
+
+    header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      background:linear-gradient(90deg,var(--accent),#49323239);
+      color:white;
+    }
+    
+ footer {
+      padding:18px 28px; 
+      background:linear-gradient(90deg,var(--accent),#49323239);
+      color:white; 
+      text-align:center; 
+      margin-top:auto;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,15 +54,6 @@
       min-height: 100vh;
       transition: background 0.25s ease, color 0.25s ease;
       -webkit-font-smoothing:antialiased;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 28px;
-      background: linear-gradient(90deg, var(--accent), #6a73d2);
-      color: white;
     }
 
     .brand { 
@@ -264,13 +270,6 @@
         margin-top:8px; 
     }
 
-    footer { 
-        padding:18px 28px; 
-        background:linear-gradient(90deg,var(--accent),#6a73d2); 
-        color:white; 
-        text-align:center; 
-        margin-top:auto; 
-    }
 
     .mobile-toggle{ 
         display:none;
