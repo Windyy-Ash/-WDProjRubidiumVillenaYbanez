@@ -6,6 +6,7 @@
   <title>Wonders of Teyvat — References</title>
   <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
   <style>
+
     :root {
       --bg:#fff9cc;
       --card:#fdfdfd;
@@ -15,6 +16,7 @@
       --box:#fffdf5;
       --radius:14px;
     }
+
     :root.dark {
       --bg:#141313;
       --card:#920c0c;
@@ -22,6 +24,24 @@
       --muted:#161414;
       --text:#f8eaea;
       --box:#4e0505;
+    }
+
+
+    header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      background:linear-gradient(90deg,var(--accent),#49323239);
+      color:white;
+    }
+
+ footer {
+      padding:18px 28px; 
+      background:linear-gradient(90deg,var(--accent),#49323239);
+      color:white; 
+      text-align:center; 
+      margin-top:auto;
     }
 
     *{box-sizing:border-box;
@@ -43,14 +63,6 @@
       transition:background .35s ease,color .35s ease;
     }
 
-    header {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:18px 28px;
-      background:linear-gradient(90deg,var(--accent),#6a73d2);
-      color:white;
-    }
 
     .brand { 
         display:flex; 
@@ -89,6 +101,10 @@
       font-weight:600;
     }
 
+nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
     .btn {
       background:transparent;
       border:1px solid rgba(255,255,255,0.2);
@@ -147,13 +163,7 @@
       font-weight:600;
     }
 
-    footer {
-      padding:18px 28px;
-      background:linear-gradient(90deg,var(--accent),#6a73d2);
-      color:white;
-      text-align:center;
-      margin-top:auto;
-    }
+
 
     @media(max-width:720px) {
       .nav-links{display:none}
