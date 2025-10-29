@@ -1,83 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HReferences Page:A Vast Journey Into the Wonders of Teyvat</title>
-    <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-        .wrapper {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            /* Using a simple indigo color */
-            background-color: #4A55A2;
-            color: white;
-            padding: 10px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 1.5em;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        main {
-            flex: 1;
-            padding: 2em;
-            max-width: 900px;
-            margin: 0 auto; /* Center the main content */
-        }
-        footer {
-            background-color: #4A55A2;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wonders of Teyvat — Game Overview</title>
+  <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+  <style>
+    :root{
+      --bg:#fff9cc;
+      --card:#fdfdfd;
+      --accent:#4a55a2;
+      --muted:#6b7280;
+      --text:#111827;
+      --box:#fffdf5;
+      --radius:14px;
+    }
+    :root.dark {
+      --bg:#3b0000;
+      --card:#1a0000;
+      --accent:#ff7070;
+      --muted:#d1bdbd;
+      --text:#f8eaea;
+      --box:#2b0000;
+    }
+
+    *{box-sizing:
+        border-box;
+        margin:0;
+        padding:0
+    }
+
+    body {
+      font-family:Inter,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      transition:background .35s,color .35s;
+      overflow-x:hidden;
+    }
+
+    header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      background:linear-gradient(90deg,var(--accent),#6a73d2);
+      color:white;
+    }
+
+    .brand {
+        display:flex;align-items:center;gap:14px
+    }
+
+    .brand img {
+        width:42px;
+        height:42px;
+        border-radius:8px;
+        object-fit:cover
+    }
+
+    .brand h1 {
+        font-size:1.15rem;
+        margin:0
+    }
+
+    nav {
+        display:flex;
+        align-items:center;
+        gap:12px
+    } 
+
+    .nav-links {
+        display:flex;
+        gap:8px
+    }
+
+    .nav-links a {
+        color:white;
+        text-decoration:none;
+        padding:8px 12px;
+        border-radius:8px;
+        font-weight:600
+    }
+
+    .btn {
+        background:transparent;
+        border:1px solid rgba(255,255,255,0.2);
+        padding:8px 10px;
+        border-radius:10px;
+        color:white;
+        cursor:pointer
+    }
+
+    main {
+        flex:1;
+        padding:36px 20px;
+        max-width:900px;
+        margin:0 auto;
+        width:100%;
+        text-align:center;
+        position:relative;
+        z-index:2
+    }
+
+    .card {
+        background:var(--card);
+        padding:24px;
+        border-radius:var(--radius);
+        box-shadow:0 8px 24px rgba(0,0,0,0.08);
+        margin-bottom:20px
+    }
+
+    select {
+        padding:10px 14px;
+        font-size:1rem;
+        border-radius:8px;
+        border:1px solid #ccc;
+        background:white;
+        cursor:pointer;
+        margin-top:12px;
+        outline:none
+    }
+
+    .info-box {
+        margin-top:18px;
+        padding:20px;
+        border-radius:12px;
+        background:var(--box);
+        box-shadow:0 6px 18px rgba(0,0,0,0.06);
+        display:none;
+        text-align:left;
+        line-height:1.6
+    }
+
+    footer {
+        padding:18px 28px;
+        background:linear-gradient(90deg,var(--accent),#6a73d2);
+        color:white;
+        text-align:center;
+        margin-top:auto
+    }
+
+    img.placeholder {
+        margin-top:14px;
+        max-width:360px;
+        border-radius:10px;
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+        opacity:0.8
+    }
+
+    .side-img {
+      position: fixed;
+      top: 140px;
+      width: 260px;
+      border-radius: 14px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+      z-index: 1;
+      opacity: 0.95;
+      transition: transform .3s;
+    }
+
+    .side-img:hover {
+      transform: scale(1.08);
+    }
+
+    .left-img {
+      left: 120px;
+    }
+    .right-img {
+      right: 120px;
+    }
+    @media(max-width:1300px){
+      .side-img{display:none;}
+    }
+
+    .side-wall {
+      position: absolute;
+      top: 100px;
+      bottom: 70px;
+      width: 240px;
+      background-image: url("https://thumbs.dreamstime.com/b/no-emoticon-29087585.jpg");
+      background-repeat: repeat-y;
+      background-size: contain;
+      opacity: 0.9;
+      z-index: 0;
+    }
+
+    .left-wall {
+      left: 80px;
+    }
+
+    .right-wall {
+      right: 80px;
+    }
+
+    @media (max-width: 1300px) {
+      .side-wall { display: none; }
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <div class="brand">
+      <button class="btn" id="themeBtn">🌗</button>
+      <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="logo" />
+      <div>
+        <h1>Wonders of Teyvat</h1>
+        <div style="font-size:0.85rem;opacity:.9">An Interactive Overview</div>
+      </div>
+    </div>
+    <nav>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="overview.html">Genshin Overview</a>
+        <a href="archonq.html">Archon Quests</a>
+        <a href="guide.html">Guides</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About us</a>
+        <a href="references.html">References</a>
+      </div>
+    </nav>
+  </header>
 
-    <div class="wrapper">
-        <header>
-            <h1>Genshin Overview</h1>
-            <nav>
-                <a href="index.html">Home 🏡</a>
-                <a href="overview.html">Genshin Overview</a>
-                <a href="about.html">About the Creators 😎</a>
-                <a href="submit.html">Submit your Recipe</a>
-                <a href="references.html">References 📑 </a>
-            </nav>
-        </header>
+  <!-- “ads” on the sides likeeee yk those things at the side LOLLLL -->
+    <div class="side-wall left-wall"></div>
+    <div class="side-wall right-wall"></div>
 
-        <main>
-            <p>Main content of the page goes here. This is the simple index page structure, ready for content.</p>
-        </main>
 
-        
-        <footer>
-            <p>Copyright &copy; 2025</p>
-        </footer>
+  <main>
+    <div class="card">
+      <h2>Genshin Impact Overview</h2>
+      <p style="margin-top:10px">Choose a category below to learn more about its gameplay elements and what makes it unique.</p>
+      <select id="overviewSelect">
+        <option value="">Choose...</option>
+        <option value="exploration">Exploration</option>
+        <option value="combat">Combat</option>
+        <option value="party">Party Building</option>
+        <option value="progression">Progression</option>
+        <option value="content">Content Types</option>
+      </select>
     </div>
 
+    <div class="info-box" id="infoBox">
+      <h3 id="infoTitle"></h3>
+      <p id="infoText"></p>
+      <img src="https://thumbs.dreamstime.com/b/no-emoticon-29087585.jpg" alt="Placeholder" class="placeholder">
+      <p style="text-align:center;margin-top:8px;font-style:italic;">An image will be put here.</p>
+    </div>
+  </main>
+
+  <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
+
+  <script>
+    const themeBtn = document.getElementById('themeBtn');
+    const root = document.documentElement;
+    const key = 'teyvat-theme';
+    const saved = localStorage.getItem(key) || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(saved);
+    themeBtn.addEventListener('click',()=>{applyTheme(root.classList.contains('dark')?'light':'dark')});
+    function applyTheme(t){root.classList.toggle('dark',t==='dark');localStorage.setItem(key,t)}
+
+    const data = {
+      exploration: {
+        title: "Exploration",
+        text: "Traverse large open regions, solve environmental puzzles, gather materials, and discover hidden lore across Teyvat's seven nations. blah blah blah "
+      },
+      combat: {
+        title: "Combat",
+        text: "Engage in real-time combat using normal and charged attacks, elemental skills, and bursts. Elemental reactions—like Vaporize, Melt, and Overload—are key to maximizing damage. blah blah blah "
+      },
+      party: {
+        title: "Party Building",
+        text: "Assemble four-character teams that synergize through elemental combos, roles, and weapon types. Proper team synergy greatly enhances combat and exploration efficiency. blah blah blah "
+      },
+      progression: {
+        title: "Progression",
+        text: "Level up your characters, ascend them, unlock talents, and equip artifacts and weapons to boost their power. Refining gear and optimizing builds are essential for late-game performance. blah blah blah "
+      },
+      content: {
+        title: "Content Types",
+        text: "Play through Archon Quests (main story), World Quests, Domains, Boss battles, Events, and Co-op adventures with friends. blah blah blah "
+      }
+    };
+
+    const select = document.getElementById('overviewSelect');
+    const box = document.getElementById('infoBox');
+    const title = document.getElementById('infoTitle');
+    const text = document.getElementById('infoText');
+
+    select.addEventListener('change', ()=>{
+      const val = select.value;
+      if(data[val]){
+        title.textContent = data[val].title;
+        text.textContent = data[val].text;
+        box.style.display = 'block';
+      } else {
+        box.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
