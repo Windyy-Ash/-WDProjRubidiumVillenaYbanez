@@ -18,7 +18,6 @@
             min-height: 100vh;
         }
         header {
-            
             background-color: #4A55A2;
             color: white;
             padding: 10px 30px;
@@ -45,7 +44,11 @@
             flex: 1;
             padding: 2em;
             max-width: 900px;
+<<<<<<< HEAD
             margin: 0 auto; 
+=======
+            margin: 0 auto;
+>>>>>>> 6a0f0f783373842bcb1456cb5c082cbe8a5d1154
         }
         footer {
             background-color: #4A55A2;
@@ -56,28 +59,100 @@
     </style>
 </head>
 <body>
+  <header>
+    <div class="brand">
+      <button class="btn" id="themeBtn">🌗</button>
+      <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="logo" />
+      <div>
+        <h1>Wonders of Teyvat</h1>
+        <div style="font-size:0.85rem;opacity:.9">Share your thoughts and recipes!</div>
+      </div>
+    </div>
+    <nav>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="overview.html">Genshin Overview</a>
+        <a href="archonq.html">Archon Quests</a>
+        <a href="guide.html">Guides</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About us</a>
+        <a href="references.html">References</a>
+      </div>
+    </nav>
+  </header>
 
-    <div class="wrapper">
-        <header>
-            <h1>Submit your own Recipe!</h1>
-            <nav>
-                <a href="index.html">Home 🏡</a>
-                <a href="overview.html">Genshin Overview</a>
-                <a href="about.html">About the Creators 😎</a>
-                <a href="submit.html">Submit your Recipe</a>
-                <a href="references.html">References 📑 </a>
-            </nav>
-        </header>
-
-        <main>
-            <p>Main content of the page goes here. This is the simple index page structure, ready for content.</p>
-        </main>
-
-        
-        <footer>
-            <p>Copyright &copy; 2025</p>
-        </footer>
+  <main>
+    <div class="card">
+      <h2>Have a recipe or idea you want to share?</h2>
+      <p>Post it anonymously below — your message will appear for everyone!</p>
+      <textarea id="postInput" placeholder="Type your message here..."></textarea><br>
+      <button class="submit" id="submitBtn">Post</button>
     </div>
 
+    <div id="postsContainer"></div>
+  </main>
+
+  <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, serverTimestamp, query, orderBy } 
+      from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAZpBQS1JndhXeZoCYQVc19aH6FlKLGUAI",
+      authDomain: "genshin-proj-community.firebaseapp.com",
+      projectId: "genshin-proj-community",
+      storageBucket: "genshin-proj-community.firebasestorage.app",
+      messagingSenderId: "816335172937",
+      appId: "1:816335172937:web:a2af580a0c3a3682919698",
+      measurementId: "G-WC6PF41S7B"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const submitBtn = document.getElementById("submitBtn");
+    const postInput = document.getElementById("postInput");
+    const postsContainer = document.getElementById("postsContainer");
+
+    async function loadPosts() {
+      postsContainer.innerHTML = "";
+      const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+      const snapshot = await getDocs(q);
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const div = document.createElement("div");
+        div.classList.add("post");
+        div.textContent = data.text;
+        postsContainer.appendChild(div);
+      });
+    }
+
+    submitBtn.addEventListener("click", async () => {
+      const text = postInput.value.trim();
+      if (!text) return alert("Please write something first!");
+      await addDoc(collection(db, "posts"), { text, timestamp: serverTimestamp() });
+      postInput.value = "";
+      loadPosts();
+    });
+
+    loadPosts();
+
+    const btn = document.getElementById('themeBtn');
+    const root = document.documentElement;
+    const key = 'teyvat-theme';
+    function apply(t){
+      root.classList.toggle('dark', t === 'dark');
+      localStorage.setItem(key, t);
+    }
+    const saved = localStorage.getItem(key) || 
+      (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    apply(saved);
+    btn.addEventListener('click', () => {
+      const isDark = root.classList.contains('dark');
+      apply(isDark ? 'light' : 'dark');
+    });
+  </script>
 </body>
 </html>
