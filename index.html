@@ -3,33 +3,60 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Home Page: Wonders of Teyvat — Recipe Selector</title>
+  <title>A Vast Journey Into the Wonders of Teyvat — Home</title>
   <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
   <style>
     :root {
       --bg:#fff9cc;
-      --card:#fdfdfd;
+   
+      --header-bg: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.78));
+      --footer-bg: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.78));
+      --header-text: var(--text);
+      --btn-border: rgba(0,0,0,0.08);
+      --link-hover: rgba(0,0,0,0.06);
+      --panel-border: rgba(0,0,0,0.08);
+      --opacity: 1;
+        --card: rgba(255,255,255,0.86);
       --accent:#4a55a2;
       --muted:#6b7280;
-      --text:#111827;
-      --box:#fffdf5;
+      --text:#1352d8;
+      --box:#ffffff;
       --radius:14px;
+      
+      --background-image: url("https://wallpaper.forfun.com/fetch/f3/f34497e9ebb662c05c7dcad9a2604c43.jpeg");
+      --bg-overlay: rgba(0, 0, 0, 0.12);
     }
 
     :root.dark {
       --bg:#141313;
-      --card:#920c0c;
+      --card: rgba(139, 14, 14, 0.75);
+      --opacity: 0.7;
       --accent:#621010;
       --muted:#161414;
-      --text:#f8eaea;
-      --box:#4e0505;
+      --text:#000000;
+      --box: rgba(255,255,255,0.06);
+      --background-image: url("https://i.redd.it/about-eyes-motif-on-raiden-v0-k9j87qoi67be1.png?width=1449&format=png&auto=webp&s=20f3c2f9c409eeafbdeff4a6fb7dfeba97ec94f2");
+
+      --bg-overlay: rgba(0,0,0,0.36);
+      --header-bg: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.32));
+      --footer-bg: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.32));
+      --header-text: #fff;
+      --btn-border: rgba(255,255,255,0.12);
+      --link-hover: rgba(255,255,255,0.08);
+      --panel-border: rgba(255,255,255,0.06);
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
-      font-family:Inter, Arial, sans-serif;
-      background:var(--bg);
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        linear-gradient(var(--bg-overlay), var(--bg-overlay)),
+        var(--background-image),
+        var(--bg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       color:var(--text);
       display:flex;
       flex-direction:column;
@@ -42,16 +69,12 @@
       align-items:center;
       justify-content:space-between;
       padding:18px 28px;
-      background:linear-gradient(90deg,var(--accent),#49323239);
-      color:white;
-    }
 
- footer {
-      padding:18px 28px; 
-      background:linear-gradient(90deg,var(--accent),#49323239);
-      color:white; 
-      text-align:center; 
-      margin-top:auto;
+      background: var(--header-bg);
+      color: var(--header-text);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
     }
     .brand { 
       display:flex; 
@@ -82,10 +105,10 @@
       gap:8px; 
     }
      nav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
+        background-color: var(--link-hover);
+      }
     .nav-links a {
-      color:white; 
+      color:var(--header-text); 
       text-decoration:none; 
       padding:8px 12px;
       border-radius:8px; 
@@ -94,11 +117,12 @@
 
     .btn {
       background:transparent; 
-      border:1px solid rgba(255,255,255,0.2);
+      border:1px solid var(--btn-border);
       padding:8px 10px; 
       border-radius:10px; 
-      color:white; 
+      color:var(--header-text);
       cursor:pointer;
+      backdrop-filter: blur(4px);
     }
 
     main {
@@ -110,19 +134,24 @@
     }
 
     .card {
-      background:var(--card); 
-      padding:22px; 
+      background:var(--card);
+      padding:22px;
       border-radius:var(--radius);
-      box-shadow:0 8px 24px rgba(0,0,0,0.08); 
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow:0 12px 36px rgba(0,0,0,0.18);
       margin-bottom:20px;
+      border: 1px solid var(--panel-border);
     }
+
+    .card > .card { margin-top:18px; }
 
     select {
       padding:10px 14px; 
       font-size:1rem; 
       border-radius:8px;
-      border:1px solid #ccc; 
-      background:white; 
+      border:1px solid rgba(0,0,0,0.08);
+      background: var(--card);
       cursor:pointer;
       margin-top:12px; 
       outline:none;
@@ -132,9 +161,10 @@
       margin-top:16px; 
       padding:18px; 
       border-radius:12px;
-      background:var(--box); 
+      background: var(--box);
       box-shadow:0 6px 18px rgba(0,0,0,0.06);
       display:none;
+      border: 1px solid var(--panel-border);
     }
 
     .result-box img {
@@ -148,10 +178,12 @@
 
     footer {
       padding:18px 28px; 
-      background:linear-gradient(90deg,var(--accent),#49323239);
-      color:white; 
+      background: var(--footer-bg);
+      color:var(--header-text); 
       text-align:center; 
       margin-top:auto;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
     @media(max-width:720px){ .nav-links{display:none} }
   </style>
@@ -182,13 +214,12 @@
   </header>
 
   <main>
-    <p style="margin-bottom:15px"> This page will server as the Home of the website.</p>
     <div class="card">
     <p style="font-weight:bold"> Genshin Impact is an open-world action RPG set on the magical continent of Teyvat. You play as the Traveler (Lumine or Aether),an interstellar visitor searching for your lost twin sibling (Lumine or Aether).  This is a journey that takes you across seven unique elemental nations, each ruled by an elemental god known as an Archon.
        With each region you pass by, you will meet different people, that will become your long time friends and adventurures that will help you along your journey. As you journey on with your best travelling companion Paimon, you will be tasting and discovering different types of dishes and specialty dishes(made with each characters special touch) from each region.</p>
     <div class="card">
       <h2>Nation / Group</h2>
-      <p style="margin-bottom:15px"> This is where you will be choosing a specific region [from the choices below] that you would like to find recipes from!</p>
+      <p style="margin-bottom:30px"> This is where you will be choosing a specific region [from the choices below] that you would like to find recipes from!</p>
       <p style="font-weight:bold">Choose a nation of Teyvat or one of the unique groups.</p>
       <select id="firstSelect" aria-label="Choose a nation">
         <option value="">Choose…</option>
