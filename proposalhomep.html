@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Vast Journey Into the Wonders of Teyvat</title>
+  <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+  <style>
+:root {
+      --bg:#fff9cc;
+      --card:#fdfdfd;
+      --accent:#4a55a2;
+      --muted:#6b7280;
+      --text:#111827;
+      --box:#fffdf5;
+      --radius:14px;
+    }
+
+    :root.dark {
+      --bg:#141313;
+      --card:#bb3737;
+      --accent:#8f0000;
+      --muted:#161414;
+      --text:#f8eaea;
+      --box:#c63030e6;
+    }
+
+        header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      background:linear-gradient(90deg,var(--accent),#49323239);
+      color:white;
+    }
+    
+ footer {
+      padding:18px 28px; 
+      background:linear-gradient(90deg,var(--accent),#49323239);
+      color:white; 
+      text-align:center; 
+      margin-top:auto;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; margin: 0; }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background 0.25s ease, color 0.25s ease;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .brand { 
+        display:flex; 
+        align-items:center; 
+        gap:14px; 
+    }
+
+    .brand img { 
+        width:42px; 
+        height:42px; 
+        border-radius:8px; 
+        object-fit:cover; 
+        box-shadow:0 6px 18px rgba(74,85,162,.16); 
+    }
+    
+    .brand h1 { 
+        font-size:1.15rem; 
+        margin:0; 
+    }
+
+    nav { 
+        display:flex; 
+        align-items:center; 
+        gap:12px; 
+    }
+
+    .nav-links { 
+        display:flex; 
+        gap:8px; 
+    }
+
+    .nav-links a { 
+        color:white; 
+        text-decoration:none; 
+        padding:8px 12px; 
+        border-radius:8px; 
+        font-weight:600; 
+        transition:background .18s; 
+    }
+
+    .nav-links a:hover { 
+        background: rgba(255,255,255,0.12); 
+    }
+
+    .btn { 
+        background:transparent; 
+        border:1px solid rgba(255,255,255,0.2); 
+        padding:8px 10px; 
+        border-radius:10px; 
+        color:white; 
+        cursor:pointer; font-size:1rem; 
+    }
+
+    .theme-toggle { 
+        display:inline-flex; 
+        align-items:center; 
+        justify-content:center; 
+        font-size:1.1rem; 
+    }
+
+    main { 
+        flex:1; 
+        padding:36px 20px; 
+        max-width:1100px; 
+        margin:0 auto; 
+        width:100%; 
+    }
+
+    .hero { 
+        display:grid; 
+        grid-template-columns:1fr 360px; 
+        gap:24px; 
+        align-items:start; 
+        margin-bottom:22px; 
+    }
+
+    .hero-card { 
+        background:var(--card); 
+        border-radius:var(--radius); 
+        padding:22px; 
+        box-shadow:0 10px 30px rgba(18,22,40,0.06); 
+        backdrop-filter:blur(6px); 
+        transition:background .25s ease; 
+    }
+
+    .hero-card h2 { 
+        margin-bottom:8px; 
+    }
+
+    .hero-card p { 
+        margin:0;color:var(--muted);line-height:1.45; 
+    }
+
+    .quick-actions{ 
+        display:flex; 
+        flex-direction:column; 
+        gap:12px; 
+    }
+
+    .action{ 
+        background:linear-gradient(180deg,var(--glass),transparent); 
+        padding:14px; 
+        border-radius:12px; 
+        border:1px solid rgba(0,0,0,0.05); 
+    }
+
+    .grid{ 
+        display:grid; 
+        grid-template-columns: 
+        repeat(3, 1fr); 
+        gap:16px; 
+        margin-top:18px; 
+    }
+
+    .box{ 
+        background:var(--box); 
+        padding:16px; 
+        border-radius:12px; 
+        min-height:120px; 
+        display:flex; 
+        flex-direction:column; 
+        justify-content:space-between; 
+        box-shadow:0 8px 22px rgba(15,23,42,0.06); 
+        transition:background .25s ease; 
+    }
+
+    .box h3{ 
+        margin:0 0 8px 0; 
+    }
+
+    .box p{ 
+        margin:0;color:var(--muted);font-size:0.95rem; 
+    }
+
+    .details-section { 
+        margin-top:28px; 
+    }
+
+    .details-grid { 
+        display:grid; 
+        grid-template-columns:repeat(2,1fr); 
+        gap:16px; 
+        margin-top:12px; 
+    }
+
+    .detail-card { 
+        background:var(--card); 
+        padding:18px; 
+        border-radius:12px; 
+        box-shadow:0 8px 30px rgba(15,23,42,0.06); 
+        min-height:160px; 
+        display:flex; 
+        flex-direction:column; 
+        gap:8px; transition:background .25s ease; 
+    }
+
+    .detail-card h3 { 
+        margin:0; 
+    }
+
+    .detail-card p { 
+        color:var(--muted); 
+        line-height:1.5; 
+        font-size:0.95rem; 
+    }
+
+    .detail-list { 
+        margin-top:6px; 
+        color:var(--muted); 
+        font-size:0.92rem; 
+    }
+
+    .detail-list li { 
+        margin-bottom:6px; 
+    }
+
+    .archon-section{ 
+        margin-top:28px; 
+    }
+
+    .archon-title{ 
+        display:flex; 
+        align-items:center; 
+        justify-content:space-between; 
+        margin-bottom:10px; 
+    }
+
+    .archon-grid{ 
+        display:grid; 
+        grid-template-columns:repeat(4,1fr); 
+        gap:12px; 
+    }
+
+    .archon-card{ 
+        background:var(--box); 
+        padding:12px; 
+        border-radius:12px; 
+        min-height:110px; 
+        display:flex; 
+        flex-direction:column; 
+        justify-content:space-between; 
+        border:1px dashed rgba(0,0,0,0.05); 
+        transition:background .25s ease; 
+    }
+
+    .archon-card small{ 
+        color:var(--muted); 
+    }
+
+    .muted-note{ 
+        font-size:0.9rem; 
+        color:var(--muted); 
+        margin-top:8px; 
+       
+    }
+
+        .muted-notes{ 
+        font-size:0.9rem; 
+        color: rgb(37, 23, 169);
+        margin-top:8px; 
+        margin-left:8px; 
+    }
+
+
+    .mobile-toggle{ 
+        display:none;
+    }
+
+    .mobile-nav{ 
+        display:none; 
+        position:fixed; 
+        inset:64px 12px auto 12px; 
+        background:var(--card); 
+        padding:14px; border-radius:12px; 
+        box-shadow:0 16px 40px rgba(2,6,23,0.35); 
+        z-index:10; 
+    }
+
+    .mobile-nav a{ 
+        display:block; 
+        padding:10px; 
+        border-radius:8px; 
+        color:var(--text); 
+        text-decoration:none; 
+    }
+
+    .mobile-nav a:hover{ 
+        background:var(--glass); 
+    }
+
+    @media(max-width:980px){
+      .hero{ grid-template-columns:1fr 1fr; }
+      .grid{ grid-template-columns:repeat(2,1fr); }
+      .archon-grid{ grid-template-columns:repeat(3,1fr); }
+      .details-grid{ grid-template-columns:1fr; }
+    }
+
+    @media(max-width:720px){
+      .nav-links{ display:none; }
+      .mobile-toggle{ display:inline-flex; }
+      .hero{ grid-template-columns:1fr; }
+      .grid, .archon-grid{ grid-template-columns:1fr; }
+      .details-grid{ grid-template-columns:1fr; }
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <button class="btn theme-toggle" id="themeBtnLeft" aria-label="Toggle theme">🌗</button>
+      <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="logo" />
+      <div>
+        <h1>Wonders of Teyvat</h1>
+        <div style="font-size:0.85rem;opacity:0.9">A fan-made compendium for recipes, quests & lore</div>
+      </div>
+    </div>
+
+    <nav>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="overview.html">Genshin Overview</a>
+        <a href="archonq.html">Archon Quests</a>
+        <a href="guide.html">Guides</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About Us</a>
+        <a href="references.html">References</a>
+      </div>
+      <button class="btn mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="mobileNav">☰</button>
+    </nav>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav" role="navigation">
+        <a href="index.html">Home</a>
+        <a href="overview.html">Genshin Overview</a>
+        <a href="archonq.html">Archon Quests</a>
+        <a href="guide.html">Guides</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About us</a>
+        <a href="references.html">References</a>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="hero-card">
+        <h2>Welcome to Teyvat</h2>
+        <p>Genshin Impact is an open-world action RPG set on the magical continent of Teyvat. You play as the Traveler (Lumine or Aether),an interstellar visitor searching for your lost twin sibling (Lumine or Aether).  This is a journey that takes you across seven unique elemental nations, each ruled by an elemental god known as an Archon.
+       With each region you pass by, you will meet different people, that will become your long time friends and adventurures that will help you along your journey. As you journey on with your best travelling companion Paimon, you will be tasting and discovering different types of dishes and specialty dishes(made with each characters special touch) from each region.</p>
+        <p class="muted-note">Use the toggle on the top-left to switch between light and dark themes.</p>
+      </div>
+
+      <aside class="hero-card quick-actions">
+
+        <div class="action">
+          <strong>How JS will be incorporated</strong>
+          <div class="muted-note">On every page, it will control the light/dark theme toggle in the header, allowing users to switch themes and remember their preference using localStorage. On the Community page, JavaScript will handle user-submitted posts by sending them to Firebase Firestore and dynamically displaying them on the page without needing to refresh. Additionally, JavaScript can be used to enhance responsiveness, such as toggling menus on smaller screens.</div>
+        </div>
+      </aside>
+    </section>
+
+    <section>
+      <h2 style="margin-bottom:8px">Home and Quick Boxes</h2>
+      <div class="grid">
+        <div class="box">
+          <div>
+            <h3>About home page</h3>
+            <p>Discover and Learn how to make different dishes/cuisines and specialtity dishes from each region! Click the link here to learn more!</p>
+          </div>
+          <a href="index.html" style="text-decoration:none;font-weight:700;color:var(--accent)">Go to Home! →</a>
+        </div>
+
+        <div class="box">
+          <div>
+            <h3>Community Spotlight</h3>
+            <p>Here, you can check out other recipes that travelers are sharing! This will work anonymously! Click the link here to learn more!</p>
+          </div>
+          <a href="community.html" style="text-decoration:none;font-weight:700;color:var(--accent)">Community →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="details-section">
+      <div class="archon-title">
+        <h2>Guides, Overview & About</h2>
+        <div class="muted-note">Detailed mini-guides, an intro to Genshin, characters, and creator credits.</div>
+      </div>
+
+      <div class="details-grid">
+        <article class="detail-card" id="guide-ingredients">
+          <h3>Guide — How to get ingredients</h3>
+          <p>Quick, practical tips for gathering cooking materials and common sources in the world of Teyvat.</p>
+          <ul class="detail-list">
+            <li><strong>Local specialties:</strong> Each region (Mondstadt, Liyue, Inazuma, etc.) has unique specialty items.</li>
+            <li><strong>Wild ingredients:</strong> Mint, meat, and more are often found near roads, fields, and under trees. Explore coastlines, and hills.</li>
+            <li><strong>Markets & vendors:</strong> NPC vendors sell ingredients; check different towns (daily restocks).</li>
+            <li><strong>Event rewards:</strong> Limited-time events often reward cooking ingredients.</li>
+            <a href="guide.html" style="text-decoration:none;font-weight:700;color:var(--accent)">Check out the design here! →</a>
+          </ul>
+        </article>
+
+        <article class="detail-card" id="overview-genshin">
+          <h3>Simple overview — What is Genshin Impact?</h3>
+          <p>Here you will be picking a category that you would like to learn more about. Core elements summarized:</p>
+          <ul class="detail-list">
+            <li><strong>Exploration:</strong> Learn how the game works! Traverse large open regions, solve environmental puzzles, gather materials, and discover lore.</li>
+            <li><strong>Combat:</strong> Learn ways on how to fight using fidderent weapons! Real-time combat combining normal attacks and charged attacks</li>
+            <li><strong>Party building:</strong> You build 4-character teams that synergize via elements and support roles. Check if the characters you are using are suitable and will work correctly together!</li>
+            <li><strong>Progression:</strong> Level up characters, ascend them, unlock talents, equip artifacts and weapons, and refine gear.</li>
+            <li><strong>Content types:</strong> Different Archon quests (main story), world quests, domains, bosses, events, and co-op activities.</li>
+            <li><strong>Mechanics:</strong> Learn about gliding, walking, sprinting, using skills and bursts in the game! </li>
+            <a href="overview.html" style="text-decoration:none;font-weight:700;color:var(--accent)">Check out the design here! →</a>
+          </ul>
+        </article>
+
+        <article class="detail-card" id="about-creators">
+          <h3>About the creators</h3>
+          <p>Who made this site and what to include in creator credits for a fan project.</p>
+          <ul class="detail-list">
+            <li><strong>Site creators:</strong> Names, roles, and contact info (email or social links).</li>
+            <a href="about.html" style="text-decoration:none;font-weight:700;color:var(--accent)">Check out the design here! →</a>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="archon-section">
+      <div class="archon-title">
+        <h2>Archon Quests</h2>
+        <div class="muted-notes">Here, in each card there will be a summary of the Travelers Archon Quest (main storyline quest) about the challenges they faced and the good deeds they did in that particular region whilst they search for their lost sibling across the world of Teyvat</div>
+      </div>
+
+      <div class="archon-grid">
+        <div class="archon-card"><h3>Prologue</h3><small>Placeholder quest box</small></div>
+        <div class="archon-card"><h3>Act I</h3><small>Placeholder quest box</small></div>
+        <div class="archon-card"><h3>Act II</h3><small>Placeholder quest box</small></div>
+        <div class="archon-card"><h3>Act III</h3><small>Placeholder quest box</small></div>
+        <div class="archon-card"><h3>Act IV</h3><small>Placeholder quest box</small></div>
+        <div class="archon-card"><h3>Act V</h3><small>Placeholder quest box</small></div>
+        <div class="archon-card"><h3>Other Quest</h3><small>Placeholder quest box</small></div>
+        <div class="archon-card"><h3>Side Quest</h3><small>Placeholder quest box</small></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Wonders of Teyvat — A fan resource
+  </footer>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const themeBtnLeft = document.getElementById('themeBtnLeft');
+      const mobileToggle = document.getElementById('mobileToggle');
+      const mobileNav = document.getElementById('mobileNav');
+
+      function applyTheme(theme) {
+        root.classList.toggle('dark', theme === 'dark');
+        localStorage.setItem('wot-theme', theme);
+      }
+
+      const saved = localStorage.getItem('wot-theme') ||
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      applyTheme(saved);
+
+      themeBtnLeft.addEventListener('click', () => {
+        const isDark = root.classList.contains('dark');
+        applyTheme(isDark ? 'light' : 'dark');
+      });
+
+      mobileToggle && mobileToggle.addEventListener('click', () => {
+        const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+        mobileToggle.setAttribute('aria-expanded', String(!expanded));
+        mobileNav.style.display = expanded ? 'none' : 'block';
+      });
+
+      document.addEventListener('click', (e) => {
+        if (mobileNav && !mobileNav.contains(e.target) && mobileToggle && !mobileToggle.contains(e.target) && window.innerWidth < 720) {
+          mobileNav.style.display = 'none';
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 720 && mobileNav) mobileNav.style.display = 'none';
+      });
+    })();
+  </script>
+</body>
+</html>

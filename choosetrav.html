@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Starting Screen</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url('https://www.bing.com/images/blob?bcid=S.qyM1gK-TYJMA2hc9FugB7aSMfJ.....0g') no-repeat center center/cover;
+        overflow: hidden;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(2px);
+    }
+
+    .container {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        padding-top: 250px;
+    }
+
+    .option-box {
+        width: 40%;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        backdrop-filter: blur(6px);
+        text-align: center;
+        font-size: 2rem;
+        color: #fff;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        cursor: pointer;
+        transition: 0.35s ease;
+        border: 2px solid rgba(255,255,255,0.4);
+        box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+
+    .option-box:hover {
+        transform: translateY(-12px) scale(1.03);
+        box-shadow: 0 0 25px gold, 0 0 45px gold inset;
+        border-color: gold;
+    }
+
+</style>
+</head>
+<body>
+<div class="overlay"></div>
+<div class="decor"></div>
+<div class="decor"></div>
+
+<div class="container">
+    <div class="option-box" onclick="location.href='loadingscreenLu.html'">Option One</div>
+    <div class="option-box" onclick="location.href='loadingscreenAe.html'">Aether</div>
+</div>
+</body>
+</html>

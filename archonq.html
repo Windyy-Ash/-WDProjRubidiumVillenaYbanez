@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>A Vast Journey Into the Wonders of Teyvat — Archon Quests</title>
+  <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+  <style>
+    :root {
+      --bg:#fff9cc;
+      --card:#fdfdfd;
+      --accent:#4a55a2;
+      --muted:#6b7280;
+      --text:#111827;
+      --box:#fffdf5;
+      --radius:14px;
+    }
+
+    :root.dark {
+      --bg:#141313;
+      --card:#920c0c;
+      --accent:#621010;
+      --muted:#161414;
+      --text:#f8eaea;
+      --box:#4e0505;
+    }
+
+   
+    header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      background:linear-gradient(90deg,var(--accent),#49323239);
+      color:white;
+    }
+
+ footer {
+      padding:18px 28px; 
+      background:linear-gradient(90deg,var(--accent),#49323239);
+      color:white; 
+      text-align:center; 
+      margin-top:auto;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Inter, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      transition:background .35s ease,color .35s ease;
+    }
+
+    .brand {
+      display:flex;align-items:center;gap:14px;
+    }
+
+    .brand img {
+      width:42px;height:42px;border-radius:8px;object-fit:cover;
+      box-shadow:0 6px 18px rgba(74,85,162,.16);
+    }
+
+    .brand h1 {font-size:1.15rem;margin:0}
+    nav a {
+      color:white;text-decoration:none;
+      padding:8px 12px;border-radius:8px;font-weight:600;
+    }
+
+    .btn {
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.2);
+      padding:8px 10px;
+      border-radius:10px;
+      color:white;
+      cursor:pointer;
+    }
+
+    main {
+      flex:1;
+      padding:36px 20px;
+      max-width:880px;
+      margin:0 auto;
+      width:100%;
+      text-align:center;
+    }
+
+    .card {
+      background:var(--card);
+      padding:22px;
+      border-radius:var(--radius);
+      box-shadow:0 8px 24px rgba(0,0,0,0.08);
+      margin-bottom:20px;
+    }
+
+    .quest-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px;
+      margin-top:24px;
+    }
+
+    .quest-box {
+      background:var(--box);
+      padding:16px;
+      border-radius:12px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.05);
+      text-align:center;
+      font-weight:500;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <button class="btn" id="themeBtn">🌗</button>
+      <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="logo" />
+      <div>
+        <h1>Wonders of Teyvat</h1>
+        <div style="font-size:0.85rem;opacity:.9">Explore the Archon Quests</div>
+      </div>
+    </div>
+    <nav>
+      <a href="proposalhomep.html">Proposal</a>
+      <a href="index.html">Home</a>
+      <a href="overview.html">Genshin Overview</a>
+      <a href="archonq.html">Archon Quests</a>
+      <a href="guide.html">Guides</a>
+      <a href="community.html">Community</a>
+      <a href="about.html">About us</a>
+      <a href="references.html">References</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>Archon Quests</h2>
+      <p style="margin-bottom:15px">Here, in each card there will be a summary of the Travelers Archon Quest (main storyline quest) about the challenges they faced and the good deeds they did in that particular region whilst they search for their lost sibling across the world of Teyvat </p>
+      <p style="font-weight:bold">What Archon Quest would you like to know about?</p>
+
+      <div class="quest-grid">
+        <div class="quest-box">Prologue<br><small>Placeholder quest box</small></div>
+        <div class="quest-box">Act I<br><small>Placeholder quest box</small></div>
+        <div class="quest-box">Act II<br><small>Placeholder quest box</small></div>
+        <div class="quest-box">Act III<br><small>Placeholder quest box</small></div>
+        <div class="quest-box">Act IV<br><small>Placeholder quest box</small></div>
+        <div class="quest-box">Act V<br><small>Placeholder quest box</small></div>
+        <div class="quest-box">Other Quest<br><small>Placeholder quest box</small></div>
+        <div class="quest-box">Side Quest<br><small>Placeholder quest box</small></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
+
+  <script>
+    const btn = document.getElementById('themeBtn');
+    const root = document.documentElement;
+    const key = 'teyvat-theme';
+    function apply(t){
+      root.classList.toggle('dark', t === 'dark');
+      localStorage.setItem(key, t);
+    }
+    const saved = localStorage.getItem(key) || 
+      (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    apply(saved);
+    btn.addEventListener('click', () => {
+      const isDark = root.classList.contains('dark');
+      apply(isDark ? 'light' : 'dark');
+    });
+  </script>
+</body>
+</html>
