@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>A Vast Journey Into the Wonders of Teyvat — Home</title>
+  <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+  <style>
+    :root {
+      --bg:#fff9cc;
+   
+      --header-bg: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.78));
+      --footer-bg: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.78));
+      --header-text: var(--text);
+      --btn-border: rgba(0,0,0,0.08);
+      --link-hover: rgba(0,0,0,0.06);
+      --panel-border: rgba(0,0,0,0.08);
+      --opacity: 1;
+        --card: rgba(255,255,255,0.86);
+      --accent:#4a55a2;
+      --muted:#6b7280;
+      --text:#1352d8;
+      --box:#ffffff;
+      --radius:14px;
+      
+      --background-image: url("https://wallpaper.forfun.com/fetch/f3/f34497e9ebb662c05c7dcad9a2604c43.jpeg");
+      --bg-overlay: rgba(0, 0, 0, 0.12);
+    }
+
+    :root.dark {
+      --bg:#141313;
+      --card: rgba(139, 14, 14, 0.75);
+      --opacity: 0.7;
+      --accent:#621010;
+      --muted:#161414;
+      --text:#000000;
+      --box: rgba(255,255,255,0.06);
+      --background-image: url("https://i.redd.it/about-eyes-motif-on-raiden-v0-k9j87qoi67be1.png?width=1449&format=png&auto=webp&s=20f3c2f9c409eeafbdeff4a6fb7dfeba97ec94f2");
+
+      --bg-overlay: rgba(0,0,0,0.36);
+      --header-bg: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.32));
+      --footer-bg: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.32));
+      --header-text: #fff;
+      --btn-border: rgba(255,255,255,0.12);
+      --link-hover: rgba(255,255,255,0.08);
+      --panel-border: rgba(255,255,255,0.06);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        linear-gradient(var(--bg-overlay), var(--bg-overlay)),
+        var(--background-image),
+        var(--bg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color:var(--text);
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      transition:background .35s ease,color .35s ease;
+    }
+
+    header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+
+      background: var(--header-bg);
+      color: var(--header-text);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .brand { 
+      display:flex; 
+      align-items:center; 
+      gap:14px; 
+    }
+
+    .brand img {
+      width:42px; 
+      height:42px; 
+      border-radius:8px; 
+      object-fit:cover;
+      box-shadow:0 6px 18px rgba(74,85,162,.16);
+    }
+
+    .brand h1{
+        font-size:1.15rem;
+        margin:0}
+
+    nav { 
+      display:flex; 
+      align-items:center; 
+      gap:12px; 
+    }
+
+    .nav-links { 
+      display:flex; 
+      gap:8px; 
+    }
+     nav a:hover {
+        background-color: var(--link-hover);
+      }
+    .nav-links a {
+      color:var(--header-text); 
+      text-decoration:none; 
+      padding:8px 12px;
+      border-radius:8px; 
+      font-weight:600;
+    }
+
+    .btn {
+      background:transparent; 
+      border:1px solid var(--btn-border);
+      padding:8px 10px; 
+      border-radius:10px; 
+      color:var(--header-text);
+      cursor:pointer;
+      backdrop-filter: blur(4px);
+    }
+
+    main {
+      flex:1; padding:36px 20px; 
+      max-width:880px; 
+      margin:0 auto;
+      width:100%; 
+      text-align:center;
+    }
+
+    .card {
+      background:var(--card);
+      padding:22px;
+      border-radius:var(--radius);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow:0 12px 36px rgba(0,0,0,0.18);
+      margin-bottom:20px;
+      border: 1px solid var(--panel-border);
+    }
+
+    .card > .card { margin-top:18px; }
+
+    select {
+      padding:10px 14px; 
+      font-size:1rem; 
+      border-radius:8px;
+      border:1px solid rgba(0,0,0,0.08);
+      background: var(--card);
+      cursor:pointer;
+      margin-top:12px; 
+      outline:none;
+    }
+    
+    .result-box {
+      margin-top:16px; 
+      padding:18px; 
+      border-radius:12px;
+      background: var(--box);
+      box-shadow:0 6px 18px rgba(0,0,0,0.06);
+      display:none;
+      border: 1px solid var(--panel-border);
+    }
+
+    .result-box img {
+      margin-top:10px; 
+      max-width:320px; 
+      border-radius:10px;
+      display:block; 
+      margin-left:auto; 
+      margin-right:auto;
+    }
+
+    footer {
+      padding:18px 28px; 
+      background: var(--footer-bg);
+      color:var(--header-text); 
+      text-align:center; 
+      margin-top:auto;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    @media(max-width:720px){ .nav-links{display:none} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <button class="btn" id="themeBtn" aria-label="Toggle theme">🌗</button>
+      <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="logo" />
+      <div>
+        <h1>Wonders of Teyvat</h1>
+        <div style="font-size:0.85rem;opacity:.9">A fan-made compendium for recipes, nations & lore</div>
+      </div>
+    </div>
+
+    <nav>
+      <div class="nav-links">
+        <a href="proposalhomep.html">Proposal</a>
+        <a href="index.html">Home</a>
+        <a href="overview.html">Genshin Overview</a>
+        <a href="archonq.html">Archon Quests</a>
+        <a href="guide.html">Guides</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About us</a>
+        <a href="references.html">References</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+    <p style="font-weight:bold"> Genshin Impact is an open-world action RPG set on the magical continent of Teyvat. You play as the Traveler (Lumine or Aether),an interstellar visitor searching for your lost twin sibling (Lumine or Aether).  This is a journey that takes you across seven unique elemental nations, each ruled by an elemental god known as an Archon.
+       With each region you pass by, you will meet different people, that will become your long time friends and adventurures that will help you along your journey. As you journey on with your best travelling companion Paimon, you will be tasting and discovering different types of dishes and specialty dishes(made with each characters special touch) from each region.</p>
+    <div class="card">
+      <h2>Nation / Group</h2>
+      <p style="margin-bottom:30px"> This is where you will be choosing a specific region [from the choices below] that you would like to find recipes from!</p>
+      <p style="font-weight:bold">Choose a nation of Teyvat or one of the unique groups.</p>
+      <select id="firstSelect" aria-label="Choose a nation">
+        <option value="">Choose…</option>
+        <option value="1">Mondstadt</option>
+        <option value="2">Liyue</option>
+        <option value="3">Inazuma</option>
+        <option value="4">Sumeru</option>
+        <option value="5">Fontaine</option>
+        <option value="6">Natlan</option>
+        <option value="7">Nod Krai</option>
+        <option value="8">Harbingers</option>
+        <option value="9">Non-being</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <h2>Character</h2>
+      <p style="margin-bottom:15px">Now after picking a specific region from Teyvat, you will be picking next a specific character from that region you picked, and you will be given a recipe of their specialty dish.<p>
+      <p style="font-weight:bold">Select a character from your chosen nation or group.</p>
+      <select id="secondSelect" style="display:none" aria-label="Character choices"></select>
+    </div>
+
+    <div class="result-box" id="resultBox" aria-live="polite">
+      <h3 id="foodText">The food you get is…</h3>
+      <img id="foodImage" src="" alt="Recipe image">
+    </div>
+  </main>
+
+  <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
+
+  <script>
+    (function(){
+      const btn = document.getElementById('themeBtn');
+      const root = document.documentElement;
+      const key = 'teyvat-theme';
+      function apply(t){
+        root.classList.toggle('dark', t === 'dark');
+        localStorage.setItem(key, t);
+      }
+      const saved = localStorage.getItem(key) || 
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      apply(saved);
+      btn.addEventListener('click', () => {
+        const isDark = root.classList.contains('dark');
+        apply(isDark ? 'light' : 'dark');
+      });
+    })();
+
+    const firstSelect = document.getElementById('firstSelect');
+    const secondSelect = document.getElementById('secondSelect');
+    const resultBox = document.getElementById('resultBox');
+    const foodText = document.getElementById('foodText');
+    const foodImage = document.getElementById('foodImage');
+
+    function clearSecond(){
+      secondSelect.innerHTML = '';
+      secondSelect.style.display = 'none';
+      resultBox.style.display = 'none';
+    }
+
+    firstSelect.addEventListener('change', () => {
+      const v = parseInt(firstSelect.value, 10);
+      clearSecond();
+      if (!v || isNaN(v)) return;
+
+      let start = null, end = null;
+      if (v >= 1 && v <= 6) {
+        start = (v - 1) * 5 + 1;
+        end = start + 4;
+      } else if (v === 7) {
+        start = 31; end = 34;
+      } else if (v === 8) {
+        start = 35; end = 37;
+      } else if (v === 9) {
+        start = 38; end = 38;
+      }
+
+      if (start === null || end === null) return;
+
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = 'Choose character…';
+      placeholder.selected = true;
+      placeholder.disabled = true;
+      secondSelect.appendChild(placeholder);
+
+      for (let i = start; i <= end; i++){
+        const opt = document.createElement('option');
+        opt.value = `Character ${i}`;
+        opt.textContent = `Character ${i}`;
+        secondSelect.appendChild(opt);
+      }
+
+      secondSelect.style.display = 'inline-block';
+    });
+
+    secondSelect.addEventListener('change', () => {
+      const a = firstSelect.options[firstSelect.selectedIndex].text;
+      const b = secondSelect.value;
+      if (!a || !b) {
+        resultBox.style.display = 'none';
+        return;
+      }
+
+      foodText.textContent = `You selected ${b} from ${a}. Here's their special dish!`;
+      foodImage.src = 'https://thumbs.dreamstime.com/b/no-emoticon-29087585.jpg';
+      resultBox.style.display = 'block';
+    });
+
+    clearSecond();
+  </script>
+</body>
+</html>
