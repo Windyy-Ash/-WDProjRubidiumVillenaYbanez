@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teyvat Loader</title>
+  <style>
+    :root {
+      --bg-yellow:#f7df6a;
+      --bg-opacity:0.7;
+      --bar-height:28px;
+      --bar-width:680px;
+    }
+    
+    html,body {
+      height:100%;
+      margin:0;
+      font-family:Inter, system-ui, sans-serif;
+      background:var(--bg-yellow);
+    }
+    
+    .bg-wrap {
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:0
+    }
+    
+    .bg {
+      position:absolute;
+      inset:0;
+      background-size:cover;
+      background-position:center;
+      opacity:0;
+      transition:opacity 1s ease-in-out;
+      filter:brightness(0.95);
+    }
+    
+    .bg.show {
+      opacity:var(--bg-opacity);
+    }
+
+    .stage {
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:10;
+      flex-direction:column;
+    }
+    
+    .card {
+      width:820px;
+      max-width:94vw;
+      text-align:center;
+      position:relative;
+    }
+    
+    .chibi-wrap {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:14px;
+      position:relative;
+      z-index:12;
+    }
+    
+    .chibi {
+      width:160px;
+      height:160px;
+      object-fit:contain;
+      transform:rotate(20deg);
+      transition:transform 1s ease-in-out,opacity 1s ease-in-out;
+      animation:rockChibi 1.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes rockChibi {
+      from{
+        transform:rotate(-30deg)}to{transform:rotate(30deg)
+        }
+    }
+
+    .bar-wrap{
+      position:relative;
+      margin:10px auto 26px auto;
+      height:var(--bar-height);
+      width:var(--bar-width);
+      background:transparent;
+      border-radius:20px;
+      overflow:visible;
+      border:2px solid #fff;
+      transition:opacity 1s ease-in-out;
+    }
+      
+    .bar {
+      position:absolute;
+      left:0;
+      top:0;
+      height:100%;
+      width:0;
+      border-radius:20px;
+      background:var(--bg-yellow);
+      box-shadow:0 6px 18px rgba(0,0,0,0.18);
+      transition:width 0.1s linear;
+      z-index:11
+    }
+
+    .texts {
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      margin-top:12px;
+      flex-wrap:wrap;
+      position:relative;
+    }
+    
+    .txt {
+      font-size:18px;
+      padding:6px 10px;
+      border-radius:8px;
+      opacity:0;transition:all 0.8s ease-in-out;
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+    }
+    
+    .txt.active {
+      opacity:0.95;
+      font-size:26px;
+      text-shadow:0 0 12px rgba(255,255,255,0.85),0 0 24px rgba(255,150,200,0.12);
+    }
+    
+    .txt.glow {
+      color:white;
+      text-shadow:0 0 12px rgba(255,255,255,0.9),0 0 28px rgba(255,150,200,0.22);
+    }
+
+    .enter-btn {
+      display:inline-block;
+      margin-top:-80px;
+      padding:12px 20px;
+      border-radius:18px;
+      background:#2b2b2b;
+      color:#fff;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+      outline:none;
+      opacity:0;
+      transform:translateY(10px);
+      transition:opacity 1s ease-in-out,transform 1s ease-in-out;
+      z-index:12;
+    }
+    
+    .enter-btn.show {
+      opacity:1;
+      transform:
+      translateY(0);
+    }
+    
+    * {
+      transition-timing-function:cubic-bezier(.25,.8,.25,1)
+    }
+    
+    @media (max-width:650px) {
+      :root{
+        --bar-width:86vw} .chibi{
+          width:120px;
+          height:120px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="bg-wrap" aria-hidden="true"></div>
+  <div class="stage" id="stage">
+    <div class="card" id="loaderCard">
+      <div class="chibi-wrap" id="chibiWrap">
+        <img src="https://stickerly.pstatic.net/sticker_pack/USo6NLNtrwk1ah3Qhjw/APEAYC/31/e22b87a3-08a3-4d14-8b58-a45f64ad3f80.png" alt="chibi" class="chibi" id="chibi">
+      </div>
+      <div class="bar-wrap" id="barWrap">
+        <div class="bar" id="bar"></div>
+      </div>
+      <div class="texts" id="texts"></div>
+      <button class="enter-btn" id="enterBtn">Click to Enter the world of Teyvat</button>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const DURATION = 7000;
+      const TEXT_INTERVAL = 2000;
+      const BG_INTERVAL = 1500;
+      const backgroundUrls = [
+        'https://i.ebayimg.com/images/g/1WQAAeSwZHZo-5-s/s-l960.jpg',
+        'https://cdn.pfps.gg/pfps/9384-aether-genshin-impact.png',
+        'https://images5.alphacoders.com/135/thumb-1920-1350826.jpeg',
+        'https://images2.alphacoders.com/121/thumb-1920-1219443.jpg',
+        'https://images3.alphacoders.com/113/thumb-1920-1132507.png',
+        'https://wallpapercave.com/wp/wp8932637.jpg',
+        'https://wallpapercave.com/wp/wp8932689.jpg',
+        'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/09/genshin-impact-main-character-aether.jpg', 
+        'https://wallpapercave.com/wp/wp8932811.png',
+        'https://wallpapercave.com/wp/wp10165118.jpg'
+      ];
+      const textsList = Array.from({length:10},(_,i)=>`text${i+1}`);
+
+      const bgWrap = document.querySelector('.bg-wrap');
+      const textsEl = document.getElementById('texts');
+      const bar = document.getElementById('bar');
+      const chibi = document.getElementById('chibi');
+      const enterBtn = document.getElementById('enterBtn');
+      const loaderCard = document.getElementById('loaderCard');
+      const stage = document.getElementById('stage');
+
+      const bgDivs = [];
+      backgroundUrls.forEach((url,i)=>{
+        const d=document.createElement('div');
+        d.className='bg';
+        d.style.backgroundImage=`url('${url}')`;
+        bgWrap.appendChild(d);
+        bgDivs.push(d);
+      });
+
+      function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+      const shuffledBgs = shuffle([...bgDivs]);
+      const shuffledTexts = shuffle([...textsList]);
+
+      let bgIndex=0;
+      shuffledBgs[0].classList.add('show');
+      setInterval(()=>{
+        shuffledBgs[bgIndex].classList.remove('show');
+        bgIndex=(bgIndex+1)%shuffledBgs.length;
+        shuffledBgs[bgIndex].classList.add('show');
+      },BG_INTERVAL);
+
+      const txtNodes = shuffledTexts.map(t=>{const el=document.createElement('div');el.className='txt';el.textContent=t;textsEl.appendChild(el);return el;});
+      let txtIndex=0;
+      function showNextText(){
+        txtNodes.forEach(n=>{n.classList.remove('active','glow');});
+        if(txtIndex<txtNodes.length){
+          txtNodes[txtIndex].classList.add('active','glow');
+          txtIndex++;
+        }
+      }
+      showNextText();
+      const textTimer=setInterval(()=>{ showNextText(); },TEXT_INTERVAL);
+
+      let start=null;
+      function animateBar(ts){
+        if(!start) start=ts;
+        const elapsed=ts-start;
+        const progress=Math.min(1,elapsed/DURATION);
+        bar.style.width=(progress*100)+'%';
+        if(progress<1){requestAnimationFrame(animateBar);}else{onLoadComplete();}
+      }
+      requestAnimationFrame(animateBar);
+
+      function onLoadComplete(){
+        document.getElementById('barWrap').style.opacity=0;
+        txtNodes.forEach((n,i)=>{if(i!==txtIndex-1){n.style.opacity=0;}});
+        enterBtn.style.marginTop='-140px';
+        enterBtn.classList.add('show');
+      }
+
+      enterBtn.addEventListener('click',()=>{ window.location.href='index.html'; });
+    })();
+  </script>
+</body>
+</html>
