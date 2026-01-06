@@ -362,9 +362,8 @@ nav a:hover {
       </div>
 
       <div class="dialogue-text">
-        <h3>Exploration in Teyvat</h3>
-        <p>ooooo paragraphs</p>
-        <p>bleh</p>
+        <h3 id="dialogueTitle"></h3>
+        <div id="dialogueText"></div>
       </div>
     </div>
   </div>
@@ -418,11 +417,61 @@ nav a:hover {
       }
     });
 
+    const dialogueData = {
+      exploration: {
+        title: "Exploration in Teyvat",
+        text: [
+          "o"
+        ]
+      },
+
+      combat: {
+        title: "Combat in Genshin Impact",
+        text: [
+          "woo"
+        ]
+      },
+
+      party: {
+        title: "Party Building Strategy",
+        text: [
+          "myyuuu"
+        ]
+      },
+
+      progression: {
+        title: "Character Progression",
+        text: [
+          "nya",
+        ]
+      },
+
+      content: {
+        title: "Types of Content in Teyvat",
+        text: [
+          "bleh"
+        ]
+    }
+};
+
     const dialogueOverlay = document.getElementById('dialogueOverlay');
     const closeDialogue = document.getElementById('closeDialogue');
 
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains('placeholder')) {
+        const selected = select.value;
+
+      if (!dialogueData[selected]) return;
+
+      dialogueTitle.textContent = dialogueData[selected].title;
+      dialogueText.innerHTML = '';
+
+      dialogueData[selected].text.forEach(p => {
+        const para = document.createElement('p');
+        para.textContent = p;
+        dialogueText.appendChild(para);
+      });
+
         dialogueOverlay.style.display = 'flex';
       }
     });
