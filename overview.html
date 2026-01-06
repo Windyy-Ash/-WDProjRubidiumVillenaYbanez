@@ -228,6 +228,73 @@ nav a:hover {
     @media (max-width: 1300px) {
       .side-wall { display: none; }
     }
+
+    .dialogue-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .dialogue-box {
+      background: rgba(255,255,255,0.88);
+      max-width: 900px;
+      width: 90%;
+      border-radius: 18px;
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      border: none;
+      background: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    .dialogue-content {
+      display: flex;
+      gap: 20px;
+    }
+
+    .dialogue-images {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .dialogue-images img {
+      width: 220px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .dialogue-text {
+      flex: 1;
+      color: #222;
+    }
+
+    .dialogue-text h3 {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 700px) {
+      .dialogue-content {
+      flex-direction: column;
+    }
+
+    dialogue-images img {
+      width: 100%;
+    }
+}
   </style>
 </head>
 <body>
@@ -283,6 +350,26 @@ nav a:hover {
 
   <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
 
+  <div class="dialogue-overlay" id="dialogueOverlay">
+  <div class="dialogue-box">
+    <button class="close-btn" id="closeDialogue">✕</button>
+
+    <div class="dialogue-content">
+      <div class="dialogue-images">
+        <img src="https://staticc.sportskeeda.com/editor/2022/09/eb15e-16645349279765-1920.jpg">
+        <img src="https://upload-os-bbs.hoyolab.com/upload/2023/07/10/279840469/98747642701f0db5b9336da17c349719_4777866858419662174.jpg">
+        <img src="https://upload-os-bbs.hoyolab.com/upload/2020/10/03/25907022/10142bb0f9acee35e7582d8c1103bec4_169847878409890174.png">
+      </div>
+
+      <div class="dialogue-text">
+        <h3>Exploration in Teyvat</h3>
+        <p>ooooo paragraphs</p>
+        <p>bleh</p>
+      </div>
+    </div>
+  </div>
+</div>
+  
   <script>
     const themeBtn = document.getElementById('themeBtn');
     const root = document.documentElement;
@@ -295,7 +382,7 @@ nav a:hover {
     const data = {
       exploration: {
         title: "Exploration",
-        text: "Traverse large open regions, solve environmental puzzles, gather materials, and discover hidden lore across Teyvat's seven nations. blah blah blah "
+        text: "Explore huge open areas, solve fun-hellish puzzles, collect materials and look onto the lore across Teyvat's nations -- where each region has its own story. There is tons of stuff for players to enjoy: climb, glide, swim and wander around while being able to stumble upon those secret quests, NPCs and challenging puzzles."
       },
       combat: {
         title: "Combat",
@@ -328,6 +415,25 @@ nav a:hover {
         box.style.display = 'block';
       } else {
         box.style.display = 'none';
+      }
+    });
+
+    const dialogueOverlay = document.getElementById('dialogueOverlay');
+    const closeDialogue = document.getElementById('closeDialogue');
+
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('placeholder')) {
+        dialogueOverlay.style.display = 'flex';
+      }
+    });
+
+    closeDialogue.addEventListener('click', () => {
+      dialogueOverlay.style.display = 'none';
+    });
+
+    dialogueOverlay.addEventListener('click', (e) => {
+      if (e.target === dialogueOverlay) {
+        dialogueOverlay.style.display = 'none';
       }
     });
   </script>
