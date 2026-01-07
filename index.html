@@ -106,14 +106,15 @@ body {
       min-height:100vh;
       transition:background .35s ease,color .35s ease;
     }
+  header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      background:linear-gradient(90deg,var(--accent),#49323239);
+      color:white;
+    }
 
-header {
-  align-items:center;
-  justify-content:space-between;
-  padding:18px 28px;
-  background:linear-gradient(90deg,var(--accent),#49323239);
-  color:white;
-}
 
      footer {
       padding:18px 28px; 
@@ -249,13 +250,9 @@ header {
   </style>
 </head>
 <body>
-</style>
-</head>
-<body>
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="proposalhomep.html">Proposal</a>
         <a href="index.html">Home</a>
         <a href="overview.html">Genshin Overview</a>
         <a href="archonq.html">Archon Quests</a>
@@ -265,7 +262,7 @@ header {
         <a href="references.html">References</a>
 </div>
 
-<span style="font-size:30px;cursor:pointer;margin-top: 10px;" onclick="openNav()">✨ </span>
+
 
 <script>
 function openNav() {
@@ -278,7 +275,9 @@ function closeNav() {
 </script>
   
   <header>
+
     <div class="brand">
+      <button class="sparkle-btn" onclick="openNav()" aria-label="Open menu">✨</button>
       <button class="btn" id="themeBtn" aria-label="Toggle theme">🌗</button>
       <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="logo" />
       <div>

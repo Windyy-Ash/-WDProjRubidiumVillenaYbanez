@@ -143,9 +143,20 @@
   </style>
 </head>
 <body>
+  <div id="mySidenav" class="sidenav" style="height:100%;width:0;position:fixed;z-index:1;top:0;left:0;background-color:#111;overflow-x:hidden;transition:0.5s;padding-top:60px;">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="position:absolute;top:0;right:25px;font-size:36px;margin-left:50px;">&times;</a>
+    <a href="index.html">Home</a>
+    <a href="overview.html">Genshin Overview</a>
+    <a href="archonq.html">Archon Quests</a>
+    <a href="guide.html">Guides</a>
+    <a href="community.html">Community</a>
+    <a href="about.html">About us</a>
+    <a href="references.html">References</a>
+  </div>
   <header>
     <div class="brand">
-      <button class="btn" id="themeBtn">🌗</button>
+      <button class="sparkle-btn" onclick="openNav()" aria-label="Open menu">✨</button>
+      <button class="btn" id="themeBtn" aria-label="Toggle theme">🌗</button>
       <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="logo" />
       <div>
         <h1>Wonders of Teyvat</h1>
@@ -185,20 +196,28 @@
   <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
 
   <script>
-    const btn = document.getElementById('themeBtn');
-    const root = document.documentElement;
-    const key = 'teyvat-theme';
-    function apply(t){
-      root.classList.toggle('dark', t === 'dark');
-      localStorage.setItem(key, t);
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
     }
-    const saved = localStorage.getItem(key) || 
-      (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    apply(saved);
-    btn.addEventListener('click', () => {
-      const isDark = root.classList.contains('dark');
-      apply(isDark ? 'light' : 'dark');
-    });
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+    (function(){
+      const btn = document.getElementById('themeBtn');
+      const root = document.documentElement;
+      const key = 'teyvat-theme';
+      function apply(t){
+        root.classList.toggle('dark', t === 'dark');
+        localStorage.setItem(key, t);
+      }
+      const saved = localStorage.getItem(key) || 
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      apply(saved);
+      btn.addEventListener('click', () => {
+        const isDark = root.classList.contains('dark');
+        apply(isDark ? 'light' : 'dark');
+      });
+    })();
   </script>
 </body>
 </html>
