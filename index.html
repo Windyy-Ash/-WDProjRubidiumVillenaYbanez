@@ -107,14 +107,13 @@ body {
       transition:background .35s ease,color .35s ease;
     }
 
-    header {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:18px 28px;
-      background:linear-gradient(90deg,var(--accent),#49323239);
-      color:white;
-    }
+header {
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 28px;
+  background:linear-gradient(90deg,var(--accent),#49323239);
+  color:white;
+}
 
      footer {
       padding:18px 28px; 
@@ -128,6 +127,29 @@ body {
       align-items:center; 
       gap:14px; 
     }
+      .sparkle-btn {
+        font-size: 1.3rem;
+        padding: 8px 10px;
+        margin-left: 2px;
+        margin-right: 2px;
+        background: rgba(74,85,162,0.10);
+        border: 1px solid var(--btn-border);
+        border-radius: 10px;
+        transition: background 0.2s;
+      }
+      .sparkle-btn:hover {
+        background: rgba(255, 255, 0, 0.18);
+      }
+
+      @media (max-width: 720px) {
+        .brand {
+          gap: 6px;
+        }
+        .sparkle-btn {
+          font-size: 1.1rem;
+          padding: 7px 8px;
+        }
+      }
 
     .brand img {
       width:42px; 
@@ -243,7 +265,7 @@ body {
         <a href="references.html">References</a>
 </div>
 
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">✨ </span>
+<span style="font-size:30px;cursor:pointer;margin-top: 10px;" onclick="openNav()">✨ </span>
 
 <script>
 function openNav() {
