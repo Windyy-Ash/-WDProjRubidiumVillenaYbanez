@@ -244,10 +244,15 @@ nav a:hover {
       background: rgba(255,255,255,0.88);
       max-width: 900px;
       width: 90%;
+      max-height: 85vh;
+      min-height: 300px;
+      height: 520px;
       border-radius: 18px;
       padding: 24px;
       position: relative;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      resize: vertical;
+      overflow: hidden;
     }
 
     .close-btn {
@@ -261,25 +266,35 @@ nav a:hover {
     }
 
     .dialogue-content {
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(200px, 300px) 1fr;
       gap: 20px;
+      height: 100%
     }
 
     .dialogue-images {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     .dialogue-images img {
-      width: 220px;
+      width: 100%;
       border-radius: 12px;
-      object-fit: cover;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .dialogue-images img.dragging {
+      opacity: 0.5;
     }
 
     .dialogue-text {
       flex: 1;
       color: #222;
+      overflow-y: auto;
+      padding-right: 8px;
+      line-height: 1.6;
     }
 
     .dialogue-text h3 {
@@ -379,15 +394,15 @@ nav a:hover {
 
   <div class="dialogue-images">
     <div class="draggable-img" style="top:0; left:0;">
-      <img src="https://staticc.sportskeeda.com/editor/2022/09/eb15e-16645349279765-1920.jpg">
+      <img src="https://staticc.sportskeeda.com/editor/2022/09/eb15e-16645349279765-1920.jpg" draggable="true">
     </div>
 
     <div class="draggable-img" style="top:80px; left:40px;">
-      <img src="https://upload-os-bbs.hoyolab.com/upload/2023/07/10/279840469/98747642701f0db5b9336da17c349719_4777866858419662174.jpg">
+      <img src="https://upload-os-bbs.hoyolab.com/upload/2023/07/10/279840469/98747642701f0db5b9336da17c349719_4777866858419662174.jpg" draggable="true">
     </div>
 
     <div class="draggable-img" style="top:160px; left:80px;">
-      <img src="https://upload-os-bbs.hoyolab.com/upload/2020/10/03/25907022/10142bb0f9acee35e7582d8c1103bec4_169847878409890174.png">
+      <img src="https://upload-os-bbs.hoyolab.com/upload/2020/10/03/25907022/10142bb0f9acee35e7582d8c1103bec4_169847878409890174.png" draggable="true">
     </div>
   </div>
 
@@ -539,6 +554,46 @@ nav a:hover {
       el.style.zIndex = '';
     });
   });
+
+  const imageContainer = document.querySelector('.dialogue-images');
+
+  let draggedImg = null;
+
+  imageContainer.addEventListener('dragstart', e => {
+    if (e.target.tagName !== 'IMG') return;
+    draggedImg = e.target;
+    e.target.classList.add('dragging');
+  });
+
+  imageContainer.addEventListener('dragend', e => {
+    if (!draggedImg) return;
+    draggedImg.classList.remove('dragging');
+    draggedImg = null;
+  });
+
+  imageContainer.addEventListener('dragover', e => {
+    e.preventDefault();
+    const afterElement = getDragAfterElement(imageContainer, e.clientY);
+    if (afterElement == null) {
+      imageContainer.appendChild(draggedImg);
+    } else {
+      imageContainer.insertBefore(draggedImg, afterElement);
+    }
+  });
+
+  function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('img:not(.dragging)')];
+
+    return draggableElements.reduce((closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+  }
   </script>
 </body>
 </html>
