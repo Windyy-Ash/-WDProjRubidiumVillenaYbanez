@@ -8,193 +8,97 @@
   <style>
     :root {
       --bg:#fff9cc;
-   
       --header-bg: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.78));
       --footer-bg: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.78));
-      --header-text: var(--text);
-      --btn-border: rgba(0,0,0,0.08);
-      --link-hover: rgba(0,0,0,0.06);
+      --header-text: #ffffff;
+      --btn-border: rgba(255,255,255,0.2);
+      --link-hover: rgba(255,255,255,0.1);
       --panel-border: rgba(0,0,0,0.08);
-      --opacity: 1;
-        --card: rgba(248, 188, 57, 0.74);
+      --card: rgba(248, 188, 57, 0.85);
       --accent:#4a55a2;
-      --muted:#6b7280;
-      --text:#e6e6e6;
-      --box:#ffffff;
+      --text:#ffffff;
       --radius:14px;
-      
       --background-image: url("https://wallpaper.forfun.com/fetch/f3/f34497e9ebb662c05c7dcad9a2604c43.jpeg");
       --bg-overlay: rgba(0, 0, 0, 0.12);
+      --card-link: #1e2a78; 
     }
 
     :root.dark {
       --bg:#141313;
       --card: rgba(139, 14, 14, 0.75);
-      --opacity: 0.7;
       --accent:#621010;
-      --muted:#161414;
-      --text:#000000;
-      --box: rgba(255,255,255,0.06);
+      --text:#f8f8f8;
       --background-image: url("https://i.redd.it/about-eyes-motif-on-raiden-v0-k9j87qoi67be1.png?width=1449&format=png&auto=webp&s=20f3c2f9c409eeafbdeff4a6fb7dfeba97ec94f2");
-
       --bg-overlay: rgba(0,0,0,0.36);
-      --header-bg: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.32));
-      --footer-bg: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.32));
-      --header-text: #fff;
-      --btn-border: rgba(255,255,255,0.12);
-      --link-hover: rgba(255,255,255,0.08);
-      --panel-border: rgba(255,255,255,0.06);
+      --card-link: #ffcc00; 
     }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--background-image), var(--bg);
+      background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;
+      color: var(--text); display: flex; flex-direction: column; min-height: 100vh; transition: background .35s ease;
+    }
+
+    .sidenav {
+      height: 100%; width: 0; position: fixed; z-index: 1000; top: 0; left: 0;
+      background-color: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+    }
+    .sidenav a {
+      padding: 8px 32px; text-decoration: none; font-size: 20px; color: #818181; display: block; transition: 0.3s;
+    }
+    .sidenav a:hover { color: #f1f1f1; }
+    .sidenav .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; }
 
     header {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:18px 28px;
-      background:linear-gradient(90deg,var(--accent),#49323239);
-      color:white;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white;
     }
 
- footer {
-      padding:18px 28px; 
-      background:linear-gradient(90deg,var(--accent),#49323239);
-      color:white; 
-      text-align:center; 
-      margin-top:auto;
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { width: 42px; height: 42px; border-radius: 8px; object-fit: cover; }
+    .brand h1 { font-size: 1.15rem; margin: 0; color: white; }
+
+    .sparkle-btn, .btn {
+      background: rgba(255,255,255,0.1); border: 1px solid var(--btn-border);
+      padding: 8px 10px; border-radius: 10px; color: white; cursor: pointer;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background:
-        linear-gradient(var(--bg-overlay), var(--bg-overlay)),
-        var(--background-image),
-        var(--bg);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color:var(--text);
-      display:flex;
-      flex-direction:column;
-      min-height:100vh;
-      transition:background .35s ease,color .35s ease;
-    }
+    .nav-links { display: flex; align-items: center; gap: 12px; }
+    .nav-links a { color: white; text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 600; }
+    .nav-links a:hover { background-color: rgba(255,255,255,0.2); }
 
+    main { flex: 1; padding: 36px 20px; max-width: 900px; margin: 0 auto; width: 100%; text-align: center; }
+    h2 { margin-bottom: 24px; font-size: 1.8rem; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+    .intro-p { max-width: 700px; margin: 0 auto 30px; line-height: 1.6; }
 
-
-    .brand { 
-        display:flex; 
-        align-items:center; 
-        gap:14px; 
-    }
-
-    .brand img { 
-        width:42px; 
-        height:42px; 
-        border-radius:8px; 
-        object-fit:cover; 
-    }
-
-    .brand h1 { 
-        font-size:1.15rem; 
-        margin:0 
-    }
-
-    nav { 
-        display:flex; 
-        align-items:center; 
-        gap:12px; 
-    }
-
-    .nav-links { 
-        display:flex; 
-        gap:8px; 
-    }
-
-    .nav-links a {
-      color:white; 
-      text-decoration:none; 
-      padding:8px 12px;
-      border-radius:8px; 
-      font-weight:600;
-    }
-
-nav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-    .btn {
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.2);
-      padding:8px 10px;
-      border-radius:10px;
-      color:white;
-      cursor:pointer;
-    }
-
-    main {
-      flex:1;
-      padding:36px 20px;
-      max-width:900px;
-      margin:0 auto;
-      width:100%;
-      text-align:center;
-    }
-
-    h2 {
-      margin-bottom:24px;
-      font-size:1.8rem;
-    }
-
-    p {
-      max-width:700px;
-      margin:0 auto 30px;
-      font-size:1rem;
-      color:var(--text);
-    }
-
-    .reference-list {
-      display:flex;
-      flex-direction:column;
-      gap:20px;
-      align-items:center;
-    }
-
+    .reference-list { display: flex; flex-direction: column; gap: 20px; align-items: center; }
     .reference-card {
-      background:var(--card);
-      border-radius:var(--radius);
-      box-shadow:0 8px 24px rgb(0, 0, 0);
-      padding:20px;
-      width:100%;
-      text-align:left;
-      transition:transform .3s ease;
-      border:2px solid rgba(0,0,0,0.05);
+      background: var(--card); padding: 20px; border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15); width: 100%; text-align: left;
+      transition: transform .3s ease; backdrop-filter: blur(5px);
     }
-
-    .reference-card:hover {
-      transform:translateY(-5px);
-    }
+    .reference-card:hover { transform: translateY(-5px); }
+    
 
     .reference-card a {
-      color:var(--accent);
-      text-decoration:none;
-      font-weight:600;
+      color: var(--card-link); text-decoration: none; font-weight: 600; word-break: break-all;
     }
+    .reference-card a:hover { text-decoration: underline; }
 
+    footer { padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white; text-align: center; margin-top: auto; }
 
-
-    @media(max-width:720px) {
-      .nav-links{display:none}
-      .reference-card{width:100%}
+    @media(max-width: 900px) {
+      .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
-  <div id="mySidenav" class="sidenav" style="height:100%;width:0;position:fixed;z-index:1;top:0;left:0;background-color:#111;overflow-x:hidden;transition:0.5s;padding-top:60px;">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="position:absolute;top:0;right:25px;font-size:36px;margin-left:50px;">&times;</a>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="index.html">Home</a>
     <a href="overview.html">Genshin Overview</a>
     <a href="archonq.html">Archon Quests</a>
@@ -203,57 +107,51 @@ nav a:hover {
     <a href="about.html">About us</a>
     <a href="references.html">References</a>
   </div>
+
   <header>
     <div class="brand">
-      <button class="sparkle-btn" onclick="openNav()" aria-label="Open menu">✨</button>
-      <button class="btn" id="themeBtn" aria-label="Toggle theme">🌗</button>
+      <button class="sparkle-btn" onclick="openNav()">✨</button>
+      <button class="btn" id="themeBtn">🌗</button>
       <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="logo" />
       <div>
         <h1>Wonders of Teyvat</h1>
-        <div style="font-size:0.85rem;opacity:.9">A fan-made compendium for recipes, nations & lore</div>
+        <div style="font-size:0.85rem;opacity:.9">A fan-made compendium</div>
       </div>
     </div>
-    <nav>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="overview.html">Genshin Overview</a>
-        <a href="archonq.html">Archon Quests</a>
-        <a href="guide.html">Guides</a>
-        <a href="community.html">Community</a>
-        <a href="about.html">About Us</a>
-        <a href="references.html"><b>References</b></a>
-      </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="overview.html">Genshin Overview</a>
+      <a href="archonq.html">Archon Quests</a>
+      <a href="guide.html">Guides</a>
+      <a href="community.html">Community</a>
+      <a href="about.html">About us</a>
+      <a href="references.html"><b>References</b></a>
     </nav>
   </header>
 
   <main>
     <h2>References</h2>
-    <p>Here are the sources we used in creating this website. These references guided us in building the Wonders of Teyvat project.</p>
+    <p class="intro-p">Here are the sources and databases we utilized to build the Wonders of Teyvat project. We are grateful for these community-driven resources.</p>
 
     <div class="reference-list">
       <div class="reference-card">
-        <b>1.</b> 
+        <b>1. Data Source:</b> <br>
         <a href="https://genshin.honeyhunterworld.com/" target="_blank">Honey Impact - Genshin Impact Database</a>
       </div>
 
       <div class="reference-card">
-        <b>2.</b> 
-        <a href="https://yoolk.ninja/icons/genshin-impact-flat-icon/" target="Favicon"></a>
+        <b>2. Icon Assets:</b> <br>
+        <a href="https://yoolk.ninja/icons/genshin-impact-flat-icon/" target="_blank">Yoolk Ninja - Genshin Impact Flat Icons</a>
       </div>
 
       <div class="reference-card">
-        <b>3.</b>
-        <a href="" target="_blank"></a>
+        <b>3. Lore & Wiki:</b> <br>
+        <a href="https://genshin-impact.fandom.com/wiki/Genshin_Impact_Wiki" target="_blank">Genshin Impact Fandom Wiki</a>
       </div>
 
       <div class="reference-card">
-        <b>4.</b>
-        <a href="" target="_blank"></a>
-      </div>
-
-      <div class="reference-card">
-        <b>5.</b>
-        <a href="" target="_blank"></a>
+        <b>4. Official Media:</b> <br>
+        <a href="https://genshin.hoyoverse.com/" target="_blank">HoYoVerse Official Genshin Website</a>
       </div>
     </div>
   </main>
@@ -261,12 +159,10 @@ nav a:hover {
   <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
 
   <script>
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-    }
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-    }
+    function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
+    function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+
+
     (function(){
       const btn = document.getElementById('themeBtn');
       const root = document.documentElement;
@@ -275,7 +171,7 @@ nav a:hover {
         root.classList.toggle('dark', t === 'dark');
         localStorage.setItem(key, t);
       }
-      const saved = localStorage.getItem(key) ||
+      const saved = localStorage.getItem(key) || 
         (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       apply(saved);
       btn.addEventListener('click', () => {

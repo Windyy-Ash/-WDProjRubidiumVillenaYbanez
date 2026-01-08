@@ -6,23 +6,19 @@
   <title>A Vast Journey Into the Wonders of Teyvat — Game Overview</title>
   <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
   <style>
-     :root {
+    :root {
       --bg:#fff9cc;
-   
       --header-bg: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.78));
       --footer-bg: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.78));
-      --header-text: var(--text);
-      --btn-border: rgba(0,0,0,0.08);
-      --link-hover: rgba(0,0,0,0.06);
+      --header-text: #ffffff;
+      --btn-border: rgba(255,255,255,0.2);
+      --link-hover: rgba(255,255,255,0.1);
       --panel-border: rgba(0,0,0,0.08);
-      --opacity: 1;
-        --card: rgba(255,255,255,0.86);
+      --card: rgba(255,255,255,0.86);
       --accent:#4a55a2;
-      --muted:#6b7280;
       --text:#1352d8;
       --box:#ffffff;
       --radius:14px;
-      
       --background-image: url("https://wallpaper.forfun.com/fetch/f3/f34497e9ebb662c05c7dcad9a2604c43.jpeg");
       --bg-overlay: rgba(0, 0, 0, 0.12);
     }
@@ -30,343 +26,122 @@
     :root.dark {
       --bg:#141313;
       --card: rgba(139, 14, 14, 0.75);
-      --opacity: 0.7;
       --accent:#621010;
-      --muted:#161414;
-      --text:#000000;
+      --text:#f8f8f8;
       --box: rgba(255,255,255,0.06);
       --background-image: url("https://i.redd.it/about-eyes-motif-on-raiden-v0-k9j87qoi67be1.png?width=1449&format=png&auto=webp&s=20f3c2f9c409eeafbdeff4a6fb7dfeba97ec94f2");
-
       --bg-overlay: rgba(0,0,0,0.36);
-      --header-bg: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.32));
-      --footer-bg: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.32));
-      --header-text: #fff;
-      --btn-border: rgba(255,255,255,0.12);
-      --link-hover: rgba(255,255,255,0.08);
-      --panel-border: rgba(255,255,255,0.06);
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background:
-        linear-gradient(var(--bg-overlay), var(--bg-overlay)),
-        var(--background-image),
-        var(--bg);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color:var(--text);
-      display:flex;
-      flex-direction:column;
-      min-height:100vh;
-      transition:background .35s ease,color .35s ease;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--background-image), var(--bg);
+      background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;
+      color: var(--text); display: flex; flex-direction: column; min-height: 100vh; transition: background .35s ease;
     }
+
+
+    .sidenav {
+      height: 100%; width: 0; position: fixed; z-index: 1000; top: 0; left: 0;
+      background-color: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+    }
+    .sidenav a { padding: 8px 32px; text-decoration: none; font-size: 20px; color: #818181; display: block; transition: 0.3s; }
+    .sidenav a:hover { color: #f1f1f1; }
+    .sidenav .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; }
+
     header {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:18px 28px;
-      background:linear-gradient(90deg,var(--accent),#49323239);
-      color:white;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white;
     }
+
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { width: 42px; height: 42px; border-radius: 8px; object-fit: cover; }
+    .brand h1 { font-size: 1.15rem; margin: 0; color: white; }
+
+    .sparkle-btn, .btn {
+      background: rgba(255,255,255,0.1); border: 1px solid var(--btn-border);
+      padding: 8px 10px; border-radius: 10px; color: white; cursor: pointer;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 12px; }
+    .nav-links a { color: white; text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 600; }
+    .nav-links a:hover { background-color: rgba(255,255,255,0.2); }
+
+    main { flex: 1; padding: 36px 20px; max-width: 900px; margin: 0 auto; width: 100%; text-align: center; position: relative; z-index: 2; }
+    .card { background: var(--card); padding: 24px; border-radius: var(--radius); box-shadow: 0 8px 24px rgba(0,0,0,0.1); margin-bottom: 20px; }
+
+    select { padding: 10px 14px; font-size: 1rem; border-radius: 8px; border: 1px solid #ccc; background: white; cursor: pointer; margin-top: 12px; outline: none; width: 200px; }
+
+    .info-box { margin-top: 18px; padding: 20px; border-radius: 12px; background: var(--box); box-shadow: 0 6px 18px rgba(0,0,0,0.1); display: none; text-align: left; color: #333; }
+    :root.dark .info-box { color: white; }
     
- footer {
-      padding:18px 28px; 
-      background:linear-gradient(90deg,var(--accent),#49323239);
-      color:white; 
-      text-align:center; 
-      margin-top:auto;
-    }
-
-    .brand {
-        display:flex;align-items:center;gap:14px
-    }
-
-    .brand img {
-        width:42px;
-        height:42px;
-        border-radius:8px;
-        object-fit:cover
-    }
-
-    .brand h1 {
-        font-size:1.15rem;
-        margin:0
-    }
-
-    nav {
-        display:flex;
-        align-items:center;
-        gap:12px
-    } 
-
-    .nav-links {
-        display:flex;
-        gap:8px
-    }
-
-    .nav-links a {
-        color:white;
-        text-decoration:none;
-        padding:8px 12px;
-        border-radius:8px;
-        font-weight:600
-    }
-nav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-    .btn {
-        background:transparent;
-        border:1px solid rgba(255,255,255,0.2);
-        padding:8px 10px;
-        border-radius:10px;
-        color:white;
-        cursor:pointer
-    }
-
-    main {
-        flex:1;
-        padding:36px 20px;
-        max-width:900px;
-        margin:0 auto;
-        width:100%;
-        text-align:center;
-        position:relative;
-        z-index:2
-    }
-
-    .card {
-        background:var(--card);
-        padding:24px;
-        border-radius:var(--radius);
-        box-shadow:0 8px 24px rgba(0,0,0,0.08);
-        margin-bottom:20px
-    }
-
-    select {
-        padding:10px 14px;
-        font-size:1rem;
-        border-radius:8px;
-        border:1px solid #ccc;
-        background:white;
-        cursor:pointer;
-        margin-top:12px;
-        outline:none
-    }
-
-    .info-box {
-        margin-top:18px;
-        padding:20px;
-        border-radius:12px;
-        background:var(--box);
-        box-shadow:0 6px 18px rgba(0,0,0,0.06);
-        display:none;
-        text-align:left;
-        line-height:1.6
-    }
+    .placeholder { margin-top: 14px; max-width: 100%; height: auto; border-radius: 10px; cursor: pointer; transition: transform 0.2s; }
+    .placeholder:hover { transform: scale(1.02); }
 
 
+    .dialogue-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
+    .dialogue-box { background: white; width: 100%; max-width: 900px; height: 80vh; border-radius: 18px; padding: 30px; position: relative; display: flex; flex-direction: column; overflow: hidden; }
+    :root.dark .dialogue-box { background: #222; color: white; }
+    .close-btn { position: absolute; top: 15px; right: 20px; border: none; background: none; font-size: 24px; cursor: pointer; color: inherit; }
 
-    img.placeholder {
-        margin-top:14px;
-        max-width:360px;
-        border-radius:10px;
-        display:block;
-        margin-left:auto;
-        margin-right:auto;
-        opacity:0.8
-    }
+    .dialogue-content { display: flex; gap: 20px; height: 100%; overflow: hidden; }
+    .dialogue-images { flex: 1; position: relative; background: rgba(0,0,0,0.05); border-radius: 10px; min-height: 200px; }
+    .dialogue-text { flex: 1; overflow-y: auto; padding-right: 10px; }
 
-    .side-img {
-      position: fixed;
-      top: 140px;
-      width: 260px;
-      border-radius: 14px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.15);
-      z-index: 1;
-      opacity: 0.95;
-      transition: transform .3s;
-    }
+    .draggable-img { position: absolute; width: 180px; border-radius: 8px; cursor: move; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid white; }
+    .draggable-img img { width: 100%; border-radius: 6px; display: block; }
 
-    .side-img:hover {
-      transform: scale(1.08);
-    }
+    footer { padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white; text-align: center; margin-top: auto; }
 
-    .left-img {
-      left: 120px;
-    }
-    .right-img {
-      right: 120px;
-    }
-    @media(max-width:1300px){
-      .side-img{display:none;}
-    }
 
-    .side-wall {
-      position: absolute;
-      top: 100px;
-      bottom: 70px;
-      width: 240px;
-      background-image: url("https://thumbs.dreamstime.com/b/no-emoticon-29087585.jpg");
-      background-repeat: repeat-y;
-      background-size: contain;
-      opacity: 0.9;
-      z-index: 0;
-    }
-
-    .left-wall {
-      left: 80px;
-    }
-
-    .right-wall {
-      right: 80px;
-    }
-
-    @media (max-width: 1300px) {
-      .side-wall { display: none; }
-    }
-
-    .dialogue-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(6px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-    }
-
-    .dialogue-box {
-      background: rgba(255,255,255,0.88);
-      max-width: 900px;
-      width: 90%;
-      max-height: 85vh;
-      min-height: 300px;
-      height: 520px;
-      border-radius: 18px;
-      padding: 24px;
-      position: relative;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-      resize: vertical;
-      overflow: hidden;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 14px;
-      right: 18px;
-      border: none;
-      background: none;
-      font-size: 1.3rem;
-      cursor: pointer;
-    }
-
-    .dialogue-content {
-      display: grid;
-      grid-template-columns: minmax(200px, 300px) 1fr;
-      gap: 20px;
-      height: 100%
-    }
-
-    .dialogue-images {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .dialogue-images img {
-      width: 100%;
-      border-radius: 12px;
-      cursor: grab;
-      user-select: none;
-    }
-
-    .dialogue-images img.dragging {
-      opacity: 0.5;
-    }
-
-    .dialogue-text {
-      flex: 1;
-      color: #222;
-      overflow-y: auto;
-      padding-right: 8px;
-      line-height: 1.6;
-    }
-
-    .dialogue-text h3 {
-      margin-bottom: 10px;
-    }
-
+    @media (max-width: 900px) { .nav-links { display: none; } }
     @media (max-width: 700px) {
-      .dialogue-content {
-      flex-direction: column;
+      .dialogue-content { flex-direction: column; }
+      .dialogue-images { height: 250px; }
+      .draggable-img { width: 120px; }
     }
-
-    dialogue-images img {
-      width: 100%;
-    }
-}
-
-  .dialogue-images {
-    position: relative;
-    min-height: 260px;
-  }
-
-  .draggable-img {
-    position: absolute;
-    width: 220px;
-    border-radius: 12px;
-    cursor: move;
-    resize: both;
-    overflow: auto;
-    border: 2px dashed rgba(0,0,0,0.25);
-    background: #fff;
-  }
-
-  .draggable-img img {
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    object-fit: cover;
-  }
   </style>
 </head>
 <body>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html">Home</a>
+    <a href="overview.html">Genshin Overview</a>
+    <a href="archonq.html">Archon Quests</a>
+    <a href="guide.html">Guides</a>
+    <a href="community.html">Community</a>
+    <a href="about.html">About us</a>
+    <a href="references.html">References</a>
+  </div>
+
   <header>
     <div class="brand">
+      <button class="sparkle-btn" onclick="openNav()">✨</button>
       <button class="btn" id="themeBtn">🌗</button>
       <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="logo" />
       <div>
         <h1>Wonders of Teyvat</h1>
-        <div style="font-size:0.85rem;opacity:.9">A fan-made compendium for recipes, nations & lore</div>
+        <div style="font-size:0.85rem;opacity:.9">Genshin Overview</div>
       </div>
     </div>
-    <nav>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="overview.html">Genshin Overview</a>
-        <a href="archonq.html">Archon Quests</a>
-        <a href="guide.html">Guides</a>
-        <a href="community.html">Community</a>
-        <a href="about.html">About us</a>
-        <a href="references.html">References</a>
-      </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="overview.html">Genshin Overview</a>
+      <a href="archonq.html">Archon Quests</a>
+      <a href="guide.html">Guides</a>
+      <a href="community.html">Community</a>
+      <a href="about.html">About us</a>
+      <a href="references.html">References</a>
     </nav>
   </header>
 
-    <div class="side-wall left-wall"></div>
-    <div class="side-wall right-wall"></div>
-
-
   <main>
     <div class="card">
-      <h2>Genshin Impact Overview</h2>|
-      <p style="margin-top:10px">Here you will be picking a category that you would like to learn more about. That includes the gameplay elements (How the game works), the exploration (the different waypoints, statues that you have to collect.), Combat (Ways of fighting using different weapons), Party building (If the characters you are using are suitable and will work correctly together), Mechanics (Gliding, walking, sprinting, using skills and bursts in the game) and many more.</p>
-      <p style="font-weight:bold">Choose a category below to learn more about its gameplay elements and what makes it unique.</p>
+      <h2>Gameplay Systems</h2>
+      <p style="margin-top:10px">Pick a category to learn more about Teyvat's mechanics.</p>
       <select id="overviewSelect">
         <option value="">Choose...</option>
         <option value="exploration">Exploration</option>
@@ -379,220 +154,108 @@ nav a:hover {
 
     <div class="info-box" id="infoBox">
       <h3 id="infoTitle"></h3>
-      <p id="infoText"></p>
-      <img src="https://thumbs.dreamstime.com/b/no-emoticon-29087585.jpg" alt="Placeholder" class="placeholder">
-      <p style="text-align:center;margin-top:8px;font-style:italic;">An image will be put here.</p>
+      <p id="infoText" style="margin: 10px 0;"></p>
+      <img src="https://thumbs.dreamstime.com/b/no-emoticon-29087585.jpg" alt="Click to open gallery" class="placeholder">
+      <p style="text-align:center;margin-top:8px;font-size: 0.8rem; opacity: 0.7;">(Click image to view gallery)</p>
     </div>
   </main>
 
   <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
 
   <div class="dialogue-overlay" id="dialogueOverlay">
-  <div class="dialogue-box">
-  <button class="close-btn" id="closeDialogue">✕</button>
-
-  <div class="dialogue-images">
-    <div class="draggable-img" style="top:0; left:0;">
-      <img src="https://staticc.sportskeeda.com/editor/2022/09/eb15e-16645349279765-1920.jpg" draggable="true">
-    </div>
-
-    <div class="draggable-img" style="top:80px; left:40px;">
-      <img src="https://upload-os-bbs.hoyolab.com/upload/2023/07/10/279840469/98747642701f0db5b9336da17c349719_4777866858419662174.jpg" draggable="true">
-    </div>
-
-    <div class="draggable-img" style="top:160px; left:80px;">
-      <img src="https://upload-os-bbs.hoyolab.com/upload/2020/10/03/25907022/10142bb0f9acee35e7582d8c1103bec4_169847878409890174.png" draggable="true">
-    </div>
-  </div>
-
-      <div class="dialogue-text">
-        <h3 id="dialogueTitle"></h3>
-        <div id="dialogueText"></div>
+    <div class="dialogue-box">
+      <button class="close-btn" id="closeDialogue">✕</button>
+      <div class="dialogue-content">
+        <div class="dialogue-images" id="dragContainer">
+          <div class="draggable-img" style="top:10px; left:10px; z-index: 3;">
+            <img src="https://staticc.sportskeeda.com/editor/2022/09/eb15e-16645349279765-1920.jpg">
+          </div>
+          <div class="draggable-img" style="top:60px; left:40px; z-index: 2;">
+            <img src="https://upload-os-bbs.hoyolab.com/upload/2023/07/10/279840469/98747642701f0db5b9336da17c349719_4777866858419662174.jpg">
+          </div>
+          <div class="draggable-img" style="top:110px; left:80px; z-index: 1;">
+            <img src="https://upload-os-bbs.hoyolab.com/upload/2020/10/03/25907022/10142bb0f9acee35e7582d8c1103bec4_169847878409890174.png">
+          </div>
+        </div>
+        <div class="dialogue-text">
+          <h3 id="dialogueTitle"></h3>
+          <div id="dialogueText"></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-  
+
   <script>
-    const themeBtn = document.getElementById('themeBtn');
-    const root = document.documentElement;
-    const key = 'teyvat-theme';
-    const saved = localStorage.getItem(key) || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    applyTheme(saved);
-    themeBtn.addEventListener('click',()=>{applyTheme(root.classList.contains('dark')?'light':'dark')});
-    function applyTheme(t){root.classList.toggle('dark',t==='dark');localStorage.setItem(key,t)}
+
+    function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
+    function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+
 
     const data = {
-      exploration: {
-        title: "Exploration",
-        text: "Explore huge open areas, solve fun-hellish puzzles, collect materials and look onto the lore across Teyvat's nations -- where each region has its own story. There is tons of stuff for players to enjoy: climb, glide, swim and wander around while being able to stumble upon those secret quests, NPCs and challenging puzzles."
-      },
-      combat: {
-        title: "Combat",
-        text: "Engage in real-time combat using normal and charged attacks, elemental skills, and bursts. Elemental reactions—like Vaporize, Melt, and Overload—are key to maximizing damage. blah blah blah "
-      },
-      party: {
-        title: "Party Building",
-        text: "Assemble four-character teams that synergize through elemental combos, roles, and weapon types. Proper team synergy greatly enhances combat and exploration efficiency. blah blah blah "
-      },
-      progression: {
-        title: "Progression",
-        text: "Level up your characters, ascend them, unlock talents, and equip artifacts and weapons to boost their power. Refining gear and optimizing builds are essential for late-game performance. blah blah blah "
-      },
-      content: {
-        title: "Content Types",
-        text: "Play through Archon Quests (main story), World Quests, Domains, Boss battles, Events, and Co-op adventures with friends. blah blah blah "
-      }
+      exploration: { title: "Exploration", text: "Explore huge open areas, solve puzzles, and collect materials across Teyvat's nations. Each region has its own story, NPCs, and secrets." },
+      combat: { title: "Combat", text: "Engage in real-time combat using elemental skills and bursts. Elemental reactions like Vaporize and Melt are key to victory." },
+      party: { title: "Party Building", text: "Assemble four-character teams that synergize through elemental roles and weapon types for maximum efficiency." },
+      progression: { title: "Progression", text: "Level up characters, ascend them, and equip artifacts to boost power. Optimizing builds is essential for the late-game." },
+      content: { title: "Content Types", text: "Archon Quests, World Quests, Boss battles, and limited-time events keep the world of Teyvat constantly evolving." }
     };
 
     const select = document.getElementById('overviewSelect');
-    const box = document.getElementById('infoBox');
-    const title = document.getElementById('infoTitle');
-    const text = document.getElementById('infoText');
-
-    select.addEventListener('change', ()=>{
-      const val = select.value;
-      if(data[val]){
-        title.textContent = data[val].title;
-        text.textContent = data[val].text;
-        box.style.display = 'block';
-      } else {
-        box.style.display = 'none';
-      }
-    });
-
-    const dialogueData = {
-      exploration: {
-        title: "Exploration in Teyvat",
-        text: [
-          "o"
-        ]
-      },
-
-      combat: {
-        title: "Combat in Genshin Impact",
-        text: [
-          "woo"
-        ]
-      },
-
-      party: {
-        title: "Party Building Strategy",
-        text: [
-          "myyuuu"
-        ]
-      },
-
-      progression: {
-        title: "Character Progression",
-        text: [
-          "nya",
-        ]
-      },
-
-      content: {
-        title: "Types of Content in Teyvat",
-        text: [
-          "bleh"
-        ]
-    }
-};
-
+    const infoBox = document.getElementById('infoBox');
+    const infoTitle = document.getElementById('infoTitle');
+    const infoText = document.getElementById('infoText');
     const dialogueOverlay = document.getElementById('dialogueOverlay');
-    const closeDialogue = document.getElementById('closeDialogue');
+    const dialogueTitle = document.getElementById('dialogueTitle');
+    const dialogueText = document.getElementById('dialogueText');
 
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('placeholder')) {
-        const selected = select.value;
-
-      if (!dialogueData[selected]) return;
-
-      dialogueTitle.textContent = dialogueData[selected].title;
-      dialogueText.innerHTML = '';
-
-      dialogueData[selected].text.forEach(p => {
-        const para = document.createElement('p');
-        para.textContent = p;
-        dialogueText.appendChild(para);
-      });
-
-        dialogueOverlay.style.display = 'flex';
+    select.addEventListener('change', () => {
+      const val = select.value;
+      if(data[val]) {
+        infoTitle.textContent = data[val].title;
+        infoText.textContent = data[val].text;
+        infoBox.style.display = 'block';
+      } else {
+        infoBox.style.display = 'none';
       }
     });
 
-    closeDialogue.addEventListener('click', () => {
-      dialogueOverlay.style.display = 'none';
+
+    document.querySelector('.placeholder').addEventListener('click', () => {
+      const val = select.value;
+      if (!val) return;
+      dialogueTitle.textContent = data[val].title + " Gallery";
+      dialogueText.innerHTML = `<p>${data[val].text}</p><br><p>Drag the images on the left to organize your view!</p>`;
+      dialogueOverlay.style.display = 'flex';
     });
 
-    dialogueOverlay.addEventListener('click', (e) => {
-      if (e.target === dialogueOverlay) {
-        dialogueOverlay.style.display = 'none';
-      }
-    });
+    document.getElementById('closeDialogue').onclick = () => dialogueOverlay.style.display = 'none';
+    dialogueOverlay.onclick = (e) => { if(e.target === dialogueOverlay) dialogueOverlay.style.display = 'none'; };
+
 
     document.querySelectorAll('.draggable-img').forEach(el => {
-      let dragging = false;
-      let offsetX = 0;
-      let offsetY = 0;
-
-      el.addEventListener('mousedown', e => {
-      dragging = true;
-      offsetX = e.clientX - el.offsetLeft;
-      offsetY = e.clientY - el.offsetTop;
-      el.style.zIndex = 1000;
+      let dragging = false, offsetX, offsetY;
+      el.onmousedown = (e) => {
+        dragging = true;
+        offsetX = e.clientX - el.offsetLeft;
+        offsetY = e.clientY - el.offsetTop;
+        el.style.zIndex = 100;
+      };
+      document.onmousemove = (e) => {
+        if (!dragging) return;
+        el.style.left = (e.clientX - offsetX) + 'px';
+        el.style.top = (e.clientY - offsetY) + 'px';
+      };
+      document.onmouseup = () => { dragging = false; };
     });
 
-    document.addEventListener('mousemove', e => {
-      if (!dragging) return;
-      el.style.left = `${e.clientX - offsetX}px`;
-      el.style.top = `${e.clientY - offsetY}px`;
-    });
-
-    document.addEventListener('mouseup', () => {
-      dragging = false;
-      el.style.zIndex = '';
-    });
-  });
-
-  const imageContainer = document.querySelector('.dialogue-images');
-
-  let draggedImg = null;
-
-  imageContainer.addEventListener('dragstart', e => {
-    if (e.target.tagName !== 'IMG') return;
-    draggedImg = e.target;
-    e.target.classList.add('dragging');
-  });
-
-  imageContainer.addEventListener('dragend', e => {
-    if (!draggedImg) return;
-    draggedImg.classList.remove('dragging');
-    draggedImg = null;
-  });
-
-  imageContainer.addEventListener('dragover', e => {
-    e.preventDefault();
-    const afterElement = getDragAfterElement(imageContainer, e.clientY);
-    if (afterElement == null) {
-      imageContainer.appendChild(draggedImg);
-    } else {
-      imageContainer.insertBefore(draggedImg, afterElement);
+    const btn = document.getElementById('themeBtn');
+    const root = document.documentElement;
+    function apply(t){
+      root.classList.toggle('dark', t === 'dark');
+      localStorage.setItem('teyvat-theme', t);
     }
-  });
-
-  function getDragAfterElement(container, y) {
-    const draggableElements = [...container.querySelectorAll('img:not(.dragging)')];
-
-    return draggableElements.reduce((closest, child) => {
-      const box = child.getBoundingClientRect();
-      const offset = y - box.top - box.height / 2;
-      if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: child };
-      } else {
-        return closest;
-      }
-    }, { offset: Number.NEGATIVE_INFINITY }).element;
-  }
+    const saved = localStorage.getItem('teyvat-theme') || 'light';
+    apply(saved);
+    btn.onclick = () => apply(root.classList.contains('dark') ? 'light' : 'dark');
   </script>
 </body>
 </html>

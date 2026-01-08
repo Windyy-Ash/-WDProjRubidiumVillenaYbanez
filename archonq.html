@@ -6,23 +6,19 @@
   <title>A Vast Journey Into the Wonders of Teyvat — Archon Quests</title>
   <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
   <style>
-   :root {
+    :root {
       --bg:#fff9cc;
-   
       --header-bg: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.78));
       --footer-bg: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.78));
-      --header-text: var(--text);
-      --btn-border: rgba(0,0,0,0.08);
-      --link-hover: rgba(0,0,0,0.06);
+      --header-text: #ffffff;
+      --btn-border: rgba(255,255,255,0.2);
+      --link-hover: rgba(255,255,255,0.1);
       --panel-border: rgba(0,0,0,0.08);
-      --opacity: 1;
       --card: rgba(118, 112, 204, 0.575);
       --accent:#4a55a2;
-      --muted:#6b7280;
       --text:#090535;
       --box:#ffffff;
       --radius:14px;
-      
       --background-image: url("https://wallpaper.forfun.com/fetch/f3/f34497e9ebb662c05c7dcad9a2604c43.jpeg");
       --bg-overlay: rgba(0, 0, 0, 0.12);
     }
@@ -30,121 +26,66 @@
     :root.dark {
       --bg:#141313;
       --card: rgba(139, 14, 14, 0.75);
-      --opacity: 0.7;
       --accent:#621010;
-      --muted:#161414;
-      --text:#000000;
+      --text:#ffffff;
       --box: rgba(255,255,255,0.06);
       --background-image: url("https://i.redd.it/about-eyes-motif-on-raiden-v0-k9j87qoi67be1.png?width=1449&format=png&auto=webp&s=20f3c2f9c409eeafbdeff4a6fb7dfeba97ec94f2");
-
       --bg-overlay: rgba(0,0,0,0.36);
-      --header-bg: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.32));
-      --footer-bg: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.32));
-      --header-text: #fff;
-      --btn-border: rgba(255,255,255,0.12);
-      --link-hover: rgba(255,255,255,0.08);
-      --panel-border: rgba(255,255,255,0.06);
     }
 
-   
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--background-image), var(--bg);
+      background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;
+      color: var(--text); display: flex; flex-direction: column; min-height: 100vh; transition: background .35s ease;
+    }
+
     header {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:18px 28px;
-      background:linear-gradient(90deg,var(--accent),#49323239);
-      color:white;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white;
     }
 
- footer {
-      padding:18px 28px; 
-      background:linear-gradient(90deg,var(--accent),#49323239);
-      color:white; 
-      text-align:center; 
-      margin-top:auto;
+    .sidenav {
+      height: 100%; width: 0; position: fixed; z-index: 100; top: 0; left: 0;
+      background-color: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+    }
+    .sidenav a {
+      padding: 8px 32px; text-decoration: none; font-size: 20px; color: #818181; display: block; transition: 0.3s;
+    }
+    .sidenav a:hover { color: #f1f1f1; }
+    .sidenav .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; }
+
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { width: 42px; height: 42px; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,0.2); }
+    .brand h1 { font-size: 1.15rem; margin: 0; color: white; }
+
+    .sparkle-btn, .btn {
+      background: rgba(255,255,255,0.1); border: 1px solid var(--btn-border);
+      padding: 8px 10px; border-radius: 10px; color: white; cursor: pointer;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background:
-        linear-gradient(var(--bg-overlay), var(--bg-overlay)),
-        var(--background-image),
-        var(--bg);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color:var(--text);
-      display:flex;
-      flex-direction:column;
-      min-height:100vh;
-      transition:background .35s ease,color .35s ease;
-    }
+    .nav-links { display: flex; gap: 10px; }
+    .nav-links a { color: white; text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 600; transition: 0.2s; }
+    .nav-links a:hover { background: var(--link-hover); }
 
-    .brand {
-      display:flex;align-items:center;gap:14px;
-    }
+    main { flex: 1; padding: 36px 20px; max-width: 880px; margin: 0 auto; width: 100%; text-align: center; }
+    .card { background: var(--card); padding: 22px; border-radius: var(--radius); box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin-bottom: 20px; backdrop-filter: blur(5px); }
 
-    .brand img {
-      width:42px;height:42px;border-radius:8px;object-fit:cover;
-      box-shadow:0 6px 18px rgba(74,85,162,.16);
-    }
+    .quest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; margin-top: 24px; }
+    .quest-box { background: var(--box); padding: 16px; border-radius: 12px; font-weight: 500; }
 
-    .brand h1 {font-size:1.15rem;margin:0}
-    nav a {
-      color:white;text-decoration:none;
-      padding:8px 12px;border-radius:8px;font-weight:600;
-    }
+    footer { padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white; text-align: center; margin-top: auto; }
 
-    .btn {
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.2);
-      padding:8px 10px;
-      border-radius:10px;
-      color:white;
-      cursor:pointer;
+    @media (max-width: 900px) {
+      .nav-links { display: none; } 
     }
-
-    main {
-      flex:1;
-      padding:36px 20px;
-      max-width:880px;
-      margin:0 auto;
-      width:100%;
-      text-align:center;
-    }
-
-    .card {
-      background:var(--card);
-      padding:22px;
-      border-radius:var(--radius);
-      box-shadow:0 8px 24px rgba(0,0,0,0.08);
-      margin-bottom:20px;
-    }
-
-    .quest-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:18px;
-      margin-top:24px;
-    }
-
-    .quest-box {
-      background:var(--box);
-      padding:16px;
-      border-radius:12px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.05);
-      text-align:center;
-      font-weight:500;
-    }
-
   </style>
 </head>
 <body>
-  <div id="mySidenav" class="sidenav" style="height:100%;width:0;position:fixed;z-index:1;top:0;left:0;background-color:#111;overflow-x:hidden;transition:0.5s;padding-top:60px;">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="position:absolute;top:0;right:25px;font-size:36px;margin-left:50px;">&times;</a>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="index.html">Home</a>
     <a href="overview.html">Genshin Overview</a>
     <a href="archonq.html">Archon Quests</a>
@@ -153,17 +94,19 @@
     <a href="about.html">About us</a>
     <a href="references.html">References</a>
   </div>
+
   <header>
     <div class="brand">
-      <button class="sparkle-btn" onclick="openNav()" aria-label="Open menu">✨</button>
-      <button class="btn" id="themeBtn" aria-label="Toggle theme">🌗</button>
+      <button class="sparkle-btn" onclick="openNav()">✨</button>
+      <button class="btn" id="themeBtn">🌗</button>
       <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="logo" />
       <div>
         <h1>Wonders of Teyvat</h1>
-        <div style="font-size:0.85rem;opacity:.9">Explore the Archon Quests</div>
+        <div style="font-size:0.85rem; opacity:.9">Explore the Archon Quests</div>
       </div>
     </div>
-    <nav>
+    
+    <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="overview.html">Genshin Overview</a>
       <a href="archonq.html">Archon Quests</a>
@@ -177,18 +120,12 @@
   <main>
     <div class="card">
       <h2>Archon Quests</h2>
-      <p style="margin-bottom:15px">Here, in each card there will be a summary of the Travelers Archon Quest (main storyline quest) about the challenges they faced and the good deeds they did in that particular region whilst they search for their lost sibling across the world of Teyvat </p>
-      <p style="font-weight:bold">What Archon Quest would you like to know about?</p>
-
+      <p style="margin-bottom:15px; color: white;">Follow the Traveler's journey across Teyvat.</p>
       <div class="quest-grid">
-        <div class="quest-box">Prologue<br><small>Placeholder quest box</small></div>
-        <div class="quest-box">Act I<br><small>Placeholder quest box</small></div>
-        <div class="quest-box">Act II<br><small>Placeholder quest box</small></div>
-        <div class="quest-box">Act III<br><small>Placeholder quest box</small></div>
-        <div class="quest-box">Act IV<br><small>Placeholder quest box</small></div>
-        <div class="quest-box">Act V<br><small>Placeholder quest box</small></div>
-        <div class="quest-box">Other Quest<br><small>Placeholder quest box</small></div>
-        <div class="quest-box">Side Quest<br><small>Placeholder quest box</small></div>
+        <div class="quest-box">Prologue<br><small>The Outlander Who Caught the Wind</small></div>
+        <div class="quest-box">Act I<br><small>Of the Land Amidst Monoliths</small></div>
+        <div class="quest-box">Act II<br><small>Omnipresence Over Mortals</small></div>
+        <div class="quest-box">Act III<br><small>Truth Amongst the Pages of Purana</small></div>
       </div>
     </div>
   </main>
@@ -196,12 +133,9 @@
   <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
 
   <script>
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-    }
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-    }
+    function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
+    function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+
     (function(){
       const btn = document.getElementById('themeBtn');
       const root = document.documentElement;

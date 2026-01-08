@@ -6,63 +6,16 @@
   <title>A Vast Journey Into the Wonders of Teyvat — Home</title>
   <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
   <style>
-
-
-body {
-  font-family: "Lato", sans-serif;
-}
-
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
     :root {
       --bg:#fff9cc;
-   
       --header-bg: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.78));
       --footer-bg: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.78));
-      --header-text: var(--text);
-      --btn-border: rgba(0,0,0,0.08);
-      --link-hover: rgba(0,0,0,0.06);
+      --header-text: #ffffff;
+      --btn-border: rgba(255,255,255,0.2);
+      --link-hover: rgba(255,255,255,0.1);
       --panel-border: rgba(0,0,0,0.08);
-      --opacity: 1;
-        --card: rgba(118, 112, 204, 0.575);
+      --card: rgba(118, 112, 204, 0.75);
       --accent:#4a55a2;
-      --muted:#6b7280;
       --text:#ffffff;
       --box:#ffffff;
       --radius:14px;
@@ -73,241 +26,122 @@ body {
     :root.dark {
       --bg:#141313;
       --card: rgba(139, 14, 14, 0.75);
-      --opacity: 0.7;
       --accent:#621010;
-      --muted:#161414;
-      --text:#000000;
-      --box: rgba(255,255,255,0.06);
+      --text:#f8f8f8;
+      --box: rgba(255,255,255,0.1);
       --background-image: url("https://i.redd.it/about-eyes-motif-on-raiden-v0-k9j87qoi67be1.png?width=1449&format=png&auto=webp&s=20f3c2f9c409eeafbdeff4a6fb7dfeba97ec94f2");
       --bg-overlay: rgba(0,0,0,0.36);
-      --header-bg: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.32));
-      --footer-bg: linear-gradient(90deg, rgba(0,0,0,0.5), rgba(0,0,0,0.32));
-      --header-text: #fff;
-      --btn-border: rgba(255,255,255,0.12);
-      --link-hover: rgba(255,255,255,0.08);
-      --panel-border: rgba(255,255,255,0.06);
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background:
-        linear-gradient(var(--bg-overlay), var(--bg-overlay)),
-        var(--background-image),
-        var(--bg);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color:var(--text);
-      display:flex;
-      flex-direction:column;
-      min-height:100vh;
-      transition:background .35s ease,color .35s ease;
-    }
-  header {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:18px 28px;
-      background:linear-gradient(90deg,var(--accent),#49323239);
-      color:white;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--background-image), var(--bg);
+      background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;
+      color: var(--text); display: flex; flex-direction: column; min-height: 100vh; transition: background .35s ease;
     }
 
-
-     footer {
-      padding:18px 28px; 
-      background:linear-gradient(90deg,var(--accent),#49323239);
-      color:rgb(0, 40, 218); 
-      text-align:center; 
-      margin-top:auto;
+    .sidenav {
+      height: 100%; width: 0; position: fixed; z-index: 1000; top: 0; left: 0;
+      background-color: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px;
     }
-    .brand { 
-      display:flex; 
-      align-items:center; 
-      gap:14px; 
-    }
-      .sparkle-btn {
-        font-size: 1.3rem;
-        padding: 8px 10px;
-        margin-left: 2px;
-        margin-right: 2px;
-        background: rgba(74,85,162,0.10);
-        border: 1px solid var(--btn-border);
-        border-radius: 10px;
-        transition: background 0.2s;
-      }
-      .sparkle-btn:hover {
-        background: rgba(255, 255, 0, 0.18);
-      }
+    .sidenav a { padding: 8px 32px; text-decoration: none; font-size: 20px; color: #818181; display: block; transition: 0.3s; }
+    .sidenav a:hover { color: #f1f1f1; }
+    .sidenav .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; }
 
-      @media (max-width: 720px) {
-        .brand {
-          gap: 6px;
-        }
-        .sparkle-btn {
-          font-size: 1.1rem;
-          padding: 7px 8px;
-        }
-      }
-
-    .brand img {
-      width:42px; 
-      height:42px; 
-      border-radius:8px; 
-      object-fit:cover;
-      box-shadow:0 6px 18px rgba(74,85,162,.16);
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white;
     }
 
-    .brand h1{
-        font-size:1.15rem;
-        margin:0}
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { width: 42px; height: 42px; border-radius: 8px; object-fit: cover; }
+    .brand h1 { font-size: 1.15rem; margin: 0; color: white; }
 
-    nav { 
-      display:flex; 
-      align-items:center; 
-      gap:12px; 
+    .sparkle-btn, .btn {
+      background: rgba(255,255,255,0.1); border: 1px solid var(--btn-border);
+      padding: 8px 10px; border-radius: 10px; color: white; cursor: pointer;
     }
 
-    .nav-links { 
-      display:flex; 
-      gap:8px; 
-    }
-     nav a:hover {
-        background-color: var(--link-hover);
-      }
-    .nav-links a {
-      color:var(--header-text); 
-      text-decoration:none; 
-      padding:8px 12px;
-      border-radius:8px; 
-      font-weight:600;
-    }
+    .nav-links { display: flex; align-items: center; gap: 12px; }
+    .nav-links a { color: white; text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 600; }
+    .nav-links a:hover { background-color: rgba(255,255,255,0.2); }
 
-    .btn {
-      background:transparent; 
-      border:1px solid var(--btn-border);
-      padding:8px 10px; 
-      border-radius:10px; 
-      color:var(--header-text);
-      cursor:pointer;
-      backdrop-filter: blur(4px);
-    }
-
-    main {
-      flex:1; padding:36px 20px; 
-      max-width:880px; 
-      margin:0 auto;
-      width:100%; 
-      text-align:center;
-    }
-
+    main { flex: 1; padding: 36px 20px; max-width: 880px; margin: 0 auto; width: 100%; text-align: center; position: relative; z-index: 2; }
+    
     .card {
-      background:var(--card);
-      padding:22px;
-      border-radius:var(--radius);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      box-shadow:0 12px 36px rgba(0,0,0,0.18);
-      margin-bottom:20px;
-      border: 1px solid var(--panel-border);
+      background: var(--card); padding: 25px; border-radius: var(--radius);
+      backdrop-filter: blur(8px); box-shadow: 0 12px 36px rgba(0,0,0,0.2);
+      margin-bottom: 20px; border: 1px solid var(--panel-border); line-height: 1.6;
     }
 
-    .card > .card { margin-top:18px; }
+    h2 { margin-bottom: 15px; }
 
     select {
-      padding:10px 14px; 
-      font-size:1rem; 
-      border-radius:8px;
-      border:1px solid rgba(0,0,0,0.08);
-      background: var(--card);
-      cursor:pointer;
-      margin-top:12px; 
-      outline:none;
+      padding: 10px 14px; font-size: 1rem; border-radius: 8px; border: 1px solid #ccc;
+      background: white; cursor: pointer; margin-top: 12px; outline: none; color: #333;
     }
-    
+
     .result-box {
-      margin-top:16px; 
-      padding:18px; 
-      border-radius:12px;
-      background: var(--box);
-      box-shadow:0 6px 18px rgba(0,0,0,0.06);
-      display:none;
-      border: 1px solid var(--panel-border);
+      margin-top: 20px; padding: 25px; border-radius: 12px; background: var(--box);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1); display: none; color: #333;
     }
+    :root.dark .result-box { color: white; }
 
     .result-box img {
-      margin-top:10px; 
-      max-width:320px; 
-      border-radius:10px;
-      display:block; 
-      margin-left:auto; 
-      margin-right:auto;
+      margin-top: 15px; max-width: 100%; width: 320px; border-radius: 12px;
+      display: block; margin-left: auto; margin-right: auto;
     }
 
-    @media(max-width:720px){ .nav-links{display:none} }
+    footer { padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white; text-align: center; margin-top: auto; }
+
+    @media(max-width: 900px) { .nav-links { display: none; } }
   </style>
 </head>
 <body>
 
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="index.html">Home</a>
-        <a href="overview.html">Genshin Overview</a>
-        <a href="archonq.html">Archon Quests</a>
-        <a href="guide.html">Guides</a>
-        <a href="community.html">Community</a>
-        <a href="about.html">About us</a>
-        <a href="references.html">References</a>
-</div>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html">Home</a>
+    <a href="overview.html">Genshin Overview</a>
+    <a href="archonq.html">Archon Quests</a>
+    <a href="guide.html">Guides</a>
+    <a href="community.html">Community</a>
+    <a href="about.html">About us</a>
+    <a href="references.html">References</a>
+  </div>
 
-
-
-<script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
-</script>
-  
   <header>
-
     <div class="brand">
-      <button class="sparkle-btn" onclick="openNav()" aria-label="Open menu">✨</button>
-      <button class="btn" id="themeBtn" aria-label="Toggle theme">🌗</button>
+      <button class="sparkle-btn" onclick="openNav()">✨</button>
+      <button class="btn" id="themeBtn">🌗</button>
       <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="logo" />
       <div>
         <h1>Wonders of Teyvat</h1>
-        <div style="font-size:0.85rem;opacity:.9">A fan-made compendium for recipes, nations & lore</div>
+        <div style="font-size:0.85rem;opacity:.9">A fan-made compendium</div>
       </div>
     </div>
-
-    <nav>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="overview.html">Genshin Overview</a>
-        <a href="archonq.html">Archon Quests</a>
-        <a href="guide.html">Guides</a>
-        <a href="community.html">Community</a>
-        <a href="about.html">About us</a>
-        <a href="references.html">References</a>
-      </div>
+    <nav class="nav-links">
+      <a href="index.html"><b>Home</b></a>
+      <a href="overview.html">Genshin Overview</a>
+      <a href="archonq.html">Archon Quests</a>
+      <a href="guide.html">Guides</a>
+      <a href="community.html">Community</a>
+      <a href="about.html">About us</a>
+      <a href="references.html">References</a>
     </nav>
   </header>
 
   <main>
     <div class="card">
-    <p style="font-weight:bold"> Genshin Impact is an open-world action RPG set on the magical continent of Teyvat. You play as the Traveler (Lumine or Aether),an interstellar visitor searching for your lost twin sibling (Lumine or Aether).  This is a journey that takes you across seven unique elemental nations, each ruled by an elemental god known as an Archon.
-       With each region you pass by, you will meet different people, that will become your long time friends and adventurures that will help you along your journey. As you journey on with your best travelling companion Paimon, you will be tasting and discovering different types of dishes and specialty dishes(made with each characters special touch) from each region.</p>
+      <p><b>Genshin Impact</b> is an open-world action RPG set on the magical continent of Teyvat. As the Traveler, you journey across seven unique elemental nations, meeting allies and discovering the culinary specialties of every region.</p>
+    </div>
+
     <div class="card">
       <h2>Nation / Group</h2>
-      <p style="margin-bottom:30px"> This is where you will be choosing a specific region [from the choices below] that you would like to find recipes from!</p>
-      <p style="font-weight:bold">Choose a nation of Teyvat or one of the unique groups.</p>
-      <select id="firstSelect" aria-label="Choose a nation">
+      <p>Choose a region to find the specialty recipes hidden within!</p>
+      <select id="firstSelect">
         <option value="">Choose…</option>
         <option value="1">Mondstadt</option>
         <option value="2">Liyue</option>
@@ -315,20 +149,19 @@ function closeNav() {
         <option value="4">Sumeru</option>
         <option value="5">Fontaine</option>
         <option value="6">Natlan</option>
-        <option value="7">Nod Krai</option>
+        <option value="7">Nod Krai (Part of Snezhnaya)</option>
         <option value="8">Harbingers</option>
-        <option value="9">Non-being</option>
+        <option value="9">Khaenri'ah (Non-being)</option>
       </select>
     </div>
 
     <div class="card">
       <h2>Character</h2>
-      <p style="margin-bottom:15px">Now after picking a specific region from Teyvat, you will be picking next a specific character from that region you picked, and you will be given a recipe of their specialty dish.<p>
-      <p style="font-weight:bold">Select a character from your chosen nation or group.</p>
-      <select id="secondSelect" style="display:none" aria-label="Character choices"></select>
+      <p>Select a character from that region to reveal their unique specialty dish.</p>
+      <select id="secondSelect" style="display:none"></select>
     </div>
 
-    <div class="result-box" id="resultBox" aria-live="polite">
+    <div class="result-box" id="resultBox">
       <h3 id="foodText">The food you get is…</h3>
       <img id="foodImage" src="" alt="Recipe image">
     </div>
@@ -337,21 +170,31 @@ function closeNav() {
   <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
 
   <script>
+    const charNames = {
+      1: "Jean", 2: "Amber", 3: "Lisa", 4: "Kaeya", 5: "Barbara",
+      6: "Zhongli", 7: "Xiao", 8: "Ningguang", 9: "Beidou", 10: "Xiangling",
+      11: "Raiden Shogun", 12: "Ayaka", 13: "Yoimiya", 14: "Itto", 15: "Kazuha",
+      16: "Nahida", 17: "Alhaitham", 18: "Cyno", 19: "Nilou", 20: "Dehya",
+      21: "Furina", 22: "Neuvillette", 23: "Navia", 24: "Lyney", 25: "Lynette",
+      26: "Mualani", 27: "Kinich", 28: "Kachina", 29: "Xilonen", 30: "Chasca",
+      31: "Tartaglia", 32: "Pulcinella", 33: "Sandrone", 34: "Capitano",
+      35: "Dottore", 36: "Arlecchino", 37: "Scaramouche",
+      38: "Dainsleif"
+    };
+
+    function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
+    function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+
     (function(){
       const btn = document.getElementById('themeBtn');
       const root = document.documentElement;
-      const key = 'teyvat-theme';
       function apply(t){
         root.classList.toggle('dark', t === 'dark');
-        localStorage.setItem(key, t);
+        localStorage.setItem('teyvat-theme', t);
       }
-      const saved = localStorage.getItem(key) || 
-        (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      const saved = localStorage.getItem('teyvat-theme') || 'light';
       apply(saved);
-      btn.addEventListener('click', () => {
-        const isDark = root.classList.contains('dark');
-        apply(isDark ? 'light' : 'dark');
-      });
+      btn.onclick = () => apply(root.classList.contains('dark') ? 'light' : 'dark');
     })();
 
     const firstSelect = document.getElementById('firstSelect');
@@ -360,62 +203,40 @@ function closeNav() {
     const foodText = document.getElementById('foodText');
     const foodImage = document.getElementById('foodImage');
 
-    function clearSecond(){
-      secondSelect.innerHTML = '';
-      secondSelect.style.display = 'none';
-      resultBox.style.display = 'none';
-    }
-
     firstSelect.addEventListener('change', () => {
       const v = parseInt(firstSelect.value, 10);
-      clearSecond();
-      if (!v || isNaN(v)) return;
+      secondSelect.innerHTML = '';
+      resultBox.style.display = 'none';
+      if (!v) { secondSelect.style.display = 'none'; return; }
 
-      let start = null, end = null;
-      if (v >= 1 && v <= 6) {
-        start = (v - 1) * 5 + 1;
-        end = start + 4;
-      } else if (v === 7) {
-        start = 31; end = 34;
-      } else if (v === 8) {
-        start = 35; end = 37;
-      } else if (v === 9) {
-        start = 38; end = 38;
-      }
-
-      if (start === null || end === null) return;
+      let start, end;
+      if (v <= 6) { start = (v-1)*5 + 1; end = start + 4; }
+      else if (v === 7) { start = 31; end = 34; }
+      else if (v === 8) { start = 35; end = 37; }
+      else if (v === 9) { start = 38; end = 38; }
 
       const placeholder = document.createElement('option');
-      placeholder.value = '';
       placeholder.textContent = 'Choose character…';
-      placeholder.selected = true;
-      placeholder.disabled = true;
+      placeholder.disabled = true; placeholder.selected = true;
       secondSelect.appendChild(placeholder);
 
       for (let i = start; i <= end; i++){
+        if(!charNames[i]) continue;
         const opt = document.createElement('option');
-        opt.value = `Character ${i}`;
-        opt.textContent = `Character ${i}`;
+        opt.value = charNames[i];
+        opt.textContent = charNames[i];
         secondSelect.appendChild(opt);
       }
-
       secondSelect.style.display = 'inline-block';
     });
 
     secondSelect.addEventListener('change', () => {
-      const a = firstSelect.options[firstSelect.selectedIndex].text;
-      const b = secondSelect.value;
-      if (!a || !b) {
-        resultBox.style.display = 'none';
-        return;
-      }
-
-      foodText.textContent = `You selected ${b} from ${a}. Here's their special dish!`;
+      const char = secondSelect.value;
+      if (!char) return;
+      foodText.textContent = `Behold! The specialty dish of ${char}!`;
       foodImage.src = 'https://thumbs.dreamstime.com/b/no-emoticon-29087585.jpg';
       resultBox.style.display = 'block';
     });
-
-    clearSecond();
   </script>
 </body>
 </html>
