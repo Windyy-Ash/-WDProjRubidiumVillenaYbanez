@@ -57,6 +57,26 @@
         border-color: gold;
     }
 
+    @media (max-width: 768px) {
+        body {
+            align-items: flex-start;
+        }
+
+        .container {
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            padding-top: 140px;
+            gap: 30px;
+        }
+
+        .option-box {
+            width: 100%;
+            max-width: 320px;
+            font-size: 1.6rem;
+            padding: 30px;
+        }
+    }
 </style>
 </head>
 <body>
