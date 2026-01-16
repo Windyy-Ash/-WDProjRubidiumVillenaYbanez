@@ -80,7 +80,6 @@
     .placeholder { margin-top: 14px; max-width: 100%; height: auto; border-radius: 10px; cursor: pointer; transition: transform 0.2s; }
     .placeholder:hover { transform: scale(1.02); }
 
-
     .dialogue-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
     .dialogue-box { background: white; width: 100%; max-width: 900px; height: 80vh; border-radius: 18px; padding: 30px; position: relative; display: flex; flex-direction: column; overflow: hidden; }
     :root.dark .dialogue-box { background: #222; color: white; }
@@ -90,9 +89,6 @@
     .dialogue-images { flex: 1; position: relative; background: rgba(0,0,0,0.05); border-radius: 10px; min-height: 200px; }
     .dialogue-text { flex: 1; overflow-y: auto; padding-right: 10px; }
 
-    .draggable-img { position: absolute; width: 180px; border-radius: 8px; cursor: move; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid white; }
-    .draggable-img img { width: 100%; border-radius: 6px; display: block; }
-
     footer { padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white; text-align: center; margin-top: auto; }
 
 
@@ -100,7 +96,6 @@
     @media (max-width: 700px) {
       .dialogue-content { flex-direction: column; }
       .dialogue-images { height: 250px; }
-      .draggable-img { width: 120px; }
     }
 
     .explore-section h4 {
@@ -134,6 +129,8 @@
         grid-template-columns: 1fr;
       }
     }
+
+    
   </style>
 </head>
 <body>
