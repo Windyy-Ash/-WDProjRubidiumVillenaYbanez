@@ -102,6 +102,38 @@
       .dialogue-images { height: 250px; }
       .draggable-img { width: 120px; }
     }
+
+    .explore-section h4 {
+      margin-top: 18px;
+      margin-bottom: 6px;
+      color: var(--accent);
+      font-size: 1.05rem;
+    }
+
+    .explore-section p {
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .info-box {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .info-box img.placeholder {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 700px) {
+      .info-box {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -190,9 +222,55 @@
     function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
     function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
 
-
     const data = {
-      exploration: { title: "Exploration", text: "Explore huge open areas, solve puzzles, and collect materials across Teyvat's nations. Each region has its own story, NPCs, and secrets." },
+      exploration: {
+        title: "Exploration",
+        preview: "Statues, waypoints, domains, puzzles, and secrets scattered across Teyvat.",
+        dialogue: `
+        <section class="explore-section">
+          <h4>Statue of the Seven</h4>
+          <p>
+            The Statues of the Seven are sacred landmarks found throughout every region in Teyvat.
+            Resonating with a statue reveals portions of the map and uncovers hidden teleport
+            waypoints. Each statue grants the Statue’s Blessing, allowing characters to heal
+            or revive, with adjustable healing limits to manage the shared HP pool.
+          </p>
+
+          <p>
+            Players can upgrade statues by offering regional oculi scattered across the world.
+            Each upgrade rewards Primogems, Adventure EXP, sigils, and stamina increases that
+            improve climbing, gliding, and swimming.
+          </p>
+
+          <h4>Teleport Waypoints</h4>
+          <p>
+            Teleport Waypoints allow instant travel between unlocked locations. While many are
+            easily accessible, others are hidden behind puzzles, quests, or challenging terrain,
+            turning traversal into a rewarding exploration challenge.
+          </p>
+
+          <h4>Domains</h4>
+          <p>
+            Domains are instanced dungeons that reward artifacts, ascension materials, and other
+            resources. Some focus on combat mastery, while others serve as story-driven or
+            progression gates.
+          </p>
+
+          <h4>Elemental Objects & Collectibles</h4>
+          <p>
+            Elemental monuments, oculi, regional collectibles, and guiding Seelie spirits reward
+            curiosity. Exploration encourages players to climb higher, dive deeper, and uncover
+            hidden paths throughout Teyvat.
+          </p>
+        </section>
+      `,
+      images: [
+        "https://staticc.sportskeeda.com/editor/2022/09/eb15e-16645349279765-1920.jpg",
+        "https://upload-os-bbs.hoyolab.com/upload/2023/07/10/279840469/98747642701f0db5b9336da17c349719_4777866858419662174.jpg",
+        "https://upload-os-bbs.hoyolab.com/upload/2020/10/03/25907022/10142bb0f9acee35e7582d8c1103bec4_169847878409890174.png"
+      ]
+    },
+
       combat: { title: "Combat", text: "Engage in real-time combat using elemental skills and bursts. Elemental reactions like Vaporize and Melt are key to victory." },
       party: { title: "Party Building", text: "Assemble four-character teams that synergize through elemental roles and weapon types for maximum efficiency." },
       progression: { title: "Progression", text: "Level up characters, ascend them, and equip artifacts to boost power. Optimizing builds is essential for the late-game." },
@@ -218,44 +296,70 @@
       }
     });
 
-
     document.querySelector('.placeholder').addEventListener('click', () => {
       const val = select.value;
-      if (!val) return;
-      dialogueTitle.textContent = data[val].title + " Gallery";
-      dialogueText.innerHTML = `<p>${data[val].text}</p><br><p>Drag the images on the left to organize your view!</p>`;
+      if (!data[val]) return;
+
+      dialogueTitle.textContent = data[val].title;
+
+      dialogueText.innerHTML = data[val].dialogue || `<p>${data[val].preview}</p>`;
+
+      const container = document.getElementById('dragContainer');
+      container.innerHTML = "";
+
+      if (data[val].images) {
+        data[val].images.forEach((src, i) => {
+          const div = document.createElement("div");
+          div.className = "draggable-img";
+          div.style.top = `${20 + i * 50}px`;
+          div.style.left = `${20 + i * 40}px`;
+          div.style.zIndex = 10 + i;
+          div.innerHTML = `<img src="${src}" alt="">`;
+          container.appendChild(div);
+
+          let dragging = false, offsetX = 0, offsetY = 0;
+
+          div.onmousedown = (e) => {
+            dragging = true;
+            offsetX = e.clientX - div.offsetLeft;
+            offsetY = e.clientY - div.offsetTop;
+            div.style.zIndex = 999;
+          };
+
+          document.onmousemove = (e) => {
+            if (!dragging) return;
+            div.style.left = (e.clientX - offsetX) + 'px';
+            div.style.top = (e.clientY - offsetY) + 'px';
+          };
+
+          document.onmouseup = () => dragging = false;
+        });
+      }
+
       dialogueOverlay.style.display = 'flex';
     });
 
-    document.getElementById('closeDialogue').onclick = () => dialogueOverlay.style.display = 'none';
-    dialogueOverlay.onclick = (e) => { if(e.target === dialogueOverlay) dialogueOverlay.style.display = 'none'; };
+    document.getElementById('closeDialogue').onclick = () =>
+      dialogueOverlay.style.display = 'none';
 
-
-    document.querySelectorAll('.draggable-img').forEach(el => {
-      let dragging = false, offsetX, offsetY;
-      el.onmousedown = (e) => {
-        dragging = true;
-        offsetX = e.clientX - el.offsetLeft;
-        offsetY = e.clientY - el.offsetTop;
-        el.style.zIndex = 100;
+    dialogueOverlay.onclick = (e) => {
+      if (e.target === dialogueOverlay)
+        dialogueOverlay.style.display = 'none';
       };
-      document.onmousemove = (e) => {
-        if (!dragging) return;
-        el.style.left = (e.clientX - offsetX) + 'px';
-        el.style.top = (e.clientY - offsetY) + 'px';
-      };
-      document.onmouseup = () => { dragging = false; };
-    });
 
     const btn = document.getElementById('themeBtn');
     const root = document.documentElement;
+
     function apply(t){
       root.classList.toggle('dark', t === 'dark');
       localStorage.setItem('teyvat-theme', t);
     }
+
     const saved = localStorage.getItem('teyvat-theme') || 'light';
     apply(saved);
-    btn.onclick = () => apply(root.classList.contains('dark') ? 'light' : 'dark');
+
+    btn.onclick = () => 
+      apply(root.classList.contains('dark') ? 'light' : 'dark');
   </script>
 </body>
 </html>
