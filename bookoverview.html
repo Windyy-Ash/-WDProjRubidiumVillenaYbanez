@@ -32,7 +32,7 @@
       --card: rgba(139, 14, 14, 0.75);
       --accent:#621010;
       --text:#f8f8f8;
-      --box: #222; /* solid dark, not transparent */
+      --box: #222;
       --background-image: url("https://i.redd.it/about-eyes-motif-on-raiden-v0-k9j87qoi67be1.png?width=1449&format=png&auto=webp&s=20f3c2f9c409eeafbdeff4a6fb7dfeba97ec94f2");
       --bg-overlay: rgba(0,0,0,0.36);
       --sidenav-bg: #3c0505;
@@ -99,7 +99,7 @@
       margin-top: 10px;
       justify-content: flex-start;
       align-items: flex-start;
-      padding-left: 10px; /* move everything more to the left */
+      padding-left: 10px;
     }
     aside.index {
       width: 260px;
@@ -124,7 +124,7 @@
       display:grid;
       place-items:center;
       perspective:1600px;
-      margin-left: 0; /* remove extra right shift */
+      margin-left: 0;
     }
     .book {
       width:600px;
@@ -178,11 +178,11 @@
     @media (max-width:1100px) {
       .codex-wrapper { flex-direction: column; align-items: center; gap: 24px; }
       aside.index { width: 100%; max-width: 350px; margin: 0 auto; }
-      .book { width: 80vw; height: 75vh; }
+      .book { width: 90vw; height: 85vh; }
     }
     @media (max-width:768px) {
       aside.index { display: none; }
-      .book { width: 95vw; height: 80vh; }
+      .book { width: 110vw; height: 100vh; }
     }
   </style>
 <style>
@@ -302,7 +302,7 @@
 
     @media (max-width:768px) { 
       .index { display:none; } 
-      .book { width:90vw; height:70vh; } 
+      .book { width:100vw; height:80vh; } 
     }
   </style>
 </head>
