@@ -43,8 +43,10 @@
     }
 
     .sidenav {
-      height: 100%; width: 0; position: fixed; z-index: 100; top: 0; left: 0;
-        background-color: var(--sidenav-bg, #8d00df); overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+      height: 100%; width: 0; position: fixed; z-index: 1000; top: 0; left: 0;
+      background-color: var(--sidenav-bg); overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+        --sidenav-bg: #8d00df;
+        --sidenav-bg: #222;
       --sidenav-bg: #8d00df;
       --sidenav-bg: #222;
     }
