@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>A Vast Journey Into the Wonders of Teyvat — References</title>
   <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg:#fff9cc;
@@ -20,7 +21,10 @@
       --radius:14px;
       --background-image: url("https://wallpaper.forfun.com/fetch/f3/f34497e9ebb662c05c7dcad9a2604c43.jpeg");
       --bg-overlay: rgba(0, 0, 0, 0.12);
-      --card-link: #1e2a78; 
+      --card-link: #1e2a78;
+      --sidenav-bg: #6262e7;
+      --sidenav-link: #333;
+      --sidenav-link-hover: #ebed6d;
     }
 
     :root.dark {
@@ -30,13 +34,16 @@
       --text:#f8f8f8;
       --background-image: url("https://i.redd.it/about-eyes-motif-on-raiden-v0-k9j87qoi67be1.png?width=1449&format=png&auto=webp&s=20f3c2f9c409eeafbdeff4a6fb7dfeba97ec94f2");
       --bg-overlay: rgba(0,0,0,0.36);
-      --card-link: #ffcc00; 
+      --card-link: #ffcc00;
+      --sidenav-bg: #3c0505;
+      --sidenav-link: #e0e0e0;
+      --sidenav-link-hover: #ffffff86;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--background-image), var(--bg);
       background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;
       color: var(--text); display: flex; flex-direction: column; min-height: 100vh; transition: background .35s ease;
@@ -44,13 +51,15 @@
 
     .sidenav {
       height: 100%; width: 0; position: fixed; z-index: 1000; top: 0; left: 0;
-      background-color: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+      background: var(--sidenav-bg); overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.08);
     }
     .sidenav a {
-      padding: 8px 32px; text-decoration: none; font-size: 20px; color: #818181; display: block; transition: 0.3s;
+      padding: 8px 32px; text-decoration: none; font-size: 20px; color: var(--sidenav-link); display: block; transition: 0.3s;
+      font-family: 'Quicksand', sans-serif;
     }
-    .sidenav a:hover { color: #f1f1f1; }
-    .sidenav .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; }
+    .sidenav a:hover { color: var(--sidenav-link-hover); background: rgba(74,85,162,0.08); }
+    .sidenav .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; color: var(--sidenav-link); }
 
     header {
       display: flex; align-items: center; justify-content: space-between;
@@ -59,7 +68,15 @@
 
     .brand { display: flex; align-items: center; gap: 14px; }
     .brand img { width: 42px; height: 42px; border-radius: 8px; object-fit: cover; }
-    .brand h1 { font-size: 1.15rem; margin: 0; color: white; }
+    .brand h1 {
+      font-size: 1.15rem;
+      margin: 0;
+      color: white;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1px;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
 
     .sparkle-btn, .btn {
       background: rgba(255,255,255,0.1); border: 1px solid var(--btn-border);
@@ -67,7 +84,7 @@
     }
 
     .nav-links { display: flex; align-items: center; gap: 12px; }
-    .nav-links a { color: white; text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 600; }
+    .nav-links a { color: white; text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 600; font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     .nav-links a:hover { background-color: rgba(255,255,255,0.2); }
 
     main { flex: 1; padding: 36px 20px; max-width: 900px; margin: 0 auto; width: 100%; text-align: center; }

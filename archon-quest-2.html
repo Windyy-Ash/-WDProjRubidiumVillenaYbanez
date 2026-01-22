@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Act II — Inazuma</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  :root {
+    --gold: #f4d27a;
+    --panel: rgba(255,255,255,0.14);
+    --panel-dark: rgba(0,0,0,0.45);
+    --accent: #9fd3c7;
+    --text: #ffffff;
+    --radius: 18px;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Segoe UI", "Noto Serif", serif;
+    color: var(--text);
+    background: url("https://images.alphacoders.com/118/1187492.jpg") center / cover no-repeat fixed;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(7px);
+    background: rgba(0,0,0,0.45);
+    z-index: -1;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 20px;
+  }
+
+  .panel {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,248,225,0.88),
+            rgba(243,233,200,0.82)
+        );
+    color: #2f2a1e;
+    border-radius: 22px;
+    padding: 32px 36px;
+    margin-bottom: 60px;
+    position: relative;
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.55),
+        inset 0 0 24px rgba(0,0,0,0.07),
+        0 20px 50px rgba(0,0,0,0.38);
+    border: 2px solid rgba(212,178,92,0.9);
+    backdrop-filter: blur(2px);
+  }
+
+  .panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 4px 4px;
+    opacity: 0.25;
+    pointer-events: none;
+    border-radius: 22px;
+  }
+
+  .panel::after {
+    content: "✦";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 240px;
+    color: rgba(159,211,199,0.12);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    font-family: serif;
+  }
+
+  .panel h1 {
+    color: #7a5a14;
+    letter-spacing: 1px;
+  }
+
+  .panel h2 {
+    color: #4f7f73;
+    letter-spacing: 0.8px;
+  }
+
+  .panel p {
+    color: #2f2a1e;
+    line-height: 1.75;
+  }
+
+  .characters { padding-top: 10px; }
+
+  h1, h2 { text-align: center; letter-spacing: 1px; }
+  h1 { font-size: 2.3rem; color: var(--gold); }
+  h2 { font-size: 1.6rem; color: var(--accent); }
+
+  .divider {
+    width: 160px;
+    height: 3px;
+    margin: 22px auto 30px;
+    background: linear-gradient(90deg, transparent, rgba(212,178,92,1), transparent);
+    position: relative;
+  }
+  .divider::after {
+    content: "✦";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(212,178,92,0.95);
+    font-size: 18px;
+  }
+
+  .characters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 26px;
+  }
+
+  .char-card {
+    cursor: pointer;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: transform 0.35s, box-shadow 0.35s;
+  }
+
+  .char-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 2px rgba(244,210,122,0.0);
+    transition: box-shadow 0.35s;
+  }
+
+  .char-card img { width: 100%; height: 260px; object-fit: cover; }
+
+  .char-card:hover { transform: translateY(-6px) scale(1.05); box-shadow: 0 0 30px rgba(244,210,122,0.35); }
+  .char-card:hover::after { box-shadow: inset 0 0 0 2px rgba(244,210,122,0.55); }
+
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .modal-content {
+    background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08));
+    backdrop-filter: blur(10px);
+    border-radius: 22px;
+    max-width: 900px;
+    width: 92%;
+    padding: 32px;
+    position: relative;
+    border: 1px solid rgba(244,210,122,0.45);
+  }
+
+  .modal-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-items: center;
+    margin-bottom: 25px;
+  }
+  .modal-images img { width: 300px; height: 300px; object-fit: cover; border-radius: 18px; border: 1px solid rgba(255,255,255,0.35); box-shadow: 0 0 25px rgba(159,211,199,0.35); }
+
+  .close-btn { position: absolute; top: 14px; right: 22px; font-size: 26px; cursor: pointer; color: var(--gold); }
+
+  .exit { text-align: center; margin-top: 50px; }
+  .exit button {
+    padding: 14px 38px; font-size: 16px; border-radius: 30px; cursor: pointer;
+    background: linear-gradient(180deg, #f6d98b, #cfa94a);
+    color: #2b2300;
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .exit button:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.45); }
+
+  .particles { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: -1; }
+  .particles span {
+    position: absolute; width: 6px; height: 6px; background: rgba(159,211,199,0.65);
+    border-radius: 50%; filter: blur(1px); animation: float 18s linear infinite;
+  }
+
+  @keyframes float {
+    from { transform: translateY(110vh) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    to { transform: translateY(-20vh) translateX(40px); opacity: 0; }
+  }
+
+  .coming-soon {
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(14px);
+    background: rgba(0,0,0,0.58);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    text-align: center;
+    color: #fef6d8;
+    padding: 20px;
+  }
+
+  .coming-soon .cs-box {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(244,210,122,0.6);
+    border-radius: 18px;
+    padding: 22px 28px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+  }
+
+  .coming-soon .cs-title {
+    font-size: 2rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .coming-soon .cs-note {
+    font-size: 1rem;
+    opacity: 0.85;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+<div class="coming-soon">
+  <div class="cs-box">
+    <div class="cs-title">Coming Soon!</div>
+    <div class="cs-note">This act is still being finished. Thanks for your patience.</div>
+  </div>
+</div>
+<div class="particles"></div>
+<div class="container">
+
+    <div class="panel">
+        <h1>Act II — Omnipresence Over Mortals</h1>
+        <p>
+            The Traveler sails to Inazuma under the Vision Hunt Decree, where visions are confiscated in the name of eternity.
+            Joining the resistance led by Sangonomiya Kokomi and allies like Thoma and Yoimiya, the Traveler challenges the Raiden Shogun’s enforcement of the decree.
+            <br><br>
+            With Ei confronting her own ideals of eternity, the decree is lifted and the Shogun chooses to guide Inazuma forward rather than freeze it in the past.
+        </p>
+    </div>
+
+    <div class="panel">
+        <h2>Key Characters</h2>
+
+        <div class="characters">
+            <div class="char-card" onclick="openModal(
+                'Raiden Shogun',
+                'The Electro Archon seeking eternity, ultimately choosing to watch Inazuma grow.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/f/f5/Character_Raiden_Shogun_Card.png',
+                'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Element_Electro.png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/f/f5/Character_Raiden_Shogun_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Kamisato Ayaka',
+                'The Shirasagi Himegimi who aids the Traveler against the decree.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/0/08/Character_Kamisato_Ayaka_Card.png',
+                'https://static.wikia.nocookie.net/gensin-impact/images/7/7f/Element_Cryo.png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/0/08/Character_Kamisato_Ayaka_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Yoimiya',
+                'The fireworks expert who helps citizens resist the Vision Hunt.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/0/04/Character_Yoimiya_Card.png',
+                'https://static.wikia.nocookie.net/gensin-impact/images/5/5b/Element_Pyro.png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/0/04/Character_Yoimiya_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Sangonomiya Kokomi',
+                'The strategist and Divine Priestess leading the resistance forces.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/7/74/Character_Sangonomiya_Kokomi_Card.png',
+                'https://static.wikia.nocookie.net/gensin-impact/images/6/6a/Element_Hydro.png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/7/74/Character_Sangonomiya_Kokomi_Card.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="exit">
+        <button onclick="location.href='archonq.html'">Exit</button>
+    </div>
+
+</div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">✖</span>
+        <h2 id="modalTitle"></h2>
+        <div class="modal-images">
+            <img id="imgLeft">
+            <img id="imgRight">
+        </div>
+        <p id="modalDesc"></p>
+    </div>
+</div>
+
+<script>
+function openModal(name, desc, leftImg, rightImg) {
+    document.getElementById("modalTitle").textContent = name;
+    document.getElementById("modalDesc").textContent = desc;
+    document.getElementById("imgLeft").src = leftImg;
+    document.getElementById("imgRight").src = rightImg;
+    document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+document.getElementById("modal").addEventListener("click", function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+
+const particleContainer = document.querySelector('.particles');
+for (let i = 0; i < 35; i++) {
+    const p = document.createElement('span');
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = 14 + Math.random() * 10 + 's';
+    p.style.animationDelay = Math.random() * 10 + 's';
+    p.style.opacity = Math.random() * 0.6;
+    particleContainer.appendChild(p);
+}
+</script>
+
+</body>
+</html>
