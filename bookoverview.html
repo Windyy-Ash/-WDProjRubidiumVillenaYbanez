@@ -32,7 +32,7 @@
       --card: rgba(139, 14, 14, 0.75);
       --accent:#621010;
       --text:#f8f8f8;
-      --box: rgba(255,255,255,0.1);
+      --box: #222; /* solid dark, not transparent */
       --background-image: url("https://i.redd.it/about-eyes-motif-on-raiden-v0-k9j87qoi67be1.png?width=1449&format=png&auto=webp&s=20f3c2f9c409eeafbdeff4a6fb7dfeba97ec94f2");
       --bg-overlay: rgba(0,0,0,0.36);
       --sidenav-bg: #3c0505;
@@ -94,10 +94,12 @@
     main { flex: 1; padding: 36px 20px; max-width: 980px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
     .codex-wrapper {
       display: flex;
-      gap: 48px;
+      flex-direction: row;
+      gap: 36px;
       margin-top: 10px;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: flex-start;
+      padding-left: 10px; /* move everything more to the left */
     }
     aside.index {
       width: 260px;
@@ -110,13 +112,27 @@
       box-shadow: 0 4px 24px rgba(0,0,0,0.12);
       border: 1px solid var(--panel-border);
       font-size: 1.08rem;
+      position: relative;
+      z-index: 10;
     }
     .index h3 { margin-top:0; font-size:1.1rem; text-align:center; letter-spacing:1px; }
     .index ul { list-style:none; padding:0; }
     .index li { transition: opacity 0.35s ease, transform 0.35s ease, background-color 0.35s ease; border-radius:8px; padding:6px 10px; margin-bottom:4px; cursor:pointer; }
     .index li:hover { opacity: 0.75; transform: translateX(4px); background: rgba(255,255,255,0.08); }
-    .scene { flex:1; display:grid; place-items:center; perspective:1600px; }
-    .book { width:520px; height:700px; position:relative; transform-style: preserve-3d; }
+    .scene {
+      flex:1;
+      display:grid;
+      place-items:center;
+      perspective:1600px;
+      margin-left: 0; /* remove extra right shift */
+    }
+    .book {
+      width:520px;
+      height:700px;
+      position:relative;
+      transform-style: preserve-3d;
+      z-index: 2;
+    }
     .page {
       position: absolute;
       width: 100%;
@@ -326,13 +342,13 @@
 
   <main>
     <div class="codex-wrapper">
+      <div class="scene">
+        <div class="book" id="book"></div>
+      </div>
       <aside class="index">
         <h3>Contents</h3>
         <ul id="indexList"></ul>
       </aside>
-      <div class="scene">
-        <div class="book" id="book"></div>
-      </div>
     </div>
   </main>
 
