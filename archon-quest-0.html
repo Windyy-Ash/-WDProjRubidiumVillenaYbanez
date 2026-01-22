@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mondstadt Prologue</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  :root {
+    --gold: #f4d27a;
+    --panel: rgba(255,255,255,0.14);
+    --panel-dark: rgba(0,0,0,0.45);
+    --accent: #9fd3c7;
+    --text: #ffffff;
+    --radius: 18px;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Segoe UI", "Noto Serif", serif;
+    color: var(--text);
+    background: url("https://rare-gallery.com/mocahbig/1314350-Mondstadt-Genshin-ImpactGenshin-Impact-4k-Ultra-HD.jpg")
+        center / cover no-repeat fixed;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(7px);
+    background: rgba(0,0,0,0.45);
+    z-index: -1;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 20px;
+  }
+
+  .panel {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,248,225,0.88),
+            rgba(243,233,200,0.82)
+        );
+    color: #2f2a1e;
+    border-radius: 22px;
+    padding: 32px 36px;
+    margin-bottom: 60px;
+    position: relative;
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.55),
+        inset 0 0 24px rgba(0,0,0,0.07),
+        0 20px 50px rgba(0,0,0,0.38);
+    border: 2px solid rgba(212,178,92,0.9);
+    backdrop-filter: blur(2px);
+  }
+
+  .panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 4px 4px;
+    opacity: 0.25;
+    pointer-events: none;
+    border-radius: 22px;
+  }
+
+  .panel::after {
+    content: "✦";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 240px;
+    color: rgba(159,211,199,0.12);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    font-family: serif;
+  }
+
+  .panel h1 {
+    color: #7a5a14;
+    letter-spacing: 1px;
+  }
+
+  .panel h2 {
+    color: #4f7f73;
+    letter-spacing: 0.8px;
+  }
+
+  .panel p {
+    color: #2f2a1e;
+    line-height: 1.75;
+  }
+
+  .characters {
+    padding-top: 10px;
+  }
+
+  h1, h2 {
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+    color: var(--gold);
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    color: var(--accent);
+  }
+
+  .divider {
+    width: 160px;
+    height: 3px;
+    margin: 22px auto 30px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(212,178,92,1),
+        transparent
+    );
+    position: relative;
+  }
+
+  .divider::after {
+    content: "✦";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(212,178,92,0.95);
+    font-size: 18px;
+  }
+
+  .characters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 26px;
+  }
+
+  .char-card {
+    cursor: pointer;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: transform 0.35s, box-shadow 0.35s;
+  }
+
+  .char-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 2px rgba(244,210,122,0.0);
+    transition: box-shadow 0.35s;
+  }
+
+  .char-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+  }
+
+  .char-card:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 0 30px rgba(244,210,122,0.35);
+  }
+
+  .char-card:hover::after {
+    box-shadow: inset 0 0 0 2px rgba(244,210,122,0.55);
+  }
+
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .modal-content {
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.18),
+        rgba(255,255,255,0.08)
+    );
+    backdrop-filter: blur(10px);
+    border-radius: 22px;
+    max-width: 900px;
+    width: 92%;
+    padding: 32px;
+    position: relative;
+    border: 1px solid rgba(244,210,122,0.45);
+  }
+
+  .modal-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-items: center;
+    margin-bottom: 25px;
+  }
+
+  .modal-images img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.35);
+    box-shadow: 0 0 25px rgba(159,211,199,0.35);
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 14px;
+    right: 22px;
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--gold);
+  }
+
+  .exit {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .exit button {
+    padding: 14px 38px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    background: linear-gradient(180deg, #f6d98b, #cfa94a);
+    color: #2b2300;
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .exit button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+  }
+
+  .particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  .particles span {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(159,211,199,0.65);
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: float 18s linear infinite;
+  }
+
+  @keyframes float {
+    from {
+        transform: translateY(110vh) translateX(0);
+        opacity: 0;
+    }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    to {
+        transform: translateY(-20vh) translateX(40px);
+        opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="particles"></div>
+<div class="container">
+
+    <div class="panel">
+        <h1>Mondstadt Prologue</h1>
+        <p>
+            The Mondstadt Prologue Archon Quest follows the Traveler’s arrival in the city of freedom and wind while searching for their lost sibling.
+            After meeting Amber and joining the Knights of Favonius, the Traveler helps defend the city from attacks by the dragon Stormterror.
+            With Jean, Kaeya, Diluc, and Venti, the Traveler restores balance to corrupted temples across Mondstadt.
+            <br><br>
+            The truth is revealed when Stormterror is identified as Dvalin, an old companion of the Anemo Archon manipulated by the Abyss Order.
+            With Venti’s help, Dvalin is purified and Mondstadt is saved. However, Signora soon appears and steals Venti’s Gnosis,
+            and the Traveler sets their sights on Liyue.
+        </p>
+    </div>
+
+    <div class="panel">
+        <h2>Playable Characters That Appeared in the Archon Quest</h2>
+
+        <div class="characters">
+            <div class="char-card" onclick="openModal(
+                'Amber',
+                'Amber is a Pyro bow user from Mondstadt and the city’s only remaining Outrider of the Knights of Favonius. In combat, Amber specializes in ranged Pyro attacks and uses her explosive decoy Baron Bunny to distract enemies.',
+                'https://tse4.mm.bing.net/th/id/OIP._9mEd3KNfHJhEHNxtqRQrAHaHZ?rs=1&pid=ImgDetMain&o=7&rm=3',
+                'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7dd702d9-2cf1-40a6-a4a8-e3ce9a2aa249/de82i78-c5cb3870-e6c9-4974-9817-466556af806e.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzdkZDcwMmQ5LTJjZjEtNDBhNi1hNGE4LWUzY2U5YTJhYTI0OVwvZGU4Mmk3OC1jNWNiMzg3MC1lNmM5LTQ5NzQtOTgxNy00NjY1NTZhZjgwNmUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.rpjftn6SXR3tU8QA5r0rK-5Fx6IAarwc_fpe9vDQLRc'
+            )">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.6lihuve-6HfwtzDmFc2P_QHaMl?rs=1&pid=ImgDetMain&o=7&rm=3">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Barbara',
+                'Barbara is a Hydro catalyst user and the Deaconess of the Church of Favonius. She is a healer and is acting as Mondstadt’s idol. But, despite her fame, she struggles with self-confidence and often compares herself to her older sister, Jean.',
+                'https://upload-os-bbs.hoyolab.com/upload/2024/07/21/17138284/94a73e2ab853457361ddcafffb110aa6_2399487459801510811.jpg',
+                'https://genshinimpact.wiki.fextralife.com/file/Genshin-Impact/hydro-element-genshin-impact-wiki-guide.png'
+            )">
+                <img src="https://tse2.mm.bing.net/th/id/OIP.XjMe_iFsZqIfFFlGOxQfcgHaMg?rs=1&pid=ImgDetMain&o=7&rm=3">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Diluc',
+                'Diluc is a Pyro claymore user, owner of Dawn Winery, and Mondstadt’s vigilante known as the Darknight Hero. After the death of his father and a falling out with the Knights, Diluc chose to protect the city on his own terms.',
+                'https://tse1.mm.bing.net/th/id/OIP.vA5JFHNRaxQlbLFwcdDWBwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3',
+                'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7dd702d9-2cf1-40a6-a4a8-e3ce9a2aa249/de82i78-c5cb3870-e6c9-4974-9817-466556af806e.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzdkZDcwMmQ5LTJjZjEtNDBhNi1hNGE4LWUzY2U5YTJhYTI0OVwvZGU4Mmk3OC1jNWNiMzg3MC1lNmM5LTQ5NzQtOTgxNy00NjY1NTZhZjgwNmUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.rpjftn6SXR3tU8QA5r0rK-5Fx6IAarwc_fpe9vDQLRc'
+            )">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.G4hkVrU9QzHkM_BgSOPYLgHaNK?rs=1&pid=ImgDetMain&o=7&rm=3">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Jean',
+                'Jean is an Anemo sword user and the hardworking Acting Grand Master of the Knights of Favonius. She often places the city’s needs above her own health. Jean serves as the backbone of the Knights during the Stormterror crisis.',
+                'https://i.redd.it/jruyykh7w9n81.jpg',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/03/Element_Anemo-(1).png'
+            )">
+                <img src="https://tse4.mm.bing.net/th/id/OIP.8FOIYZZxXAtQvqq1JoFQZgHaNK?rs=1&pid=ImgDetMain&o=7&rm=3">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Kaeya',
+                'Kaeya is a Cryo sword user and the Cavalry Captain of the Knights of Favonius, despite having no cavalry to command (well there’s horse costumes now). Behind his charm lies a past tied to Khaenri’ah.',
+                'https://tse2.mm.bing.net/th/id/OIP.OeTEHPD7LVPNLvgL-CoLpwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/Cryo.png'
+            )">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.67wmKV_xM80P8LWE2-zNHQHaNK?rs=1&pid=ImgDetMain&o=7&rm=3">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Lisa',
+                'Lisa is an Electro catalyst user and the librarian of the Knights of Favonius. Once considered the most talented student at Sumeru Akademiya in centuries, she chose a quiet life in Mondstadt after learning the dangers of pursuing forbidden knowledge.',
+                'https://upload-os-bbs.hoyolab.com/upload/2023/06/09/125927145/b2391a3d8e92f3e3bf81ce73ebe4db9f_8311429107427448738.jpg',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/Electro.png'
+            )">
+                <img src="https://th.bing.com/th/id/OIP.7sr9iRaz3TARQc-8Ah5icAHaNK?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Venti',
+                'Venti is a bard who later reveals himself as Barbatos, the Anemo Archon. He believes true freedom means allowing people to govern themselves rather than ruling over them. Though playful and carefree, he carries thousands of memories, including the loss of friends and the fall of old Mondstadt. He plays an important role in calming Dvalin during the Stormterror crisis.',
+                'https://preview.redd.it/official-venti-birthday-art-v0-z0pg21oszu6d1.jpg?width=1080&crop=smart&auto=webp&s=3c3ca766aaec27f332b75893395d63a6332c203e',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/03/Element_Anemo-(1).png'
+            )">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.1WHmj_AowO4N11zR4wlLxwHaNK?rs=1&pid=ImgDetMain&o=7&rm=3">
+            </div>
+        </div>
+    </div>
+
+    <div class="exit">
+        <button onclick="location.href='archonq.html'">Exit</button>
+    </div>
+
+</div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">✖</span>
+        <h2 id="modalTitle"></h2>
+        <div class="modal-images">
+            <img id="imgLeft">
+            <img id="imgRight">
+        </div>
+        <p id="modalDesc"></p>
+    </div>
+</div>
+
+<script>
+function openModal(name, desc, leftImg, rightImg) {
+    document.getElementById("modalTitle").textContent = name;
+    document.getElementById("modalDesc").textContent = desc;
+    document.getElementById("imgLeft").src = leftImg;
+    document.getElementById("imgRight").src = rightImg;
+    document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+document.getElementById("modal").addEventListener("click", function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+
+const particleContainer = document.querySelector('.particles');
+
+for (let i = 0; i < 35; i++) {
+    const p = document.createElement('span');
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = 14 + Math.random() * 10 + 's';
+    p.style.animationDelay = Math.random() * 10 + 's';
+    p.style.opacity = Math.random() * 0.6;
+    particleContainer.appendChild(p);
+}
+</script>
+
+</body>
+</html>

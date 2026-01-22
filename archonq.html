@@ -100,7 +100,6 @@
       font-weight: 700;
       text-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
-    /* For future consistency if creator-name is used */
     .creator-name {
       font-family: 'Cinzel', serif;
       letter-spacing: 1px;
@@ -110,7 +109,7 @@
     .card { background: var(--card); padding: 22px; border-radius: var(--radius); box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin-bottom: 20px; backdrop-filter: blur(5px); }
 
     .quest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; margin-top: 24px; }
-    .quest-box { background: var(--box); padding: 16px; border-radius: 12px; font-weight: 500; }
+    .quest-box { background: var(--box); padding: 16px; border-radius: 12px; font-weight: 500; text-decoration: none; color: inherit; display: block; }
 
     footer { padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white; text-align: center; margin-top: auto; }
 
@@ -159,7 +158,10 @@
       <h2>Archon Quests</h2>
       <p style="margin-bottom:15px; color: white;">Follow the Traveler's journey across Teyvat.</p>
       <div class="quest-grid">
-        <div class="quest-box">Prologue<br><small>The Outlander Who Caught the Wind<br><b>Mondstadt</b></small></div>
+        <a href="archon-quest-0.html" class="quest-box">
+          Prologue<br>
+          <small>The Outlander Who Caught the Wind<br><b>Mondstadt</b></small>
+        </a>
         <div class="quest-box">Act I<br><small>Of the Land Amidst Monoliths<br><b>Liyue</b></small></div>
         <div class="quest-box">Act II<br><small>Omnipresence Over Mortals<br><b>Inazuma</b></small></div>
         <div class="quest-box">Act III<br><small>Truth Amongst the Pages of Purana<br><b>Sumeru</b></small></div>
