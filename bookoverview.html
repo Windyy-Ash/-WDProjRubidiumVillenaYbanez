@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>A Vast Journey Into the Wonders of Teyvat— Ingredients Guide</title>
   <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg:#fff9cc;
@@ -21,6 +22,9 @@
       --radius:14px;
       --background-image: url("https://wallpaper.forfun.com/fetch/f3/f34497e9ebb662c05c7dcad9a2604c43.jpeg");
       --bg-overlay: rgba(0, 0, 0, 0.12);
+      --sidenav-bg: #6262e7;
+      --sidenav-link: #333;
+      --sidenav-link-hover: #4a55a2;
     }
 
     :root.dark {
@@ -28,15 +32,18 @@
       --card: rgba(139, 14, 14, 0.75);
       --accent:#621010;
       --text:#f8f8f8;
-      --box: rgba(255,255,255,0.1);
+      --box: #222; /* solid dark, not transparent */
       --background-image: url("https://i.redd.it/about-eyes-motif-on-raiden-v0-k9j87qoi67be1.png?width=1449&format=png&auto=webp&s=20f3c2f9c409eeafbdeff4a6fb7dfeba97ec94f2");
       --bg-overlay: rgba(0,0,0,0.36);
+      --sidenav-bg: #3c0505;
+      --sidenav-link: #e0e0e0;
+      --sidenav-link-hover: #f1c40f;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--background-image), var(--bg);
       background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;
       color: var(--text); display: flex; flex-direction: column; min-height: 100vh; transition: background .35s ease;
@@ -44,11 +51,21 @@
 
     .sidenav {
       height: 100%; width: 0; position: fixed; z-index: 1000; top: 0; left: 0;
-      background-color: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+      background: var(--sidenav-bg); overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.08);
     }
-    .sidenav a { padding: 8px 32px; text-decoration: none; font-size: 20px; color: #818181; display: block; transition: 0.3s; }
-    .sidenav a:hover { color: #f1f1f1; }
-    .sidenav .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; }
+    .sidenav a {
+      padding: 8px 32px; text-decoration: none; font-size: 20px;
+      color: var(--sidenav-link); display: block; transition: 0.3s;
+    }
+    .sidenav a:hover {
+      color: var(--sidenav-link-hover);
+      background: rgba(74,85,162,0.08);
+    }
+    .sidenav .closebtn {
+      position: absolute; top: 0; right: 25px; font-size: 36px;
+      color: var(--sidenav-link);
+    }
 
     header {
       display: flex; align-items: center; justify-content: space-between;
@@ -57,31 +74,98 @@
 
     .brand { display: flex; align-items: center; gap: 14px; }
     .brand img { width: 42px; height: 42px; border-radius: 8px; object-fit: cover; }
-    .brand h1 { font-size: 1.15rem; margin: 0; color: white; }
+    .brand h1 {
+      font-size: 1.15rem; margin: 0; color: white;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1px;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
     .sparkle-btn, .btn {
       background: rgba(255,255,255,0.1); border: 1px solid var(--btn-border);
       padding: 8px 10px; border-radius: 10px; color: white; cursor: pointer;
     }
     .nav-links { display: flex; align-items: center; gap: 12px; }
-    .nav-links a { color: white; text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 600; }
+    .nav-links a {
+      color: white; text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 600;
+      font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
     .nav-links a:hover { background-color: rgba(255,255,255,0.2); }
     main { flex: 1; padding: 36px 20px; max-width: 980px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
-    .codex-wrapper { display:flex; gap:32px; margin-top:10px; }
+    .codex-wrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 36px;
+      margin-top: 10px;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding-left: 10px; /* move everything more to the left */
+    }
     aside.index {
-      width:220px; background: rgba(20,22,32,0.92); color: #e6c78c; padding:1.2rem; overflow-y:auto; border-radius: var(--radius); box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      width: 260px;
+      min-width: 180px;
+      background: rgba(20,22,32,0.98);
+      color: #e6c78c;
+      padding: 1.5rem 1.2rem;
+      overflow-y: auto;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
       border: 1px solid var(--panel-border);
+      font-size: 1.08rem;
+      position: relative;
+      z-index: 10;
     }
     .index h3 { margin-top:0; font-size:1.1rem; text-align:center; letter-spacing:1px; }
     .index ul { list-style:none; padding:0; }
     .index li { transition: opacity 0.35s ease, transform 0.35s ease, background-color 0.35s ease; border-radius:8px; padding:6px 10px; margin-bottom:4px; cursor:pointer; }
     .index li:hover { opacity: 0.75; transform: translateX(4px); background: rgba(255,255,255,0.08); }
-    .scene { flex:1; display:grid; place-items:center; perspective:1600px; }
-    .book { width:340px; height:480px; position:relative; transform-style: preserve-3d; }
-    .page { position: absolute; width: 100%; height: 100%; border-radius: 8px; padding: 1.2rem; box-sizing: border-box; transform-origin: left; transform-style: preserve-3d; transition: transform 0.9s cubic-bezier(.4,0,.2,1); box-shadow: 0 0 20px rgba(0,0,0,0.4), 0 0 8px rgba(255,200,150,0.2) inset; background: var(--box); color: #111; text-shadow: none; overflow-y: auto; scroll-behavior: smooth; }
+    .scene {
+      flex:1;
+      display:grid;
+      place-items:center;
+      perspective:1600px;
+      margin-left: 0; /* remove extra right shift */
+    }
+    .book {
+      width:520px;
+      height:700px;
+      position:relative;
+      transform-style: preserve-3d;
+      z-index: 2;
+    }
+    .page {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      padding: 2rem;
+      box-sizing: border-box;
+      transform-origin: left;
+      transform-style: preserve-3d;
+      transition: transform 0.9s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 0 20px rgba(0,0,0,0.18), 0 0 8px rgba(255,200,150,0.08) inset;
+      background: #fffbe9;
+      color: #111;
+      text-shadow: none;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
     .page::-webkit-scrollbar { width: 6px; }
     .page::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.2); border-radius: 3px; }
     .page.flipped { transform: rotateY(-180deg); }
-    .page h2 { color: var(--accent); margin-top:0; font-size:1rem; }
+    .page h2 {
+      color: var(--accent); margin-top:0; font-size:1rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1px;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+        .creator-name {
+          font-family: 'Cinzel', serif;
+          letter-spacing: 1px;
+          font-weight: 700;
+          margin-bottom: 8px;
+        }
     .page img { width:100%; border-radius:4px; margin:0.6rem 0; }
     .page p { font-size:0.95rem; line-height:1.7; }
     .page.cover { background: linear-gradient(160deg,#e6c78c,#6b4f2f); color:#111; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; font-size:1.1rem; text-shadow:0 0 4px #fff3aa; }
@@ -91,7 +175,15 @@
     @keyframes sparkleAnim { 0% { transform: scale(0.6); opacity: 0; } 20% { opacity: 0.9; } 80% { opacity: 0.6; } 100% { transform: scale(1.4); opacity: 0; } }
     footer { padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white; text-align: center; margin-top: auto; }
     @media(max-width: 900px) { .nav-links { display: none; } }
-    @media (max-width:768px) { aside.index { display:none; } .book { width:90vw; height:70vh; } }
+    @media (max-width:1100px) {
+      .codex-wrapper { flex-direction: column; align-items: center; gap: 24px; }
+      aside.index { width: 100%; max-width: 350px; margin: 0 auto; }
+      .book { width: 90vw; height: 70vh; }
+    }
+    @media (max-width:768px) {
+      aside.index { display: none; }
+      .book { width: 96vw; height: 60vh; }
+    }
   </style>
 <style>
     .sparkle-btn, .btn {
@@ -250,13 +342,13 @@
 
   <main>
     <div class="codex-wrapper">
+      <div class="scene">
+        <div class="book" id="book"></div>
+      </div>
       <aside class="index">
         <h3>Contents</h3>
         <ul id="indexList"></ul>
       </aside>
-      <div class="scene">
-        <div class="book" id="book"></div>
-      </div>
     </div>
   </main>
 
