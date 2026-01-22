@@ -180,71 +180,85 @@
 </div>
 
 <script>
-let mode = 'signup';
-const password = document.getElementById('password');
-const strengthBar = document.getElementById('strengthBar');
-const passMsg = document.getElementById('passMsg');
-const check = document.getElementById('check');
-const signupBtn = document.getElementById('signupBtn');
-const loginBtn = document.getElementById('loginBtn');
+    let mode = 'signup';
+    const password = document.getElementById('password');
+    const strengthBar = document.getElementById('strengthBar');
+    const passMsg = document.getElementById('passMsg');
+    const check = document.getElementById('check');
+    const signupBtn = document.getElementById('signupBtn');
+    const loginBtn = document.getElementById('loginBtn');
 
-function switchMode(m) {
-  mode = m;
-  document.getElementById('title').textContent = m === 'signup' ? 'Sign Up' : 'Login';
-  signupBtn.classList.toggle('active', m === 'signup');
-  loginBtn.classList.toggle('active', m === 'login');
-}
+    function switchMode(m) {
+        mode = m;
+        document.getElementById('title').textContent = m === 'signup' ? 'Sign Up' : 'Login';
+        signupBtn.classList.toggle('active', m === 'signup');
+        loginBtn.classList.toggle('active', m === 'login');
+    }
 
-password.addEventListener('input', () => {
-  const len = password.value.length;
-  check.style.display = 'none';
-  if (len === 0) {
-    strengthBar.style.width = '0%';
-    passMsg.textContent = '';
-  } else if (len === 1) {
-    strengthBar.style.width = '33%';
-    strengthBar.style.background = '#ff6b6b';
-    passMsg.textContent = 'Put 2 more characters';
-  } else if (len === 2) {
-    strengthBar.style.width = '66%';
-    strengthBar.style.background = '#ffd56b';
-    passMsg.textContent = 'Put 1 more character';
-  } else {
-    strengthBar.style.width = '100%';
-    strengthBar.style.background = '#6dff9c';
-    passMsg.textContent = '';
-    check.style.display = 'inline';
-  }
-});
+    password.addEventListener('input', () => {
+        const len = password.value.length;
+        check.style.display = 'none';
+        if (len === 0) {
+            strengthBar.style.width = '0%';
+            passMsg.textContent = '';
+        } else if (len === 1) {
+            strengthBar.style.width = '33%';
+            strengthBar.style.background = '#ff6b6b';
+            passMsg.textContent = 'Put 2 more characters';
+        } else if (len === 2) {
+            strengthBar.style.width = '66%';
+            strengthBar.style.background = '#ffd56b';
+            passMsg.textContent = 'Put 1 more character';
+        } else {
+            strengthBar.style.width = '100%';
+            strengthBar.style.background = '#6dff9c';
+            passMsg.textContent = '';
+            check.style.display = 'inline';
+        }
+    });
 
-function submitForm() {
-  const username = document.getElementById('username').value.trim();
-  const pwd = password.value;
-  const userMsg = document.getElementById('userMsg');
-  userMsg.textContent = '';
-  let users = JSON.parse(localStorage.getItem('users') || '[]');
+    function submitForm() {
+        const username = document.getElementById('username').value.trim();
+        const pwd = password.value;
+        const userMsg = document.getElementById('userMsg');
+        userMsg.textContent = '';
+        let users = JSON.parse(localStorage.getItem('users') || '[]');
 
-  if (!username) { userMsg.textContent = 'Please enter a username.'; return; }
+    if (!username) { userMsg.textContent = 'Please enter a username.'; return; }
 
-  if (mode === 'signup') {
-    if (pwd.length < 3) { passMsg.textContent = 'Password too short.'; return; }
-    if (users.includes(username)) { userMsg.textContent = 'Sorry, this username has been taken.'; return; }
-    users.push(username);
-    localStorage.setItem('users', JSON.stringify(users));
-    alert('Account created! Welcome, ' + username);
-  } else {
-    if (!users.includes(username)) { userMsg.textContent = 'User not found.'; return; }
-    alert('Welcome back, ' + username + '!');
-  }
-  window.location.href = 'travelers.html';
-}
+    if (mode === 'signup') {
+        if (pwd.length < 3) { passMsg.textContent = 'Password too short.'; return; }
+        if (users.includes(username)) { userMsg.textContent = 'Sorry, this username has been taken.'; return; }
+        users.push(username);
+        localStorage.setItem('users', JSON.stringify(users));
+        alert('Account created! Welcome, ' + username);
+    } else {
+        if (!users.includes(username)) { userMsg.textContent = 'User not found.'; return; }
+        alert('Welcome back, ' + username + '!');
+    }
 
-const bg = document.getElementById('bg');
-let visible = false;
-setInterval(() => {
-  visible = !visible;
-  bg.style.opacity = visible ? '1' : '0';
-}, 5000);
+    const redirectLocal = 'travelers.html';
+    const redirectOnline = 'https://windyy-ash.github.io/-WDProjRubidiumVillenaYbanez/travelers.html';
+
+    fetch(redirectLocal)
+        .then(res => {
+        if (res.ok) {
+            window.location.href = redirectLocal;
+        } else {
+            window.location.href = redirectOnline;
+        }
+        })
+        .catch(() => {
+        window.location.href = redirectOnline;
+        });
+        }
+
+    const bg = document.getElementById('bg');
+    let visible = false;
+    setInterval(() => {
+        visible = !visible;
+        bg.style.opacity = visible ? '1' : '0';
+    }, 5000);
 </script>
 </body>
 </html>
