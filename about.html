@@ -21,7 +21,9 @@
       --box:#2788f7;
       --radius:14px;
       --background-image: url("https://wallpaper.forfun.com/fetch/f3/f34497e9ebb662c05c7dcad9a2604c43.jpeg");
-      --bg-overlay: rgba(0, 0, 0, 0.12);
+      --bg-overlay: rgba(0, 0, 0, 0.28);
+      --video-brightness: 0.92;
+      --video-tint: rgba(48,74,140,0.45);
         --sidenav-bg: #6262e7;
         --sidenav-link: #333;
         --sidenav-link-hover: #ebed6d;
@@ -34,7 +36,9 @@
       --text:#f8f8f8;
       --box: rgba(255,255,255,0.06);
       --background-image: url("https://i.redd.it/about-eyes-motif-on-raiden-v0-k9j87qoi67be1.png?width=1449&format=png&auto=webp&s=20f3c2f9c409eeafbdeff4a6fb7dfeba97ec94f2");
-      --bg-overlay: rgba(0,0,0,0.36);
+      --bg-overlay: rgba(0,0,0,0.58);
+      --video-brightness: 0.55;
+      --video-tint: rgba(6,0,24,0.65);
         --sidenav-bg: #3c0505;
         --sidenav-link: #e0e0e0;
         --sidenav-link-hover: #ffffff86;
@@ -47,6 +51,28 @@
       background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--background-image), var(--bg);
       background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat;
       color:var(--text); display:flex; flex-direction:column; min-height:100vh; transition:background .35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content:"";
+      position:fixed;
+      inset:0;
+      background: linear-gradient(120deg, transparent 20%, var(--video-tint));
+      z-index:-1;
+    }
+
+    .bg-video {
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:-2;
+      filter:brightness(var(--video-brightness));
+      pointer-events:none;
+      background:var(--background-image) center / cover no-repeat;
     }
 
     .sidenav {
@@ -134,6 +160,8 @@
 </head>
 <body>
 
+  <video id="bgVideo" class="bg-video" src="images/about-bg-light.mp4" autoplay muted loop playsinline poster="images/about-bg-fallback.jpg"></video>
+
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="index.html">Home</a>
@@ -197,9 +225,27 @@
       const btn = document.getElementById('themeBtn');
       const root = document.documentElement;
       const key = 'teyvat-theme';
+      const bgVideo = document.getElementById('bgVideo');
+      const sources = {
+        light: 'images/about-bg-light.mp4',
+        dark: 'images/about-bg-dark.mp4'
+      };
+
+      function setVideo(theme){
+        if(!bgVideo) return;
+        const desired = sources[theme] || sources.light;
+        if(!desired || bgVideo.dataset.src === desired) return;
+        bgVideo.pause();
+        bgVideo.setAttribute('src', desired);
+        bgVideo.dataset.src = desired;
+        const playPromise = bgVideo.play();
+        if(playPromise && playPromise.catch){ playPromise.catch(() => {}); }
+      }
+
       function apply(t){
         root.classList.toggle('dark', t === 'dark');
         localStorage.setItem(key, t);
+        setVideo(t);
       }
       const saved = localStorage.getItem(key) || 
         (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
