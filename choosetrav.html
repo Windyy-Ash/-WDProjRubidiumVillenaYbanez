@@ -170,9 +170,9 @@
 
 <body>
 
-<audio id="bgm" loop preload="auto">
-    <source src="audio/teyvat-theme.mp3" type="audio/mpeg">
-    <source src="https://cdn.pixabay.com/download/audio/2022/10/18/audio_f3e45c8d54.mp3?filename=ethereal-vista-12499.mp3" type="audio/mpeg">
+<audio id="bgm" loop preload="auto" autoplay>
+    <source src="Nod-Krai(1).mp3" type="audio/mpeg">
+    <source src=".mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 
@@ -230,9 +230,9 @@
         audioToggle.setAttribute('aria-pressed', isPaused ? 'false' : 'true');
     }
 
-    function enableMusicOnce() {
-        document.removeEventListener('click', enableMusicOnce);
+    function attemptAutoPlay() {
         if (musicMuted) {
+            bgm.pause();
             updateAudioToggleLabel();
             return;
         }
@@ -241,11 +241,11 @@
             persistMusicPreference(false);
             updateAudioToggleLabel();
         }).catch(() => {
-            console.warn('Audio playback was prevented. Try clicking again.');
+            console.warn('Autoplay was blocked by the browser. Use the Play button to start the music.');
         });
     }
 
-    document.addEventListener('click', enableMusicOnce, { once: true });
+    window.addEventListener('load', attemptAutoPlay);
 
     audioToggle.addEventListener('click', () => {
         if (bgm.paused) {
