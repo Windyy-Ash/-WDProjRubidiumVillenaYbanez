@@ -144,6 +144,28 @@
     .submit:hover { 
         filter: brightness(1.2); 
     }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    #muteBtn {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      padding: 10px 14px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 999;
+      display: none;
+    }
   </style>
 </head>
 
@@ -177,6 +199,12 @@
 
   <button class="submit" onclick="submitForm()">Continue</button>
 </div>
+
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button id="muteBtn">🔊 Sound On</button>
 
 <script>
     let mode = 'signup';
@@ -258,6 +286,29 @@
         visible = !visible;
         bg.style.opacity = visible ? '1' : '0';
     }, 5000);
+
+    const audio = document.getElementById("bgm");
+    const btn = document.getElementById("muteBtn");
+    let started = false;
+
+    function startAudio() {
+      if (started) return;
+
+      audio.play().then(() => {
+        started = true;
+        btn.style.display = "block";
+        audio.loop = true;
+      }).catch(() => {});
+    }
+
+    window.addEventListener("click", startAudio, { once: true });
+    window.addEventListener("keydown", startAudio, { once: true });
+    window.addEventListener("scroll", startAudio, { once: true });
+
+    btn.addEventListener("click", () => {
+      audio.muted = !audio.muted;
+      btn.textContent = audio.muted ? "🔇 Muted" : "🔊 Sound On";
+    });
 </script>
 </body>
 </html>
