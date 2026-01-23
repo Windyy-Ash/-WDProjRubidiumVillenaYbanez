@@ -1,1 +1,0 @@
-Place your background track in this folder. The page currently expects a file named "Nod-Krai(1).mp3", which will autoplay when choosetrav.html loads. If you want to swap the song, either replace this file or update the `<source src>` entry in choosetrav.html. Keep files compressed (MP3/OGG) so the login screen loads quickly.
