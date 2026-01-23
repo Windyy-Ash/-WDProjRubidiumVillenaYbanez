@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Instant Audio Start</title>
+  <title>Looping Background Music</title>
 
   <style>
     body {
@@ -47,6 +47,7 @@
     audio.play().then(() => {
       started = true;
       btn.style.display = "block";
+      audio.loop = true;
     }).catch(() => {});
   }
 
