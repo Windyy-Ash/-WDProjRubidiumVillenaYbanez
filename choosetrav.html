@@ -144,39 +144,10 @@
     .submit:hover { 
         filter: brightness(1.2); 
     }
-
-    .audio-toggle {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        padding: 8px 14px;
-        border-radius: 999px;
-        border: none;
-        background: rgba(0,0,0,0.6);
-        color: #fff;
-        cursor: pointer;
-        font-weight: bold;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-        transition: background 0.3s ease, transform 0.2s ease;
-        z-index: 2;
-    }
-
-    .audio-toggle:hover {
-        background: rgba(0,0,0,0.8);
-        transform: translateY(-1px);
-    }
   </style>
 </head>
 
 <body>
-
-<audio id="bgm" loop preload="auto" autoplay>
-    <source src="audio/Nod-Krai.mp3" type="audio/mpeg">
-    <source src="https://cdn.pixabay.com/download/audio/2022/10/18/audio_f3e45c8d54.mp3?filename=ethereal-vista-12499.mp3" type="audio/mpeg">
-</audio>
-
-<button class="audio-toggle" id="audioToggle" type="button" aria-pressed="false">Play Music</button>
-
 <div class="bg" id="bg"></div>
 
 <div class="container">
@@ -215,58 +186,6 @@
     const check = document.getElementById('check');
     const signupBtn = document.getElementById('signupBtn');
     const loginBtn = document.getElementById('loginBtn');
-    const bgm = document.getElementById('bgm');
-    const audioToggle = document.getElementById('audioToggle');
-    let musicMuted = localStorage.getItem('musicMuted') === 'true';
-
-    function persistMusicPreference(isMuted) {
-        localStorage.setItem('musicMuted', isMuted ? 'true' : 'false');
-    }
-
-    function updateAudioToggleLabel() {
-        const isPaused = bgm.paused;
-        audioToggle.textContent = isPaused ? 'Play Music' : 'Mute Music';
-        audioToggle.setAttribute('aria-pressed', isPaused ? 'false' : 'true');
-    }
-
-    function attemptAutoPlay() {
-        if (musicMuted) {
-            bgm.pause();
-            updateAudioToggleLabel();
-            return;
-        }
-        bgm.play().then(() => {
-            musicMuted = false;
-            persistMusicPreference(false);
-            updateAudioToggleLabel();
-        }).catch(() => {
-            console.warn('Autoplay was blocked by the browser. Use the Play button to start the music.');
-        });
-    }
-
-    window.addEventListener('load', attemptAutoPlay);
-
-    audioToggle.addEventListener('click', () => {
-        if (bgm.paused) {
-            bgm.play().then(() => {
-                musicMuted = false;
-                persistMusicPreference(false);
-                updateAudioToggleLabel();
-            }).catch(() => {
-                console.warn('Audio playback was prevented. Try clicking again.');
-            });
-        } else {
-            bgm.pause();
-            musicMuted = true;
-            persistMusicPreference(true);
-            updateAudioToggleLabel();
-        }
-    });
-
-    if (musicMuted) {
-        bgm.pause();
-    }
-    updateAudioToggleLabel();
 
     function switchMode(m) {
         mode = m;
