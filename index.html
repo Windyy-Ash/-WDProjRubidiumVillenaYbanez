@@ -175,10 +175,14 @@
     }
     .modal-close:hover { background: rgba(255,255,255,0.24); color: #fff; }
     .modal-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: center;
     }
-    .modal-img-wrap { position: relative; }
-    .modal img { width: 100%; border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
+    .modal-img-wrap {
+      position: relative; display: flex; align-items: center; justify-content: center; padding-top: 16px;
+    }
+    .modal img {
+      width: 100%; max-width: 350px; border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    }
     .flip-shell { perspective: 1200px; }
     .flip-inner {
       position: relative; width: 100%; min-height: 0; transition: transform 0.9s ease;
@@ -371,6 +375,18 @@
       Navia: "https://dummyimage.com/600x600/5c7ca2/ffffff&text=Spina+Diabetic",
       Lyney: "https://dummyimage.com/600x600/8b5fb3/ffffff&text=Magic+Prep",
       Lynette: "https://dummyimage.com/600x600/8b5fb3/ffffff&text=Assistant+Prep",
+      Mualani: "https://dummyimage.com/600x600/d2643d/ffffff&text=Surf+Kitchen",
+      Kinich: "https://dummyimage.com/600x600/b1562b/ffffff&text=Sun+Forge",
+      Kachina: "https://dummyimage.com/600x600/e0a030/ffffff&text=Dawn+Oven",
+      Xilonen: "https://dummyimage.com/600x600/9d872c/ffffff&text=Harvest+Prep",
+      Chasca: "https://dummyimage.com/600x600/c97a3c/ffffff&text=Celestial+Bake",
+      Flins: "https://dummyimage.com/600x600/3c6fd2/ffffff&text=Frost+Galley",
+      Lauma: "https://dummyimage.com/600x600/3d8fd2/ffffff&text=Sky+Kitchen",
+      Nefer: "https://dummyimage.com/600x600/2f5699/ffffff&text=Relic+Roast",
+      Jahoda: "https://dummyimage.com/600x600/2e7d8a/ffffff&text=Verdant+Stew",
+      Tartaglia: "https://dummyimage.com/600x600/2e5fa5/ffffff&text=Childe+Kitchen",
+      Arlecchino: "https://dummyimage.com/600x600/621010/ffffff&text=Hearth+Mansion",
+      Scaramouche: "https://dummyimage.com/600x600/4a55a2/ffffff&text=Wanderer+Galley",
     };
 
     const charIngredients = {
