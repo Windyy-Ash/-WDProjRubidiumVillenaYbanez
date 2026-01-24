@@ -103,15 +103,79 @@
     }
 
     .result-box {
-      margin-top: 20px; padding: 25px; border-radius: 12px; background: var(--box);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1); display: none; color: #333;
+      margin-top: 20px; padding: 25px; border-radius: 12px; background: var(--card);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.2); display: none; color: var(--text);
+      border: 1px solid var(--panel-border); backdrop-filter: blur(8px);
+      position: relative; overflow: hidden;
     }
-    :root.dark .result-box { color: white; }
+    .result-box::after {
+      content: ""; position: absolute; inset: -30%; pointer-events: none;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255,255,255,0.60) 0 7px, transparent 14px),
+        radial-gradient(circle at 32% 72%, rgba(255,255,255,0.52) 0 6px, transparent 13px),
+        radial-gradient(circle at 64% 24%, rgba(255,255,255,0.55) 0 8px, transparent 15px),
+        radial-gradient(circle at 82% 68%, rgba(255,255,255,0.48) 0 7px, transparent 13px),
+        radial-gradient(circle at 45% 45%, rgba(255,255,255,0.5) 0 9px, transparent 16px),
+        radial-gradient(circle at 70% 85%, rgba(255,255,255,0.42) 0 6px, transparent 13px);
+      animation: sparkleDrift 16s linear infinite;
+      opacity: 0.9; filter: blur(0.35px);
+    }
+    .result-box::before {
+      content: ""; position: absolute; inset: -35%; pointer-events: none;
+      background:
+        radial-gradient(circle at 25% 30%, rgba(255,255,255,0.65) 0 5px, transparent 10px),
+        radial-gradient(circle at 60% 10%, rgba(255,255,255,0.5) 0 4px, transparent 9px),
+        radial-gradient(circle at 85% 40%, rgba(255,255,255,0.55) 0 5px, transparent 10px),
+        radial-gradient(circle at 35% 85%, rgba(255,255,255,0.48) 0 6px, transparent 12px),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.58) 0 7px, transparent 14px),
+        radial-gradient(circle at 50% 60%, rgba(255,255,255,0.6) 0 5px, transparent 10px);
+      animation: sparklePulse 5.5s ease-in-out infinite, sparkleSlide 18s linear infinite;
+      opacity: 0.85; mix-blend-mode: screen; filter: blur(0.25px);
+    }
 
-    .result-box img {
-      margin-top: 15px; max-width: 100%; width: 320px; border-radius: 12px;
-      display: block; margin-left: auto; margin-right: auto;
+    @keyframes sparkleDrift {
+      0% { transform: translate3d(-4%, -4%, 0) rotate(0deg); }
+      50% { transform: translate3d(6%, 6%, 0) rotate(180deg); }
+      100% { transform: translate3d(-4%, -4%, 0) rotate(360deg); }
     }
+    @keyframes sparklePulse {
+      0% { opacity: 0.35; transform: scale(0.92); }
+      50% { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 0.35; transform: scale(0.92); }
+    }
+    @keyframes sparkleSlide {
+      0% { transform: translate3d(-8%, -6%, 0); }
+      100% { transform: translate3d(10%, 12%, 0); }
+    }
+
+    .result-image-wrap { margin-top: 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .result-image-wrap img { max-width: 100%; width: 320px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); cursor: pointer; }
+    .hint { font-size: 0.92rem; opacity: 0.8; }
+
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+      display: none; align-items: center; justify-content: center; z-index: 2000;
+      backdrop-filter: blur(4px);
+    }
+    .modal-backdrop.show { display: flex; }
+    .modal {
+      background: var(--card); color: var(--text); border-radius: 14px; padding: 22px;
+      max-width: 920px; width: 92vw; box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      border: 1px solid var(--panel-border); position: relative; overflow: hidden;
+    }
+    .modal h3 { margin: 0 0 14px; font-family: 'Cinzel', serif; letter-spacing: 0.5px; }
+    .modal-close {
+      position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.14);
+      border: 1px solid var(--btn-border); color: var(--text); border-radius: 10px;
+      padding: 6px 10px; cursor: pointer; font-size: 1rem;
+    }
+    .modal-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start;
+    }
+    .modal img { width: 100%; border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
+    .modal section h4 { margin: 0 0 8px; }
+    .modal ul, .modal ol { margin: 0 0 10px; padding-left: 18px; line-height: 1.55; }
+    @media(max-width: 720px){ .modal-grid { grid-template-columns: 1fr; } }
 
     footer { padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white; text-align: center; margin-top: auto; }
 
@@ -181,15 +245,38 @@
 
     <div class="result-box" id="resultBox">
       <h3 id="foodText">The food you get is…</h3>
-      <img id="foodImage" src="" alt="Recipe image">
+      <div class="result-image-wrap">
+        <img id="foodImage" src="" alt="Recipe image">
+        <div class="hint">Click or tap to view ingredients and steps</div>
+      </div>
     </div>
   </main>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <h3 id="modalTitle">Recipe</h3>
+      <div class="modal-grid">
+        <div><img id="modalImage" src="" alt="Dish image"></div>
+        <div>
+          <section>
+            <h4>Ingredients</h4>
+            <ul id="modalIngredients"></ul>
+          </section>
+          <section>
+            <h4>Steps</h4>
+            <ol id="modalSteps"></ol>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
 
   <script>
     const charNames = {
-      1: "Jean", 2: "Amber", 3: "Lisa", 4: "Kaeya", 5: "Barbara",
+      1: "Jean", 2: "Amber", 3: "Lisa", 4: "Kaeya", 5: "Venti",
       6: "Zhongli", 7: "Xiao", 8: "Ningguang", 9: "Beidou", 10: "Xiangling",
       11: "Raiden Shogun", 12: "Ayaka", 13: "Yoimiya", 14: "Itto", 15: "Kazuha",
       16: "Nahida", 17: "Alhaitham", 18: "Cyno", 19: "Nilou", 20: "Dehya",
@@ -198,6 +285,99 @@
       31: "Flins", 32: "Lauma", 33: "Nefer", 34: "Jahoda",
       35: "Tartaglia", 36: "Arlecchino", 37: "Scaramouche",
     };
+
+    const charImages = {
+      Jean: "https://static.wikia.nocookie.net/gensin-impact/images/5/5f/Item_Invigorating_Pizza.png/revision/latest?cb=20201210061826",
+      Amber: "https://static.wikia.nocookie.net/gensin-impact/images/9/95/Item_Outrider%27s_Champion_Steak%21.png/revision/latest?cb=20201210061922",
+      Lisa: "https://static.wikia.nocookie.net/gensin-impact/images/1/16/Item_Mysterious_Bolognese.png/revision/latest/scale-to-width/360?cb=20201210061842",
+      Kaeya: "https://static.wikia.nocookie.net/gensin-impact/images/e/ea/Item_Fruity_Skewers.png/revision/latest?cb=20201210061733",
+      Venti: "https://static.wikia.nocookie.net/gensin-impact/images/8/8e/Item_A_Buoyant_Breeze.png/revision/latest?cb=20201210060105",
+      Zhongli: "https://api.genshin.dev/characters/zhongli/icon.png",
+      Xiao: "https://api.genshin.dev/characters/xiao/icon.png",
+      Ningguang: "https://api.genshin.dev/characters/ningguang/icon.png",
+      Beidou: "https://api.genshin.dev/characters/beidou/icon.png",
+      Xiangling: "https://api.genshin.dev/characters/xiangling/icon.png",
+      "Raiden Shogun": "https://api.genshin.dev/characters/raiden-shogun/icon.png",
+      Ayaka: "https://api.genshin.dev/characters/kamisato-ayaka/icon.png",
+      Yoimiya: "https://api.genshin.dev/characters/yoimiya/icon.png",
+      Itto: "https://static.wikia.nocookie.net/gensin-impact/images/1/1c/Item_Way_of_the_Strong.png/revision/latest/scale-to-width/360?cb=20211124040557",
+      Kazuha: "https://api.genshin.dev/characters/kaedehara-kazuha/icon.png",
+      Nahida: "https://api.genshin.dev/characters/nahida/icon.png",
+      Alhaitham: "https://api.genshin.dev/characters/alhaitham/icon.png",
+      Cyno: "https://api.genshin.dev/characters/cyno/icon.png",
+      Nilou: "https://api.genshin.dev/characters/nilou/icon.png",
+      Dehya: "https://api.genshin.dev/characters/dehya/icon.png",
+      Furina: "https://api.genshin.dev/characters/furina/icon.png",
+      Neuvillette: "https://api.genshin.dev/characters/neuvillette/icon.png",
+      Navia: "https://api.genshin.dev/characters/navia/icon.png",
+      Lyney: "https://api.genshin.dev/characters/lyney/icon.png",
+      Lynette: "https://api.genshin.dev/characters/lynette/icon.png",
+      Mualani: "https://dummyimage.com/400x400/d2643d/ffffff&text=Mualani",
+      Kinich: "https://dummyimage.com/400x400/b1562b/ffffff&text=Kinich",
+      Kachina: "https://dummyimage.com/400x400/e0a030/ffffff&text=Kachina",
+      Xilonen: "https://dummyimage.com/400x400/9d872c/ffffff&text=Xilonen",
+      Chasca: "https://dummyimage.com/400x400/c97a3c/ffffff&text=Chasca",
+      Flins: "https://dummyimage.com/400x400/3c6fd2/ffffff&text=Flins",
+      Lauma: "https://dummyimage.com/400x400/3d8fd2/ffffff&text=Lauma",
+      Nefer: "https://dummyimage.com/400x400/2f5699/ffffff&text=Nefer",
+      Jahoda: "https://dummyimage.com/400x400/2e7d8a/ffffff&text=Jahoda",
+      Tartaglia: "https://api.genshin.dev/characters/tartaglia/icon.png",
+      Arlecchino: "https://api.genshin.dev/characters/arlecchino/icon.png",
+      Scaramouche: "https://api.genshin.dev/characters/wanderer/icon.png",
+    };
+
+    const charIngredients = {
+      Jean: ["Chicken breast", "Olive oil", "Rosemary + thyme", "White wine", "Lemon zest", "Salt & pepper"],
+      Amber: ["Sirloin steak", "Butter", "Garlic cloves", "Black pepper", "Sea salt", "Splash of stock"],
+      Lisa: ["Pasta", "Tomatoes", "Garlic & onion", "Olive oil", "Basil", "Parmesan"],
+      Kaeya: ["Skewered beef/chicken", "Bell peppers", "Onion", "Honey-soy glaze", "Sesame seeds"],
+      Venti: ["Eggs", "Heavy cream", "Butter", "Chives", "Cheese", "Salt & pepper"],
+    };
+
+    const charRecipes = {
+      Jean: [
+        "Marinate protein in herbs and olive oil for 20 minutes.",
+        "Sear both sides in a hot pan until golden.",
+        "Deglaze with white wine and a splash of stock.",
+        "Simmer 6–8 minutes, basting often.",
+        "Finish with fresh parsley and lemon zest."
+      ],
+      Amber: [
+        "Season steak generously with salt and pepper.",
+        "Heat a cast-iron pan until nearly smoking.",
+        "Sear 2–3 minutes per side with butter and garlic.",
+        "Rest 5 minutes, then slice against the grain.",
+        "Serve with a quick pan sauce from the drippings."
+      ],
+      Lisa: [
+        "Boil pasta until al dente; reserve some pasta water.",
+        "Brown aromatics in olive oil, then add tomatoes.",
+        "Simmer with spices for 10–15 minutes.",
+        "Toss pasta in sauce, loosening with pasta water.",
+        "Top with basil and grated cheese."
+      ],
+      Kaeya: [
+        "Skewer seasoned meat and veggies.",
+        "Brush with a honey–soy glaze.",
+        "Grill over medium-high heat, turning often.",
+        "Glaze again in the last minute for shine.",
+        "Rest briefly, then serve warm."
+      ],
+      Venti: [
+        "Whisk eggs, cream, salt, and pepper.",
+        "Pour into a buttered pan over medium-low heat.",
+        "Add fillings (herbs, cheese) and gently fold.",
+        "Slide onto a warm plate; garnish with chives.",
+        "Serve with crusty bread and a light salad."
+      ],
+    };
+
+    const placeholderBase = "https://dummyimage.com/400x400/4a55a2/ffffff&text=";
+
+    function getCharImage(name) {
+      if (charImages[name]) return charImages[name];
+      return `${placeholderBase}${encodeURIComponent(name)}`;
+    }
 
     function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
     function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
@@ -219,6 +399,12 @@
     const resultBox = document.getElementById('resultBox');
     const foodText = document.getElementById('foodText');
     const foodImage = document.getElementById('foodImage');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalClose = document.getElementById('modalClose');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalImage = document.getElementById('modalImage');
+    const modalIngredients = document.getElementById('modalIngredients');
+    const modalSteps = document.getElementById('modalSteps');
 
     firstSelect.addEventListener('change', () => {
       const v = parseInt(firstSelect.value, 10);
@@ -251,8 +437,66 @@
       const char = secondSelect.value;
       if (!char) return;
       foodText.textContent = `Behold! The specialty dish of ${char}!`;
-      foodImage.src = 'https://thumbs.dreamstime.com/b/no-emoticon-29087585.jpg';
+      const desiredSrc = getCharImage(char);
+      foodImage.onerror = () => {
+        foodImage.onerror = null;
+        foodImage.src = `${placeholderBase}${encodeURIComponent(char + ' specialty')}`;
+      };
+      foodImage.src = desiredSrc;
+      foodImage.alt = `${char} specialty image`;
+      foodImage.dataset.char = char;
+      populateModal(char);
       resultBox.style.display = 'block';
+    });
+
+    function populateModal(char) {
+      const steps = charRecipes[char] || [
+        "Prepare fresh ingredients and keep portions small.",
+        "Season thoughtfully; taste as you go.",
+        "Cook over medium heat and avoid rushing browning.",
+        "Balance with acid (citrus/vinegar) before serving.",
+        "Plate neatly and serve immediately."
+      ];
+      const ingredients = charIngredients[char] || [
+        "Protein or vegetables of choice", "Aromatics (garlic/onion)", "Salt, pepper, and herbs", "Cooking oil or butter", "Acid (citrus or vinegar)"
+      ];
+
+      modalTitle.textContent = `${char}'s specialty`;
+      modalImage.src = foodImage.src;
+      modalImage.alt = `${char} specialty image`;
+
+      modalIngredients.innerHTML = '';
+      ingredients.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        modalIngredients.appendChild(li);
+      });
+
+      modalSteps.innerHTML = '';
+      steps.forEach(step => {
+        const li = document.createElement('li');
+        li.textContent = step;
+        modalSteps.appendChild(li);
+      });
+    }
+
+    function openModal() {
+      modalBackdrop.classList.add('show');
+    }
+    function closeModal() {
+      modalBackdrop.classList.remove('show');
+    }
+
+    foodImage.addEventListener('click', () => {
+      if (!foodImage.dataset.char) return;
+      openModal();
+    });
+    modalClose.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
     });
   </script>
 </body>
