@@ -149,7 +149,11 @@
     }
 
     .result-image-wrap { margin-top: 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-    .result-image-wrap img { max-width: 100%; width: 320px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); cursor: pointer; }
+    .result-image-wrap img {
+      max-width: 100%; width: 320px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .result-image-wrap img:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 36px rgba(0,0,0,0.35); }
     .hint { font-size: 0.92rem; opacity: 0.8; }
 
     .modal-backdrop {
@@ -169,10 +173,25 @@
       border: 1px solid var(--btn-border); color: var(--text); border-radius: 10px;
       padding: 6px 10px; cursor: pointer; font-size: 1rem;
     }
+    .modal-close:hover { background: rgba(255,255,255,0.24); color: #fff; }
     .modal-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start;
     }
+    .modal-img-wrap { position: relative; }
     .modal img { width: 100%; border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
+    .flip-shell { perspective: 1200px; }
+    .flip-inner {
+      position: relative; width: 100%; min-height: 0; transition: transform 0.9s ease;
+      transform-style: preserve-3d; border-radius: 12px; overflow: visible;
+    }
+    .flip-shell.flipped .flip-inner { transform: rotateY(180deg); }
+    .flip-face {
+      position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      border-radius: 12px; overflow: visible; display: flex; align-items: center; justify-content: center;
+    }
+    .flip-face img { width: 100%; height: auto; object-fit: contain; display: block; }
+    .flip-back { transform: rotateY(180deg); }
+    .flip-shell:hover .flip-inner { transform: rotateY(180deg); }
     .modal section h4 { margin: 0 0 8px; }
     .modal ul, .modal ol { margin: 0 0 10px; padding-left: 18px; line-height: 1.55; }
     @media(max-width: 720px){ .modal-grid { grid-template-columns: 1fr; } }
@@ -257,7 +276,12 @@
       <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
       <h3 id="modalTitle">Recipe</h3>
       <div class="modal-grid">
-        <div><img id="modalImage" src="" alt="Dish image"></div>
+        <div class="modal-img-wrap flip-shell" id="modalFlip">
+          <div class="flip-inner">
+            <div class="flip-face flip-front"><img id="modalImageFront" src="" alt="Dish image"></div>
+            <div class="flip-face flip-back"><img id="modalImageBack" src="" alt="Dish alternate view"></div>
+          </div>
+        </div>
         <div>
           <section>
             <h4>Ingredients</h4>
@@ -326,6 +350,29 @@
       Scaramouche: "https://api.genshin.dev/characters/wanderer/icon.png",
     };
 
+    const charBackImages = {
+      Jean: "https://static.wikia.nocookie.net/gensin-impact/images/0/0e/Item_Halvamazd.png/revision/latest/scale-to-width/360?cb=20221102101937",
+      Amber: "https://dummyimage.com/600x600/c44b32/ffffff&text=Baron+Bunny+BBQ",
+      Lisa: "https://dummyimage.com/600x600/6c5bd6/ffffff&text=Library+Pantry",
+      Kaeya: "https://dummyimage.com/600x600/2b4a6f/ffffff&text=Cavalry+Skewers",
+      Venti: "https://dummyimage.com/600x600/2f8ba0/ffffff&text=Windblume+Brunch",
+      "Raiden Shogun": "https://dummyimage.com/600x600/5c3ca2/ffffff&text=Electro+Kitchen",
+      Ayaka: "https://dummyimage.com/600x600/7bb3d6/ffffff&text=Kamisato+Tea",
+      Yoimiya: "https://dummyimage.com/600x600/e17a45/ffffff&text=Fireworks+Feast",
+      Itto: "https://dummyimage.com/600x600/b2553c/ffffff&text=Oni+Cookout",
+      Kazuha: "https://dummyimage.com/600x600/4a7a8c/ffffff&text=Maple+Aroma",
+      Nahida: "https://dummyimage.com/600x600/3b9b6f/ffffff&text=Forest+Kitchen",
+      Alhaitham: "https://dummyimage.com/600x600/3c8f8c/ffffff&text=Scholar+Prep",
+      Cyno: "https://dummyimage.com/600x600/5b3a2f/ffffff&text=Mahamatra+Meal",
+      Nilou: "https://dummyimage.com/600x600/3a9fb3/ffffff&text=Dance+of+Spice",
+      Dehya: "https://dummyimage.com/600x600/a45a3c/ffffff&text=Desert+Grill",
+      Furina: "https://dummyimage.com/600x600/3d6bb3/ffffff&text=Opera+Kitchen",
+      Neuvillette: "https://dummyimage.com/600x600/2c5b8f/ffffff&text=Jury+Platter",
+      Navia: "https://dummyimage.com/600x600/5c7ca2/ffffff&text=Spina+Diabetic",
+      Lyney: "https://dummyimage.com/600x600/8b5fb3/ffffff&text=Magic+Prep",
+      Lynette: "https://dummyimage.com/600x600/8b5fb3/ffffff&text=Assistant+Prep",
+    };
+
     const charIngredients = {
       Jean: ["Chicken breast", "Olive oil", "Rosemary + thyme", "White wine", "Lemon zest", "Salt & pepper"],
       Amber: ["Sirloin steak", "Butter", "Garlic cloves", "Black pepper", "Sea salt", "Splash of stock"],
@@ -373,10 +420,16 @@
     };
 
     const placeholderBase = "https://dummyimage.com/400x400/4a55a2/ffffff&text=";
+    const placeholderBackBase = "https://dummyimage.com/600x600/4a55a2/ffffff&text=";
 
     function getCharImage(name) {
       if (charImages[name]) return charImages[name];
       return `${placeholderBase}${encodeURIComponent(name)}`;
+    }
+
+    function getBackImage(name) {
+      if (charBackImages[name]) return charBackImages[name];
+      return `${placeholderBackBase}${encodeURIComponent(name + ' alt view')}`;
     }
 
     function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
@@ -402,7 +455,9 @@
     const modalBackdrop = document.getElementById('modalBackdrop');
     const modalClose = document.getElementById('modalClose');
     const modalTitle = document.getElementById('modalTitle');
-    const modalImage = document.getElementById('modalImage');
+    const modalFlip = document.getElementById('modalFlip');
+    const modalImageFront = document.getElementById('modalImageFront');
+    const modalImageBack = document.getElementById('modalImageBack');
     const modalIngredients = document.getElementById('modalIngredients');
     const modalSteps = document.getElementById('modalSteps');
 
@@ -462,8 +517,10 @@
       ];
 
       modalTitle.textContent = `${char}'s specialty`;
-      modalImage.src = foodImage.src;
-      modalImage.alt = `${char} specialty image`;
+      modalImageFront.src = foodImage.src;
+      modalImageFront.alt = `${char} specialty image`;
+      modalImageBack.src = getBackImage(char);
+      modalImageBack.alt = `${char} alternate view`;
 
       modalIngredients.innerHTML = '';
       ingredients.forEach(item => {
@@ -481,6 +538,7 @@
     }
 
     function openModal() {
+      modalFlip.classList.remove('flipped');
       modalBackdrop.classList.add('show');
     }
     function closeModal() {
