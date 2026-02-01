@@ -47,6 +47,7 @@
       background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--background-image), var(--bg);
       background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;
       color: var(--text); display: flex; flex-direction: column; min-height: 100vh; transition: background .35s ease;
+      line-height: 1.5;
     }
 
     .sidenav {
@@ -64,9 +65,10 @@
     header {
       display: flex; align-items: center; justify-content: space-between;
       padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white;
+      flex-wrap: wrap; gap: 16px;
     }
 
-    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
     .brand img { width: 42px; height: 42px; border-radius: 8px; object-fit: cover; }
     .brand h1 {
       font-size: 1.15rem;
@@ -81,18 +83,24 @@
     .sparkle-btn, .btn {
       background: rgba(255,255,255,0.1); border: 1px solid var(--btn-border);
       padding: 8px 10px; border-radius: 10px; color: white; cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
+    .sparkle-btn:hover, .btn:hover { background: rgba(255,255,255,0.2); }
+    .sparkle-btn:active, .btn:active { transform: scale(0.97); }
 
-    .nav-links { display: flex; align-items: center; gap: 12px; }
+    .nav-links { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
     .nav-links a { color: white; text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 600; font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     .nav-links a:hover { background-color: rgba(255,255,255,0.2); }
 
-    main { flex: 1; padding: 36px 20px; max-width: 880px; margin: 0 auto; width: 100%; text-align: center; position: relative; z-index: 2; }
+    main {
+      flex: 1; padding: clamp(24px, 4vw, 48px) clamp(18px, 4vw, 32px);
+      max-width: 960px; margin: 0 auto; width: 100%; text-align: center; position: relative; z-index: 2;
+    }
     
     .card {
       background: var(--card); padding: 25px; border-radius: var(--radius);
       backdrop-filter: blur(8px); box-shadow: 0 12px 36px rgba(0,0,0,0.2);
-      margin-bottom: 20px; border: 1px solid var(--panel-border); line-height: 1.6;
+      margin-bottom: 20px; border: 1px solid var(--panel-border); line-height: 1.6; text-align: center;
     }
 
     h2 { margin-bottom: 15px; }
@@ -100,6 +108,7 @@
     select {
       padding: 10px 14px; font-size: 1rem; border-radius: 8px; border: 1px solid #ccc;
       background: white; cursor: pointer; margin-top: 12px; outline: none; color: #333;
+      width: min(100%, 460px); max-width: 100%;
     }
 
     .result-box {
@@ -148,9 +157,9 @@
       100% { transform: translate3d(10%, 12%, 0); }
     }
 
-    .result-image-wrap { margin-top: 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .result-image-wrap { margin-top: 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
     .result-image-wrap img {
-      max-width: 100%; width: 320px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); cursor: pointer;
+      max-width: 100%; width: min(320px, 90vw); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .result-image-wrap img:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 36px rgba(0,0,0,0.35); }
@@ -166,6 +175,7 @@
       background: var(--card); color: var(--text); border-radius: 14px; padding: 22px;
       max-width: 920px; width: 92vw; box-shadow: 0 20px 50px rgba(0,0,0,0.35);
       border: 1px solid var(--panel-border); position: relative; overflow: hidden;
+      max-height: min(90vh, 680px); overflow-y: auto;
     }
     .modal h3 { margin: 0 0 14px; font-family: 'Cinzel', serif; letter-spacing: 0.5px; }
     .modal-close {
@@ -175,39 +185,70 @@
     }
     .modal-close:hover { background: rgba(255,255,255,0.24); color: #fff; }
     .modal-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: center;
+      display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+      gap: 20px; align-items: start;
     }
     .modal-img-wrap {
-      position: relative; display: flex; align-items: center; justify-content: center; padding-top: 16px;
+      position: relative; display: flex; align-items: center; justify-content: center; padding-top: 0;
+      width: 100%; max-width: 360px; margin: 0 auto;
     }
     .modal img {
-      width: 100%; max-width: 350px; border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      width: 100%; height: 100%; object-fit: contain; max-width: 100%;
+      border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,0.3);
     }
-    .flip-shell { perspective: 1200px; }
+    .flip-shell {
+      perspective: 1200px; width: 100%; cursor: pointer;
+      aspect-ratio: 1 / 1; max-width: 320px; margin: 0 auto;
+    }
     .flip-inner {
-      position: relative; width: 100%; min-height: 0; transition: transform 0.9s ease;
-      transform-style: preserve-3d; border-radius: 12px; overflow: visible;
+      position: relative; width: 100%; height: 100%; min-height: 0; transition: transform 0.9s ease;
+      transform-style: preserve-3d; border-radius: 12px; overflow: hidden;
+      will-change: transform;
     }
     .flip-shell.flipped .flip-inner { transform: rotateY(180deg); }
     .flip-face {
       position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
-      border-radius: 12px; overflow: visible; display: flex; align-items: center; justify-content: center;
+      border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center;
     }
     .flip-face img { width: 100%; height: auto; object-fit: contain; display: block; }
     .flip-back { transform: rotateY(180deg); }
-    .flip-shell:hover .flip-inner { transform: rotateY(180deg); }
+    @media(hover: hover) { .flip-shell:hover .flip-inner { transform: rotateY(180deg); } }
     .modal section h4 { margin: 0 0 8px; }
     .modal ul, .modal ol { margin: 0 0 10px; padding-left: 18px; line-height: 1.55; }
-    @media(max-width: 720px){ .modal-grid { grid-template-columns: 1fr; } }
+    @media(max-width: 980px){
+      .modal-grid { grid-template-columns: 1fr; }
+      .modal-img-wrap { max-width: min(360px, 80vw); }
+      .flip-shell { max-width: min(320px, 80vw); }
+    }
+
+    @media(max-width: 640px){
+      header { flex-direction: column; align-items: stretch; }
+      .brand { width: 100%; justify-content: space-between; }
+      .brand > div { flex: 1; min-width: 180px; }
+      main { padding: 24px 16px 48px; }
+      .card { padding: 20px 16px; }
+    }
+
+    @media(max-width: 480px){
+      .brand img { width: 38px; height: 38px; }
+      header { padding: 16px; }
+      footer { padding: 16px; }
+      select { width: 100%; }
+    }
 
     footer { padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white; text-align: center; margin-top: auto; }
 
     @media(max-width: 900px) { .nav-links { display: none; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      .flip-inner { transition-duration: 0.01ms !important; }
+    }
   </style>
 </head>
 <body>
 
-  <div id="mySidenav" class="sidenav">
+  <div id="mySidenav" class="sidenav" data-open="false">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="index.html">Home</a>
     <a href="bookoverview.html">Genshin Overview</a>
@@ -269,7 +310,7 @@
     <div class="result-box" id="resultBox">
       <h3 id="foodText">The food you get is…</h3>
       <div class="result-image-wrap">
-        <img id="foodImage" src="" alt="Recipe image">
+        <img id="foodImage" src="" alt="Recipe image" role="button" tabindex="0" aria-label="Open recipe details" aria-haspopup="dialog" loading="lazy">
         <div class="hint">Click or tap to view ingredients and steps</div>
       </div>
     </div>
@@ -280,7 +321,7 @@
       <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
       <h3 id="modalTitle">Recipe</h3>
       <div class="modal-grid">
-        <div class="modal-img-wrap flip-shell" id="modalFlip">
+        <div class="modal-img-wrap flip-shell" id="modalFlip" role="button" aria-label="Flip recipe card" aria-pressed="false" tabindex="0">
           <div class="flip-inner">
             <div class="flip-face flip-front"><img id="modalImageFront" src="" alt="Dish image"></div>
             <div class="flip-face flip-back"><img id="modalImageBack" src="" alt="Dish alternate view"></div>
@@ -448,8 +489,24 @@
       return `${placeholderBackBase}${encodeURIComponent(name + ' alt view')}`;
     }
 
-    function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
-    function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+    function openNav() {
+      const nav = document.getElementById("mySidenav");
+      if (!nav) return;
+      const computedWidth = Math.min(window.innerWidth * 0.85, 320);
+      nav.style.width = `${computedWidth}px`;
+      nav.dataset.open = 'true';
+    }
+    function closeNav() {
+      const nav = document.getElementById("mySidenav");
+      if (!nav) return;
+      nav.style.width = "0";
+      nav.dataset.open = 'false';
+    }
+
+    window.addEventListener('resize', () => {
+      const nav = document.getElementById('mySidenav');
+      if (nav && nav.dataset.open === 'true') openNav();
+    });
 
     (function(){
       const btn = document.getElementById('themeBtn');
@@ -476,6 +533,7 @@
     const modalImageBack = document.getElementById('modalImageBack');
     const modalIngredients = document.getElementById('modalIngredients');
     const modalSteps = document.getElementById('modalSteps');
+    const activationKeys = ['Enter', ' '];
 
     firstSelect.addEventListener('change', () => {
       const v = parseInt(firstSelect.value, 10);
@@ -553,17 +611,36 @@
       });
     }
 
+    function setFlipState(force) {
+      if (!modalFlip) return;
+      const shouldFlip = typeof force === 'boolean' ? force : !modalFlip.classList.contains('flipped');
+      modalFlip.classList.toggle('flipped', shouldFlip);
+      modalFlip.setAttribute('aria-pressed', shouldFlip ? 'true' : 'false');
+    }
+
     function openModal() {
-      modalFlip.classList.remove('flipped');
+      setFlipState(false);
       modalBackdrop.classList.add('show');
     }
     function closeModal() {
       modalBackdrop.classList.remove('show');
+      setFlipState(false);
     }
 
     foodImage.addEventListener('click', () => {
       if (!foodImage.dataset.char) return;
       openModal();
+    });
+    foodImage.addEventListener('keydown', (e) => {
+      if (!activationKeys.includes(e.key) || !foodImage.dataset.char) return;
+      e.preventDefault();
+      openModal();
+    });
+    modalFlip.addEventListener('click', () => setFlipState());
+    modalFlip.addEventListener('keydown', (e) => {
+      if (!activationKeys.includes(e.key)) return;
+      e.preventDefault();
+      setFlipState();
     });
     modalClose.addEventListener('click', closeModal);
     modalBackdrop.addEventListener('click', (e) => {
