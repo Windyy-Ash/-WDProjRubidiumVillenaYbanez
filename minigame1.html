@@ -2,144 +2,243 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>help</title>
+    <title>Coin Collector & Achievements</title>
     <style>
-        body { 
-            margin: 0; 
-            overflow: hidden; 
-            background: #222; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-        }
+        body { margin: 0; overflow: hidden; background: #1a1a1a; font-family: 'Segoe UI', sans-serif; display: flex; }
+        #game-container { position: relative; width: 800px; height: 400px; margin: auto; }
+        canvas { background: #87CEEB; border: 6px solid #333; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        #ui-layer { position: absolute; top: 10px; left: 10px; pointer-events: none; color: white; text-shadow: 2px 2px 4px #000; }
+        #coin-count { font-size: 24px; font-weight: bold; color: #ffd700; }
 
-        canvas { 
-            background: #adbcbd; 
-            border: 4px solid #8098a1; 
-        }
+        #sidebar { width: 250px; background: #2c3e50; color: white; padding: 15px; border-left: 4px solid #1a252f; height: 100vh; overflow-y: auto; }
+        .achievement { background: #34495e; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #555; }
+        .achievement.complete { border-color: #2ecc71; }
+        .achievement h4 { margin: 0 0 5px 0; font-size: 14px; }
+        .progress-bar { height: 8px; background: #222; border-radius: 4px; overflow: hidden; margin: 5px 0; }
+        .progress-fill { height: 100%; background: #f1c40f; width: 0%; transition: width 0.3s; }
+        .claim-btn { background: #27ae60; border: none; color: white; padding: 5px 10px; border-radius: 3px; cursor: pointer; display: none; margin-top: 5px; }
     </style>
 </head>
 <body>
+    <div id="game-container">
+        <div id="ui-layer">
+            <div id="coin-count">Coins: 0</div>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+    </div>
 
-<canvas id="gameCanvas"></canvas>
+    <div id="sidebar">
+        <h3>Achievements</h3>
+        <div id="achievement-list"></div>
+    </div>
 
-<script>
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
-canvas.width = 1000;
-canvas.height = 400;
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 800;
+        canvas.height = 400;
 
-const gravity = 0.8;
-const moveSpeed = 7;
-const jumpForce = -20;
+        let gameState = JSON.parse(localStorage.getItem('game_save')) || {
+            coins: 0,
+            startTime: Date.now(),
+            totalTimePlayed: 0,
+            claimed: [],
+            stats: { totalCollected: 0, jumps: 0 }
+        };
 
-const imgUrls = {
-    idle: [
-        'https://t3.ftcdn.net/jpg/01/09/92/14/360_F_109921421_Hq43saajpDYizncHS22zkZsCJNtg7fZF.jpg',
-        'https://static.vecteezy.com/system/resources/thumbnails/024/861/074/small_2x/man-silhouette-in-expanding-arms-pose-vector.jpg',
-        'https://cdn4.iconfinder.com/data/icons/working-human-1/48/48-1024.png'
-    ],
-    move: 'https://i.ytimg.com/vi/DKELand1GoQ/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLBb4yzHfz5Bf7O0UcvBSh3o9LCUAw',
-    jump: 'https://imgcdn.stablediffusionweb.com/2025/1/18/8935b7b6-63b9-4068-b310-ea77aaace79c.jpg'
-};
+        function saveGame() {
+            localStorage.setItem('game_save', JSON.stringify(gameState));
+        }
 
-const images = { idle: [], move: new Image(), jump: new Image() };
-imgUrls.idle.forEach(url => {
-    const img = new Image();
-    img.src = url;
-    images.idle.push(img);
-});
-images.move.src = imgUrls.move;
-images.jump.src = imgUrls.jump;
+        const gravity = 0.8;
+        const moveSpeed = 7;
+        const jumpForce = -20;
+        const images = { idle: [], move: new Image(), jump: new Image(), coin: new Image() };
 
-const player = {
-    x: 100,
-    y: 300,
-    width: 100,
-    height: 100,
-    velX: 0,
-    velY: 0,
-    onGround: false,
-    facingRight: true,
-    currentIdleIdx: 0,
-    isMoving: false
-};
+        const imgUrls = {
+            idle: [
+                'https://t3.ftcdn.net/jpg/01/09/92/14/360_F_109921421_Hq43saajpDYizncHS22zkZsCJNtg7fZF.jpg', 
+                'https://static.vecteezy.com/system/resources/thumbnails/024/861/074/small_2x/man-silhouette-in-expanding-arms-pose-vector.jpg',
+                'https://cdn4.iconfinder.com/data/icons/working-human-1/48/48-1024.png'
+            ],
+            move: 'https://i.ytimg.com/vi/DKELand1GoQ/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLBb4yzHfz5Bf7O0UcvBSh3o9LCUAw',
+            jump: 'https://imgcdn.stablediffusionweb.com/2025/1/18/8935b7b6-63b9-4068-b310-ea77aaace79c.jpg',
+            coin: 'https://cucucovers.com/cdn/shop/products/0123b.png?v=1682488856&width=1214'
+        };
 
-const keys = {};
+        imgUrls.idle.forEach(url => { let img = new Image(); img.src = url; images.idle.push(img); });
+        images.move.src = imgUrls.move; images.jump.src = imgUrls.jump; images.coin.src = imgUrls.coin;
 
-window.addEventListener('keydown', (e) => keys[e.key.toLowerCase()] = true);
-window.addEventListener('keyup', (e) => {
-    keys[e.key.toLowerCase()] = false;
+        const player = { x: 100, y: 300, width: 100, height: 100, velX: 0, velY: 0, onGround: false, facingRight: true, currentIdleIdx: 0, isMoving: false };
+        const coins = [];
+        const floatingTexts = [];
+        const keys = {};
+
+        const achievements = [
+            { id: 'collect_100', title: 'Hoarder', desc: 'Collect 100 coins', goal: 100, reward: 500, type: 'coin' },
+            { id: 'time_10m', title: 'Dedicated', desc: 'Play for 10 minutes', goal: 600, reward: 1000, type: 'time' },
+                { id: 'rich_500', title: 'Half Grand', desc: 'Reach 500 coins', goal: 500, reward: 2000, type: 'coin_total' },
+            { id: 'jumper_50', title: 'Springy', desc: 'Jump 50 times', goal: 50, reward: 300, type: 'jumps' },
+
+            { id: 'collect_1000', title: 'Coin Magnet', desc: 'Collect 1,000 coins total', goal: 1000, reward: 5000, type: 'coin' },
+            { id: 'collect_5000', title: 'Golden Touch', desc: 'Collect 5,000 coins total', goal: 5000, reward: 15000, type: 'coin' },
+            { id: 'rich_2000', title: 'Upper Class', desc: 'Have 2,000 coins at once', goal: 2000, reward: 1000, type: 'coin_total' },
+            { id: 'rich_10k', title: 'Millionaire Spirit', desc: 'Have 10,000 coins at once', goal: 10000, reward: 5000, type: 'coin_total' },
+
+            { id: 'time_1m', title: 'Warm Up', desc: 'Play for 1 minute', goal: 60, reward: 100, type: 'time' },
+            { id: 'time_30m', title: 'Loyal Player', desc: 'Play for 30 minutes', goal: 1800, reward: 3000, type: 'time' },
+            { id: 'time_1h', title: 'No Life', desc: 'Play for 1 entire hour', goal: 3600, reward: 10000, type: 'time' },
+
+            { id: 'jumper_250', title: 'Trampoline Feet', desc: 'Jump 250 times', goal: 250, reward: 1500, type: 'jumps' },
+            { id: 'jumper_1k', title: 'Anti-Gravity', desc: 'Jump 1,000 times', goal: 1000, reward: 6000, type: 'jumps' },
+            { id: 'dist_5k', title: 'Hiker', desc: 'Walk 5,000 pixels', goal: 5000, reward: 500, type: 'distance' },
+            { id: 'dist_50k', title: 'Marathoner', desc: 'Walk 50,000 pixels', goal: 50000, reward: 4000, type: 'distance' },
+
+            { id: 'idle_5m', title: 'Taking a Nap', desc: 'Spend 5 minutes total in-game', goal: 300, reward: 200, type: 'time' },
+            { id: 'click_master', title: 'Claimer', desc: 'Claim 5 achievements', goal: 5, reward: 500, type: 'claimed_count' },
+            { id: 'rich_1', title: 'First Penny', desc: 'Have 1 coin', goal: 1, reward: 10, type: 'coin_total' },
+            { id: 'collect_sec', title: 'Fast Learner', desc: 'Collect 10 coins in one session', goal: 10, reward: 100, type: 'coin' },
     
-    if (['a', 'd'].includes(e.key.toLowerCase())) {
-        player.currentIdleIdx = Math.floor(Math.random() * images.idle.length);
-    }
-});
+            { id: 'big_bank', title: 'The Bank', desc: 'Reach 25,000 coins', goal: 25000, reward: 50000, type: 'coin_total' },
+            { id: 'sky_high', title: 'Sky Walker', desc: 'Jump 5,000 times', goal: 5000, reward: 15000, type: 'jumps' },
+            { id: 'long_haul', title: 'Veteran', desc: 'Play for 2 hours', goal: 7200, reward: 25000, type: 'time' },
+            { id: 'coin_legend', title: 'The Collector', desc: 'Collect 10,000 coins total', goal: 10000, reward: 30000, type: 'coin' },
+            { id: 'moving_on', title: 'Traveler', desc: 'Walk 100,000 pixels', goal: 100000, reward: 10000, type: 'distance' },
+            { id: 'completionist', title: 'The 1%', desc: 'Claim 20 achievements', goal: 20, reward: 100000, type: 'claimed_count' }
+        ];
 
-function update() {
-    player.isMoving = false;
+        window.addEventListener('keydown', (e) => keys[e.key.toLowerCase()] = true);
+        window.addEventListener('keyup', (e) => {
+            keys[e.key.toLowerCase()] = false;
+            if (['a', 'd'].includes(e.key.toLowerCase())) player.currentIdleIdx = Math.floor(Math.random() * images.idle.length);
+        });
 
-    if (keys['a'] || keys['w'] || keys['d']) {
-        if (keys['a']) {
-            player.velX = -moveSpeed;
-            player.facingRight = false;
-            player.isMoving = true;
-        } else if (keys['d']) {
-            player.velX = moveSpeed;
-            player.facingRight = true;
-            player.isMoving = true;
-        } else {
-            player.velX = 0;
+        window.claimReward = function(id, reward) {
+            if (!gameState.claimed.includes(id)) {
+                gameState.coins += reward;
+                gameState.claimed.push(id);
+                saveGame();
+                updateAchievementsUI();
+            }       
+        };
+
+        function spawnCoin() {
+            if (Math.random() < 0.02) {
+                coins.push({ x: Math.random() * (canvas.width - 20), y: -20, size: 60, speed: 2 + Math.random() * 3 });
+            }  
         }
 
-        if (keys['w'] && player.onGround) {
-            player.velY = jumpForce;
-            player.onGround = false;
+        function updateAchievementsUI() {
+            const list = document.getElementById('achievement-list');
+            const sessionSeconds = Math.floor((Date.now() - gameState.startTime) / 1000);
+            const totalSeconds = (gameState.totalTimePlayed || 0) + sessionSeconds;
+
+        let html = '';
+        achievements.forEach(ach => {
+        let progress = 0;
+            if (ach.type === 'coin') progress = gameState.stats.totalCollected;
+            if (ach.type === 'time') progress = totalSeconds;
+            if (ach.type === 'coin_total') progress = gameState.coins;
+            if (ach.type === 'jumps') progress = gameState.stats.jumps || 0;
+            if (ach.type === 'distance') progress = Math.floor(gameState.stats.distance || 0);
+            if (ach.type === 'claimed_count') progress = gameState.claimed.length;
+
+            const percent = Math.min(100, (progress / ach.goal) * 100);
+            const isComplete = progress >= ach.goal;
+            const isClaimed = gameState.claimed.includes(ach.id);
+
+            let progressStr = ach.type === 'time' ? 
+                `${Math.floor(progress/60)}m / ${ach.goal/60}m` : 
+            `${Math.floor(progress)}/${ach.goal}`;
+
+            html += `
+                <div class="achievement ${isComplete ? 'complete' : ''}" style="opacity: ${isClaimed ? '0.6' : '1'}">
+                    <h4>${ach.title} ${isClaimed ? '✅' : ''}</h4>
+                    <p style="font-size: 11px; margin: 0;">${ach.desc} (${progressStr})</p>
+                    <div class="progress-bar"><div class="progress-fill" style="width: ${percent}%"></div></div>
+                 ${isComplete && !isClaimed ? 
+                        `<button class="claim-btn" onclick="claimReward('${ach.id}', ${ach.reward})" style="display:block; pointer-events: auto;">Claim ${ach.reward} Coins</button>` 
+                : ''}
+                </div>
+            `;
+        });
+        list.innerHTML = html;
         }
-    } else {
-        player.velX = 0;
-    }
 
-    player.velY += gravity;
-    player.x += player.velX;
-    player.y += player.velY;
+        setInterval(updateAchievementsUI, 1000);
 
-    if (player.y > canvas.height - player.height) {
-        player.y = canvas.height - player.height;
-        player.velY = 0;
-        player.onGround = true;
-    }
+        function update() {
+            player.isMoving = false;
+            if (keys['a']) { player.velX = -moveSpeed; player.facingRight = false; player.isMoving = true; }
+            else if (keys['d']) { player.velX = moveSpeed; player.facingRight = true; player.isMoving = true; }
+            else { player.velX = 0; }
+    
+            if (keys['w'] && player.onGround) { 
+                player.velY = jumpForce; 
+                player.onGround = false; 
+                gameState.stats.jumps = (gameState.stats.jumps || 0) + 1;
+            }
 
-    draw();
-    requestAnimationFrame(update);
-}
+            player.velY += gravity;
+            player.x += player.velX;
+            player.y += player.velY;
+            gameState.stats.distance = (gameState.stats.distance || 0) + Math.abs(player.velX);
+            if (player.y > canvas.height - player.height) { player.y = canvas.height - player.height; player.velY = 0; player.onGround = true; }
+            player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
 
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+            spawnCoin();
+            for (let i = coins.length - 1; i >= 0; i--) {
+                coins[i].y += coins[i].speed;
+                if (coins[i].x < player.x + player.width && coins[i].x + coins[i].size > player.x &&
+                    coins[i].y < player.y + player.height && coins[i].y + coins[i].size > player.y) {
+            
+                    gameState.coins++;
+                    gameState.stats.totalCollected++;
+                    floatingTexts.push({ x: coins[i].x, y: coins[i].y, opacity: 1 });
+                    coins.splice(i, 1);
+                    saveGame();
+                    continue;
+                }
+            if (coins[i].y > canvas.height) coins.splice(i, 1);
+        }
 
-    let activeImg;
-    if (!player.onGround) {
-        activeImg = images.jump;
-    } else if (player.isMoving) {
-        activeImg = images.move;
-    } else {
-        activeImg = images.idle[player.currentIdleIdx];
-    }
+        document.getElementById('coin-count').innerText = `Coins: ${gameState.coins}`;
 
-    ctx.save();
-    if (!player.facingRight) {
-        ctx.translate(player.x + player.width / 2, player.y + player.height / 2);
-        ctx.scale(-1, 1);
-        ctx.drawImage(activeImg, -player.width / 2, -player.height / 2, player.width, player.height);
-    } else {
-        ctx.drawImage(activeImg, player.x, player.y, player.width, player.height);
-    }
-    ctx.restore();
-}
+        draw();
+        requestAnimationFrame(update);
+        }
 
-update();
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            coins.forEach(c => ctx.drawImage(images.coin, c.x, c.y, c.size, c.size));
+            for (let i = floatingTexts.length - 1; i >= 0; i--) {
+                let ft = floatingTexts[i];
+                ctx.fillStyle = `rgba(255, 215, 0, ${ft.opacity})`;
+                ctx.font = "bold 24px Arial";
+                ctx.fillText("+1", ft.x, ft.y);
+                ft.y -= 1; ft.opacity -= 0.02;
+                if (ft.opacity <= 0) floatingTexts.splice(i, 1);
+            }
 
+            let activeImg = !player.onGround ? images.jump : (player.isMoving ? images.move : images.idle[player.currentIdleIdx]);
+            ctx.save();
+            if (!player.facingRight) {
+                ctx.translate(player.x + player.width / 2, player.y + player.height / 2);
+                ctx.scale(-1, 1);
+                ctx.drawImage(activeImg, -player.width / 2, -player.height / 2, player.width, player.height);
+            } else {
+                ctx.drawImage(activeImg, player.x, player.y, player.width, player.height);
+            }
+        ctx.restore();
+        }       
+
+        window.onbeforeunload = () => {
+            const sessionSeconds = Math.floor((Date.now() - gameState.startTime) / 1000);
+            gameState.totalTimePlayed += sessionSeconds;
+            saveGame();
+        };
+        update();
 </script>
 </body>
 </html>
