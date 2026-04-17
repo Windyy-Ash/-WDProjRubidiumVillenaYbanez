@@ -37,7 +37,6 @@
   --background-image: url("https://i.redd.it/about-eyes-motif-on-raiden-v0-k9j87qoi67be1.png?width=1449&format=png&auto=webp&s=20f3c2f9c409eeafbdeff4a6fb7dfeba97ec94f2");
   --bg-overlay: rgba(0,0,0,0.36);
 
-  /* Dark sidebar colors */
   --sidenav-bg: #3c0505;
   --sidenav-link: #e0e0e0;
   --sidenav-link-hover: #ffffff86;
@@ -48,7 +47,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
 body { font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--background-image), var(--bg); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; color: var(--text); display: flex; flex-direction: column; min-height: 100vh; transition: background .35s ease;}
-/* Sidebar styling */
+
 .sidenav {
   height: 100%; width: 0; position: fixed; z-index: 1000; top: 0; left: 0;
   background: var(--sidenav-bg); overflow-x: hidden; transition: 0.5s; padding-top: 60px;
@@ -178,15 +177,18 @@ body { font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 
   <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
 
-  <script>
-    function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
-    function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
-  </script>
-
   <script type="module">
-    import { initializeApp } from "firebase/app";
-    import { getAnalytics } from "firebase/analytics";
-
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { 
+      getFirestore, 
+      collection, 
+      addDoc, 
+      getDocs, 
+      query, 
+      orderBy, 
+      serverTimestamp 
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  
     const firebaseConfig = {
       apiKey: "AIzaSyAZpBQS1JndhXeZoCYQVc19aH6FlKLGUAI",
       authDomain: "genshin-proj-community.firebaseapp.com",
@@ -196,48 +198,61 @@ body { font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
       appId: "1:816335172937:web:a2af580a0c3a3682919698",
       measurementId: "G-WC6PF41S7B"
     };
-
+  
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-
+    const db = getFirestore(app);
+  
     const submitBtn = document.getElementById("submitBtn");
     const postInput = document.getElementById("postInput");
     const postsContainer = document.getElementById("postsContainer");
-
+  
     async function loadPosts() {
       postsContainer.innerHTML = "";
-      const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
-      const snapshot = await getDocs(q);
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const div = document.createElement("div");
-        div.classList.add("post");
-        
-        const textDiv = document.createElement("div");
-        textDiv.classList.add("post-text");
-        textDiv.textContent = data.text;
-        
-        const timeDiv = document.createElement("div");
-        timeDiv.classList.add("post-time");
-        const time = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleString() : "Just now";
-        timeDiv.textContent = `Posted: ${time}`;
-        
-        div.appendChild(textDiv);
-        div.appendChild(timeDiv);
-        postsContainer.appendChild(div);
-      });
+      try {
+        const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+        const snapshot = await getDocs(q);
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const div = document.createElement("div");
+          div.classList.add("post");
+          
+          const textDiv = document.createElement("div");
+          textDiv.classList.add("post-text");
+          textDiv.textContent = data.text;
+          
+          const timeDiv = document.createElement("div");
+          timeDiv.classList.add("post-time");
+          const time = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleString() : "Just now";
+          timeDiv.textContent = `Posted: ${time}`;
+          
+          div.appendChild(textDiv);
+          div.appendChild(timeDiv);
+          postsContainer.appendChild(div);
+        });
+      } catch (e) {
+        console.error("Error loading posts: ", e);
+      }
     }
-
+  
     submitBtn.addEventListener("click", async () => {
       const text = postInput.value.trim();
       if (!text) return alert("Please write something first!");
-      await addDoc(collection(db, "posts"), { text, timestamp: serverTimestamp() });
-      postInput.value = "";
-      loadPosts();
+      
+      try {
+        await addDoc(collection(db, "posts"), { 
+          text: text, 
+          timestamp: serverTimestamp() 
+        });
+        postInput.value = "";
+        loadPosts();
+      } catch (e) {
+        console.error("Error adding document: ", e);
+        alert("Error sending message. Check console.");
+      }
     });
-
+  
     loadPosts();
-
+  
     const btn = document.getElementById('themeBtn');
     const root = document.documentElement;
     const key = 'teyvat-theme';
