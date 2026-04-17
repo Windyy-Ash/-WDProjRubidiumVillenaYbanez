@@ -131,6 +131,26 @@
     pitch.oninput = () => pitchVal.textContent = pitch.value;
     rate.oninput = () => rateVal.textContent = rate.value;
     volume.oninput = () => volVal.textContent = volume.value;
+
+
+        function startAudio() {
+      if (started) return;
+
+      audio.play().then(() => {
+        started = true;
+        btn.style.display = "block";
+        audio.loop = true;
+      }).catch(() => {});
+    }
+
+    window.addEventListener("click", startAudio, { once: true });
+    window.addEventListener("keydown", startAudio, { once: true });
+    window.addEventListener("scroll", startAudio, { once: true });
+
+    btn.addEventListener("click", () => {
+      audio.muted = !audio.muted;
+      btn.textContent = audio.muted ? "🔇 Muted" : "🔊 Sound On";
+    });
   </script>
 
 </body>
