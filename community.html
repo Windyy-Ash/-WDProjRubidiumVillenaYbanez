@@ -23,7 +23,6 @@
   --background-image: url("https://wallpaper.forfun.com/fetch/f3/f34497e9ebb662c05c7dcad9a2604c43.jpeg");
   --bg-overlay: rgba(0, 0, 0, 0.12);
 
-  /* Sidebar colors */
   --sidenav-bg: #6262e7;
   --sidenav-link: #333;
   --sidenav-link-hover: #ebed6d;
@@ -185,22 +184,21 @@ body { font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
   </script>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, serverTimestamp, query, orderBy }
-      from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+    import { initializeApp } from "firebase/app";
+    import { getAnalytics } from "firebase/analytics";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAZpBQS1JndhXeZoCYQVc19aH6FlKLGUAI",
       authDomain: "genshin-proj-community.firebaseapp.com",
       projectId: "genshin-proj-community",
-      storageBucket: "genshin-proj-community.appspot.com",
+      storageBucket: "genshin-proj-community.firebasestorage.app",
       messagingSenderId: "816335172937",
       appId: "1:816335172937:web:a2af580a0c3a3682919698",
       measurementId: "G-WC6PF41S7B"
     };
 
     const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    const analytics = getAnalytics(app);
 
     const submitBtn = document.getElementById("submitBtn");
     const postInput = document.getElementById("postInput");
