@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Act III — Sumeru</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
   :root { --gold:#f4d27a; --panel: rgba(255,255,255,0.14); --panel-dark: rgba(0,0,0,0.45); --accent:#9fd3c7; --text:#ffffff; --radius:18px; }
@@ -60,50 +62,9 @@
   .particles span { position:absolute; width:6px; height:6px; background: rgba(159,211,199,0.65); border-radius:50%; filter:blur(1px); animation: float 18s linear infinite; }
   @keyframes float { from { transform: translateY(110vh) translateX(0); opacity:0; } 10%{opacity:0.6;} 90%{opacity:0.6;} to { transform: translateY(-20vh) translateX(40px); opacity:0; } }
 
-    .coming-soon {
-        position: fixed;
-        inset: 0;
-        backdrop-filter: blur(14px);
-        background: rgba(0,0,0,0.58);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 50;
-        text-align: center;
-        color: #fef6d8;
-        padding: 20px;
-    }
-
-    .coming-soon .cs-box {
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(244,210,122,0.6);
-        border-radius: 18px;
-        padding: 22px 28px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-        backdrop-filter: blur(6px);
-    }
-
-    .coming-soon .cs-title {
-        font-size: 2rem;
-        letter-spacing: 1px;
-        font-weight: 700;
-        margin-bottom: 8px;
-    }
-
-    .coming-soon .cs-note {
-        font-size: 1rem;
-        opacity: 0.85;
-        letter-spacing: 0.5px;
-    }
 </style>
 </head>
 <body>
-<div class="coming-soon">
-    <div class="cs-box">
-        <div class="cs-title">Coming Soon!</div>
-        <div class="cs-note">This act is still being finished. Thanks for your patience.</div>
-    </div>
-</div>
 <div class="particles"></div>
 <div class="container">
 
@@ -118,11 +79,11 @@
     </div>
 
     <div class="panel">
-        <h2>Key Characters</h2>
+        <h2>Playable Characters That Appeared in the Archon Quest</h2>
         <div class="characters">
             <div class="char-card" onclick="openModal(
                 'Nahida',
-                'The Dendro Archon seeking true wisdom through shared dreams and empathy.',
+                'The Dendro Archon who seeks true wisdom through empathy and shared dreams. She leads the push to free Sumeru from the Sages’ control.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/2/25/Character_Nahida_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/c/cc/Element_Dendro.png'
             )">
@@ -131,7 +92,7 @@
 
             <div class="char-card" onclick="openModal(
                 'Alhaitham',
-                'A scribe who prizes logic and autonomy, aiding the Traveler against the Sages.',
+                'A scribe who prizes logic and autonomy, organizing a quiet rebellion inside the Akademiya to stop the Sages’ plans.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/7/73/Character_Alhaitham_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/c/cc/Element_Dendro.png'
             )">
@@ -140,7 +101,7 @@
 
             <div class="char-card" onclick="openModal(
                 'Cyno',
-                'The General Mahamatra enforcing the law, yet standing by justice over dogma.',
+                'The General Mahamatra who enforces the law but chooses justice over dogma, siding with the Traveler against the Sages.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/3/3f/Character_Cyno_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Element_Electro.png'
             )">
@@ -149,11 +110,38 @@
 
             <div class="char-card" onclick="openModal(
                 'Nilou',
-                'A dancer whose performances bridge faith, dreams, and shared memories.',
+                'A dancer whose performances bridge faith, dreams, and shared memories. She becomes a symbol of hope for the people of Sumeru.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/7/79/Character_Nilou_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/6/6a/Element_Hydro.png'
             )">
                 <img src="https://static.wikia.nocookie.net/gensin-impact/images/7/79/Character_Nilou_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Tighnari',
+                'A forest ranger who protects Avidya Forest and helps the Traveler understand Sumeru’s ecology and medicinal knowledge.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/2/2b/Character_Tighnari_Card.png',
+                'https://static.wikia.nocookie.net/gensin-impact/images/c/cc/Element_Dendro.png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2b/Character_Tighnari_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Dehya',
+                'A mercenary known for her honor and courage. She stands with the Traveler through the desert conflict and the final rescue.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/8/85/Character_Dehya_Card.png',
+                'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Element_Pyro.png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/8/85/Character_Dehya_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Collei',
+                'A trainee forest ranger whose compassion and resolve help the Traveler connect with the people of Sumeru.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/2/24/Character_Collei_Card.png',
+                'https://static.wikia.nocookie.net/gensin-impact/images/c/cc/Element_Dendro.png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/24/Character_Collei_Card.png">
             </div>
         </div>
     </div>

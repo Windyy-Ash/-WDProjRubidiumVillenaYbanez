@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Act II — Inazuma</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -204,50 +206,9 @@
     to { transform: translateY(-20vh) translateX(40px); opacity: 0; }
   }
 
-  .coming-soon {
-    position: fixed;
-    inset: 0;
-    backdrop-filter: blur(14px);
-    background: rgba(0,0,0,0.58);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 50;
-    text-align: center;
-    color: #fef6d8;
-    padding: 20px;
-  }
-
-  .coming-soon .cs-box {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(244,210,122,0.6);
-    border-radius: 18px;
-    padding: 22px 28px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-    backdrop-filter: blur(6px);
-  }
-
-  .coming-soon .cs-title {
-    font-size: 2rem;
-    letter-spacing: 1px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .coming-soon .cs-note {
-    font-size: 1rem;
-    opacity: 0.85;
-    letter-spacing: 0.5px;
-  }
 </style>
 </head>
 <body>
-<div class="coming-soon">
-  <div class="cs-box">
-    <div class="cs-title">Coming Soon!</div>
-    <div class="cs-note">This act is still being finished. Thanks for your patience.</div>
-  </div>
-</div>
 <div class="particles"></div>
 <div class="container">
 
@@ -262,12 +223,12 @@
     </div>
 
     <div class="panel">
-        <h2>Key Characters</h2>
+        <h2>Playable Characters That Appeared in the Archon Quest</h2>
 
         <div class="characters">
             <div class="char-card" onclick="openModal(
                 'Raiden Shogun',
-                'The Electro Archon seeking eternity, ultimately choosing to watch Inazuma grow.',
+              'The Electro Archon who enforced the Vision Hunt Decree in pursuit of eternity. Through the Traveler, Ei confronts her ideals and chooses to guide Inazuma forward.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/f/f5/Character_Raiden_Shogun_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Element_Electro.png'
             )">
@@ -276,7 +237,7 @@
 
             <div class="char-card" onclick="openModal(
                 'Kamisato Ayaka',
-                'The Shirasagi Himegimi who aids the Traveler against the decree.',
+              'The Shirasagi Himegimi of the Yashiro Commission who shelters the Traveler and helps them see Inazuma’s people beyond the decree.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/0/08/Character_Kamisato_Ayaka_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/7/7f/Element_Cryo.png'
             )">
@@ -285,7 +246,7 @@
 
             <div class="char-card" onclick="openModal(
                 'Yoimiya',
-                'The fireworks expert who helps citizens resist the Vision Hunt.',
+              'A fireworks expert who protects local visions and helps the Traveler move through Inazuma’s strict checkpoints with heart and resolve.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/0/04/Character_Yoimiya_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/5/5b/Element_Pyro.png'
             )">
@@ -294,11 +255,47 @@
 
             <div class="char-card" onclick="openModal(
                 'Sangonomiya Kokomi',
-                'The strategist and Divine Priestess leading the resistance forces.',
+              'The Divine Priestess and strategist leading the resistance on Watatsumi. She coordinates alliances and battles against the Shogunate.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/7/74/Character_Sangonomiya_Kokomi_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/6/6a/Element_Hydro.png'
             )">
                 <img src="https://static.wikia.nocookie.net/gensin-impact/images/7/74/Character_Sangonomiya_Kokomi_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+              'Thoma',
+              'The Kamisato Clan’s dependable fixer who introduces the Traveler to Inazuma and stands by them during the public confrontation.',
+              'https://static.wikia.nocookie.net/gensin-impact/images/4/4f/Character_Thoma_Card.png',
+              'https://static.wikia.nocookie.net/gensin-impact/images/5/5b/Element_Pyro.png'
+            )">
+              <img src="https://static.wikia.nocookie.net/gensin-impact/images/4/4f/Character_Thoma_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+              'Yae Miko',
+              'The Guuji of the Grand Narukami Shrine who manipulates events from the shadows and steers Ei toward change.',
+              'https://static.wikia.nocookie.net/gensin-impact/images/3/36/Character_Yae_Miko_Card.png',
+              'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Element_Electro.png'
+            )">
+              <img src="https://static.wikia.nocookie.net/gensin-impact/images/3/36/Character_Yae_Miko_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+              'Kujou Sara',
+              'A loyal general of the Tenryou Commission who enforces the decree but struggles with the truth behind it.',
+              'https://static.wikia.nocookie.net/gensin-impact/images/8/84/Character_Kujou_Sara_Card.png',
+              'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Element_Electro.png'
+            )">
+              <img src="https://static.wikia.nocookie.net/gensin-impact/images/8/84/Character_Kujou_Sara_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+              'Kaedehara Kazuha',
+              'A wandering samurai who stands with the resistance. His vision and resolve become a turning point in the final clash.',
+              'https://static.wikia.nocookie.net/gensin-impact/images/3/35/Character_Kaedehara_Kazuha_Card.png',
+              'https://static.wikia.nocookie.net/gensin-impact/images/7/7f/Element_Anemo.png'
+            )">
+              <img src="https://static.wikia.nocookie.net/gensin-impact/images/3/35/Character_Kaedehara_Kazuha_Card.png">
             </div>
         </div>
     </div>

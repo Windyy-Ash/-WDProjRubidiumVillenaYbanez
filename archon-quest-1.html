@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Act I — Liyue</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -19,7 +21,7 @@
     margin: 0;
     font-family: "Segoe UI", "Noto Serif", serif;
     color: var(--text);
-    background: url("https://images.alphacoders.com/118/1187490.jpg") center / cover no-repeat fixed;
+    background: url("https://w0.peakpx.com/wallpaper/234/548/HD-wallpaper-video-game-genshin-impact-liyue-genshin-impact.jpg") center / cover no-repeat fixed;
   }
 
   body::before {
@@ -281,50 +283,9 @@
     }
   }
 
-  .coming-soon {
-    position: fixed;
-    inset: 0;
-    backdrop-filter: blur(14px);
-    background: rgba(0,0,0,0.58);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 50;
-    text-align: center;
-    color: #fef6d8;
-    padding: 20px;
-  }
-
-  .coming-soon .cs-box {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(244,210,122,0.6);
-    border-radius: 18px;
-    padding: 22px 28px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-    backdrop-filter: blur(6px);
-  }
-
-  .coming-soon .cs-title {
-    font-size: 2rem;
-    letter-spacing: 1px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .coming-soon .cs-note {
-    font-size: 1rem;
-    opacity: 0.85;
-    letter-spacing: 0.5px;
-  }
 </style>
 </head>
 <body>
-<div class="coming-soon">
-  <div class="cs-box">
-    <div class="cs-title">Coming Soon!</div>
-    <div class="cs-note">This act is still being finished. Thanks for your patience.</div>
-  </div>
-</div>
 <div class="particles"></div>
 <div class="container">
 
@@ -339,21 +300,21 @@
     </div>
 
     <div class="panel">
-        <h2>Key Characters</h2>
+        <h2>Playable Characters That Appeared in the Archon Quest</h2>
 
         <div class="characters">
             <div class="char-card" onclick="openModal(
                 'Zhongli',
-                'The Geo Archon in mortal guise, guiding Liyue through contracts and farewells.',
-                'https://static.wikia.nocookie.net/gensin-impact/images/4/4d/Character_Zhongli_Card.png',
-                'https://static.wikia.nocookie.net/gensin-impact/images/7/73/Element_Geo.png'
+              'Zhongli is the Geo Archon living among mortals. As Liyue prepares for a new era, he guides the Traveler through contracts and farewells, testing whether Liyue can stand without divine rule.',
+              'https://static.wikia.nocookie.net/gensin-impact/images/4/4d/Character_Zhongli_Card.png',
+              'https://static.wikia.nocookie.net/gensin-impact/images/7/73/Element_Geo.png'
             )">
                 <img src="https://static.wikia.nocookie.net/gensin-impact/images/4/4d/Character_Zhongli_Card.png">
             </div>
 
             <div class="char-card" onclick="openModal(
                 'Xiao',
-                'An adeptus and vigilant yaksha who protects Liyue from unseen threats.',
+              'Xiao is a vigilant yaksha who quietly protects Liyue from lingering evil. His role highlights the cost of Liyue’s ancient battles and the burden of the adepti.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/6/60/Character_Xiao_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/7/7f/Element_Anemo.png'
             )">
@@ -362,7 +323,7 @@
 
             <div class="char-card" onclick="openModal(
                 'Ningguang',
-                'The Tianquan of the Liyue Qixing who believes prosperity comes from human effort.',
+              'The Tianquan of the Liyue Qixing who believes Liyue’s prosperity should come from human effort. She leads with resolve during the harbor crisis.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/d/d1/Character_Ningguang_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/7/73/Element_Geo.png'
             )">
@@ -371,11 +332,47 @@
 
             <div class="char-card" onclick="openModal(
                 'Ganyu',
-                'The half-adeptus emissary balancing adepti tradition and mortal governance.',
+              'The half-adeptus secretary who balances the will of the adepti with mortal governance. She supports the Traveler through Liyue’s political turmoil.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/1/10/Character_Ganyu_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/7/7f/Element_Cryo.png'
             )">
                 <img src="https://static.wikia.nocookie.net/gensin-impact/images/1/10/Character_Ganyu_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+              'Childe',
+              'A Fatui Harbinger who befriends the Traveler while secretly pursuing the Tsaritsa’s goals. His schemes trigger the final conflict in Liyue Harbor.',
+              'https://static.wikia.nocookie.net/gensin-impact/images/9/9b/Character_Tartaglia_Card.png',
+              'https://static.wikia.nocookie.net/gensin-impact/images/8/88/Element_Hydro.png'
+            )">
+              <img src="https://static.wikia.nocookie.net/gensin-impact/images/9/9b/Character_Tartaglia_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+              'Keqing',
+              'The Yuheng of the Liyue Qixing who believes humans should shape their own fate. She pushes Liyue to rely on itself, not the Archon.',
+              'https://static.wikia.nocookie.net/gensin-impact/images/2/2b/Character_Keqing_Card.png',
+              'https://static.wikia.nocookie.net/gensin-impact/images/1/1b/Element_Electro.png'
+            )">
+              <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2b/Character_Keqing_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+              'Xiangling',
+              'A chef from Wanmin Restaurant who shows the Traveler Liyue’s lively culture. Her optimism keeps the journey grounded amid the chaos.',
+              'https://static.wikia.nocookie.net/gensin-impact/images/5/53/Character_Xiangling_Card.png',
+              'https://static.wikia.nocookie.net/gensin-impact/images/7/7a/Element_Pyro.png'
+            )">
+              <img src="https://static.wikia.nocookie.net/gensin-impact/images/5/53/Character_Xiangling_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+              'Xingqiu',
+              'A young noble and martial artist who values chivalry. He helps the Traveler navigate Liyue’s social circles and hidden threats.',
+              'https://static.wikia.nocookie.net/gensin-impact/images/8/83/Character_Xingqiu_Card.png',
+              'https://static.wikia.nocookie.net/gensin-impact/images/8/88/Element_Hydro.png'
+            )">
+              <img src="https://static.wikia.nocookie.net/gensin-impact/images/8/83/Character_Xingqiu_Card.png">
             </div>
         </div>
     </div>

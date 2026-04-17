@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Act IV — Fontaine</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
   :root { --gold:#f4d27a; --panel: rgba(255,255,255,0.14); --panel-dark: rgba(0,0,0,0.45); --accent:#9fd3c7; --text:#ffffff; --radius:18px; }
@@ -39,50 +41,9 @@
   .particles span { position:absolute; width:6px; height:6px; background:rgba(159,211,199,0.65); border-radius:50%; filter:blur(1px); animation: float 18s linear infinite; }
   @keyframes float { from{transform: translateY(110vh) translateX(0); opacity:0;} 10%{opacity:0.6;} 90%{opacity:0.6;} to{transform: translateY(-20vh) translateX(40px); opacity:0;} }
 
-    .coming-soon {
-        position: fixed;
-        inset: 0;
-        backdrop-filter: blur(14px);
-        background: rgba(0,0,0,0.58);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 50;
-        text-align: center;
-        color: #fef6d8;
-        padding: 20px;
-    }
-
-    .coming-soon .cs-box {
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(244,210,122,0.6);
-        border-radius: 18px;
-        padding: 22px 28px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-        backdrop-filter: blur(6px);
-    }
-
-    .coming-soon .cs-title {
-        font-size: 2rem;
-        letter-spacing: 1px;
-        font-weight: 700;
-        margin-bottom: 8px;
-    }
-
-    .coming-soon .cs-note {
-        font-size: 1rem;
-        opacity: 0.85;
-        letter-spacing: 0.5px;
-    }
 </style>
 </head>
 <body>
-<div class="coming-soon">
-    <div class="cs-box">
-        <div class="cs-title">Coming Soon!</div>
-        <div class="cs-note">This act is still being finished. Thanks for your patience.</div>
-    </div>
-</div>
 <div class="particles"></div>
 <div class="container">
 
@@ -95,11 +56,11 @@
     </div>
 
     <div class="panel">
-        <h2>Key Characters</h2>
+        <h2>Playable Characters That Appeared in the Archon Quest</h2>
         <div class="characters">
             <div class="char-card" onclick="openModal(
                 'Furina',
-                'The Hydro Archon whose flair for drama conceals deeper resolve.',
+                'The Hydro Archon whose flair for drama conceals deeper resolve. Her role in Fontaine’s trials reveals a painful truth about justice.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/5/5a/Character_Furina_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/6/6a/Element_Hydro.png'
             )">
@@ -108,7 +69,7 @@
 
             <div class="char-card" onclick="openModal(
                 'Neuvillette',
-                'The Chief Justice who seeks truth beyond staged verdicts.',
+                'The Chief Justice who seeks truth beyond staged verdicts. He guides the Traveler through Fontaine’s legal spectacle and hidden history.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/6/65/Character_Neuvillette_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/6/6a/Element_Hydro.png'
             )">
@@ -117,7 +78,7 @@
 
             <div class="char-card" onclick="openModal(
                 'Lyney',
-                'A magician entwined with Fontaine’s secrets and illusions.',
+                'A magician entwined with Fontaine’s secrets and illusions. His performances and trials pull the Traveler into the city’s conspiracy.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/2/2d/Character_Lyney_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Element_Pyro.png'
             )">
@@ -126,11 +87,38 @@
 
             <div class="char-card" onclick="openModal(
                 'Navia',
-                'Leader of Spina di Rosula, balancing compassion with ironclad justice.',
+                'Leader of Spina di Rosula, balancing compassion with ironclad justice. She supports the Traveler through the city’s unrest.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Character_Navia_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/7/73/Element_Geo.png'
             )">
                 <img src="https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Character_Navia_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Lynette',
+                'Lyney’s partner and assistant who helps navigate the city’s secrets with quiet precision.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/4/4f/Character_Lynette_Card.png',
+                'https://static.wikia.nocookie.net/gensin-impact/images/7/7f/Element_Anemo.png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/4/4f/Character_Lynette_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Wriothesley',
+                'The Duke of the Fortress of Meropide who balances order, fairness, and the people under his care.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/4/4b/Character_Wriothesley_Card.png',
+                'https://static.wikia.nocookie.net/gensin-impact/images/7/7f/Element_Cryo.png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/4/4b/Character_Wriothesley_Card.png">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Clorinde',
+                'Champion Duelist of Fontaine whose resolve and sense of duty shape the nation’s dramatic trials.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/b/b6/Character_Clorinde_Card.png',
+                'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Element_Electro.png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/b/b6/Character_Clorinde_Card.png">
             </div>
         </div>
     </div>

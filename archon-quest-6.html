@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Act VI — Aftermath</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
   :root { --gold:#f4d27a; --panel: rgba(255,255,255,0.14); --panel-dark: rgba(0,0,0,0.45); --accent:#8ad5ff; --text:#ffffff; --radius:18px; }
@@ -39,50 +41,9 @@
   .particles span { position:absolute; width:6px; height:6px; background:rgba(138,213,255,0.7); border-radius:50%; filter:blur(1px); animation: float 18s linear infinite; }
   @keyframes float { from{transform: translateY(110vh) translateX(0); opacity:0;} 10%{opacity:0.65;} 90%{opacity:0.65;} to{transform: translateY(-20vh) translateX(40px); opacity:0;} }
 
-    .coming-soon {
-        position: fixed;
-        inset: 0;
-        backdrop-filter: blur(14px);
-        background: rgba(0,0,0,0.58);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 50;
-        text-align: center;
-        color: #fef6d8;
-        padding: 20px;
-    }
-
-    .coming-soon .cs-box {
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(244,210,122,0.6);
-        border-radius: 18px;
-        padding: 22px 28px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-        backdrop-filter: blur(6px);
-    }
-
-    .coming-soon .cs-title {
-        font-size: 2rem;
-        letter-spacing: 1px;
-        font-weight: 700;
-        margin-bottom: 8px;
-    }
-
-    .coming-soon .cs-note {
-        font-size: 1rem;
-        opacity: 0.85;
-        letter-spacing: 0.5px;
-    }
 </style>
 </head>
 <body>
-<div class="coming-soon">
-    <div class="cs-box">
-        <div class="cs-title">Coming Soon!</div>
-        <div class="cs-note">This act is still being finished. Thanks for your patience.</div>
-    </div>
-</div>
 <div class="particles"></div>
 <div class="container">
 
@@ -94,11 +55,11 @@
     </div>
 
     <div class="panel">
-        <h2>Key Characters</h2>
+        <h2>Playable Characters That Appeared in the Archon Quest</h2>
         <div class="characters">
             <div class="char-card" onclick="openModal(
                 'Dainsleif',
-                'The Twilight Sword, bound to the fate of Khaenri\'ah and the Abyss.',
+                'The Twilight Sword, bound to the fate of Khaenri\'ah and the Abyss. He guides the Traveler through the final truths.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/b/b4/Character_Dainsleif_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/6/6c/Element_Cryo.png'
             )">
@@ -107,7 +68,7 @@
 
             <div class="char-card" onclick="openModal(
                 'Lumine/Aether',
-                'The lost sibling leading the Abyss Order, pursuing a path apart from the Traveler.',
+                'The lost sibling leading the Abyss Order, pursuing a path apart from the Traveler and forcing a final reckoning.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/1/1d/Character_Lumine_Card.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Element_Pyro.png'
             )">
@@ -116,7 +77,7 @@
 
             <div class="char-card" onclick="openModal(
                 'Pierro',
-                'The first of the Fatui Harbingers, manipulating events from the shadows.',
+                'The first of the Fatui Harbingers, manipulating events from the shadows as the world approaches its finale.',
                 'https://static.wikia.nocookie.net/gensin-impact/images/a/a3/NPC_Pierro.png',
                 'https://static.wikia.nocookie.net/gensin-impact/images/7/7f/Element_Unknown.png'
             )">
