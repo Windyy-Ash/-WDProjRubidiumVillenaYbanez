@@ -88,14 +88,53 @@
 
     main { flex: 1; padding: 36px 20px; max-width: 880px; margin: 0 auto; width: 100%; text-align: center; }
     .card { background: var(--card); padding: 22px; border-radius: var(--radius); box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin-bottom: 20px; text-align: left; backdrop-filter: blur(5px); }
+    .section-title { margin: 18px 0 10px; font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 0.5px; }
     
     .card img { width: 80px; height: 80px; object-fit: cover; border-radius: 10px; margin-right: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
     .ingredient { display: flex; align-items: center; margin-bottom: 12px; }
+
+    .toc {
+      position: fixed;
+      top: 130px;
+      right: 18px;
+      width: 210px;
+      padding: 14px 12px;
+      background: #d4af37;
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      text-align: left;
+      color: #ffffff;
+      z-index: 50;
+      backdrop-filter: blur(6px);
+    }
+
+    .toc h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      letter-spacing: 0.6px;
+    }
+
+    .toc a {
+      display: block;
+      padding: 6px 8px;
+      margin: 4px 0;
+      text-decoration: none;
+      color: #ffffff;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .toc a:hover {
+      background: rgba(0,0,0,0.12);
+    }
 
     footer { padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white; text-align: center; margin-top: auto; }
 
     @media (max-width: 900px) {
       .nav-links { display: none; }
+      .toc { display: none; }
     }
     @media (max-width: 600px) {
       .brand h1 { font-size: 1rem; }
@@ -142,64 +181,290 @@
   </header>
 
   <main>
+    <aside class="toc" aria-label="Table of contents">
+      <h3>Sections</h3>
+      <a href="#meats">Meats & Seafood</a>
+      <a href="#wild">Wild Gathered</a>
+      <a href="#processed">Processed or Bought</a>
+    </aside>
     <div class="card">
       <h2 style="margin-bottom: 20px;">Ingredients || How to get it</h2>
+
+      <h3 class="section-title" id="meats">Meats & Seafood</h3>
       
       <div class="ingredient">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Item_Mint.png" alt="Mint" />
-        <span><strong>Mint</strong> - Found in the wild throughout Teyvat, especially Mondstadt and Liyue. Can also be grown in the Serenitea Pot.</span>
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/b/bf/Item_Raw_Meat.png/revision/latest?cb=20201211190535" alt="Raw Meat" />
+        <span><strong>Raw Meat</strong> - Found in the wild. Sold by Ashpazi, Azalai, and Draff. Reward from Expeditions. Output from Processing.</span>
       </div>
       <div class="ingredient">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Item_Apple.png" alt="Apple" />
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/d/dc/Item_Bird_Egg.png/revision/latest/thumbnail/width/360/height/360?cb=20210113032808" alt="Bird Egg" />
+        <span><strong>Bird Egg</strong> - Found in the wild. Sold by Ashpazi, Draff, and Pahsiv. Reward from Expeditions.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/f/f9/Item_Fowl.png/revision/latest/thumbnail/width/360/height/360?cb=20210109214603" alt="Fowl" />
+        <span><strong>Fowl</strong> - Found in the wild. Sold by Ashpazi, Draff, and Pahsiv. Reward from Expeditions.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/e/ef/Item_Fish.png/revision/latest/thumbnail/width/360/height/360?cb=20210109214830" alt="Fish" />
+        <span><strong>Fish</strong> - Dropped by Basses. Sold by Azalai, Bolai, Butrus, Chef Mao, Hinterman, Lambad, Obata, Pahsiv, Pam, Shimura Kanbei, Uncle Gao, and Uncle Sun. Processing.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/0/0b/Item_Crab.png/revision/latest?cb=20210109214629" alt="Crab" />
+        <span><strong>Crab</strong> - Found near lakes, river banks, and beaches. Sold by Butrus, Chef Mao, Hinterman, Lambad, Obata, Pahsiv, Pam, Shimura Kanbei, and Uncle Sun.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/d/d0/Item_Shrimp_Meat.png/revision/latest?cb=20210109222040" alt="Shrimp Meat" />
+        <span><strong>Shrimp Meat</strong> - Sold by Aoi, Butrus, Dongsheng, Hamawi, Hinterman, Obata, Pam, and Uncle Sun.</span>
+      </div>
+
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Ham" />
+        <span><strong>Ham</strong> - Processing. Sold by Benthem, Chanca, Chef Mao, Frith, Katya, Pitot, Sanguinetti, and Sara.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Bacon" />
+        <span><strong>Bacon</strong> - Processing. Sold by Benthem, Chanca, Frith, Katya, Lambad, Pitot, Sanguinetti, Sara, and Shimura Kanbei.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Sausage" />
+        <span><strong>Sausage</strong> - Processing. Sold by Benthem, Chanca, Chef Mao, Frith, Katya, Lambad, Pitot, Sanguinetti, Sara, Shimura Kanbei, and Verr Goldet.</span>
+      </div>
+
+      <h3 class="section-title" id="wild">Wild Gathered</h3>
+
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/c/cb/Item_Mushroom.png/revision/latest/thumbnail/width/360/height/360?cb=20210109214611" alt="Mushroom" />
+        <span><strong>Mushroom</strong> - Found in the wild. Sold by Boucicaut, Bounama, and Chef Mao. Reward from Expeditions. Gardening with Jade Field.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/3/3a/Item_Sweet_Flower.png/revision/latest/thumbnail/width/360/height/360?cb=20210109221308" alt="Sweet Flower" />
+        <span><strong>Sweet Flower</strong> - Found in the wild. Sold by Flora and Richeza. Reward from Expeditions. Gardening with Jade Field.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Carrot" />
+        <span><strong>Carrot</strong> - Sold by Chef Mao. Reward from Expeditions. Investigation. Gardening with Jade Field.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Radish" />
+        <span><strong>Radish</strong> - Sold by Chef Mao and Shimura Kanbei. Reward from Expeditions. Investigation. Gardening with Jade Field.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Snapdragon" />
+        <span><strong>Snapdragon</strong> - Found in the wild. Sold by Chloris. Reward from Expeditions. Gardening with Orderly Meadow.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/b/bc/Item_Mint.png/revision/latest?cb=20210109221323" alt="Mint" />
+        <span><strong>Mint</strong> - Found in the wild. Sold by Chloris. Gardening with Jade Field.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Pinecone" />
+        <span><strong>Pinecone</strong> - Found in the wild. Reward from Expeditions.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Lotus Head" />
+        <span><strong>Lotus Head</strong> - Found near lakes and river banks in Liyue. Sold by Chef Mao and Herbalist Gui. Reward from Expeditions. Gardening with Orderly Meadow.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Jueyun Chili" />
+        <span><strong>Jueyun Chili</strong> - Found in the wild in Minlin, Qingce Village, and Stone Gate. Sold by Chef Mao and Fengtai. Gardening with Jade Field.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Qingxin" />
+        <span><strong>Qingxin</strong> - Found in the heights of Liyue, especially Minlin and Wuwang Hill. Sold by Babak and Herbalist Gui. Gardening with Luxuriant Glebe.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Horsetail" />
+        <span><strong>Horsetail</strong> - Found in Liyue, mainly Dihua Marsh. Sold by Herbalist Gui. Reward from Expeditions. Gardening with Orderly Meadow.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Violetgrass" />
+        <span><strong>Violetgrass</strong> - Found near cliffs in Liyue. Sold by Babak, Fengtai, Herbalist Gui, and Verr Goldet. Gardening with Luxuriant Glebe.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Berry" />
+        <span><strong>Berry</strong> - Found in the wild.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Small Lamp Grass" />
+        <span><strong>Small Lamp Grass</strong> - Found in the wild in Mondstadt, especially Whispering Woods. Sold by Flora. Gardening with Jade Field.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Calla Lily" />
+        <span><strong>Calla Lily</strong> - Found near lakes in Mondstadt, especially Springvale. Sold by Flora. Gardening with Orderly Meadow.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/8/8a/Item_Apple.png/revision/latest/scale-to-width/360?cb=20210113032853" alt="Apple" />
         <span><strong>Apple</strong> - Found in the wild, dropped from trees, and sometimes sold by Bolai in Liyue Harbor.</span>
       </div>
       <div class="ingredient">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Item_Cheese.png" alt="Cheese" />
-        <span><strong>Cheese</strong> - Processed from Milk (3x) or bought from Sara at Good Hunter in Mondstadt.</span>
-      </div>
-      <div class="ingredient">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Item_Sunsettia.png" alt="Sunsettia" />
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/4/45/Item_Sunsettia.png/revision/latest/scale-to-width/360?cb=20210109214706" alt="Sunsettia" />
         <span><strong>Sunsettia</strong> - Found on trees throughout Teyvat, especially in Mondstadt and Liyue.</span>
       </div>
       <div class="ingredient">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Item_Sweet_Flower.png" alt="Sweet Flower" />
-        <span><strong>Sweet Flower</strong> - Found in the wild, used in many recipes. Can be grown in the Serenitea Pot.</span>
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Matsutake" />
+        <span><strong>Matsutake</strong> - Found in the wild. Sold by Chef Mao and Verr Goldet. Reward from Expeditions.</span>
       </div>
       <div class="ingredient">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Item_Bird_Egg.png" alt="Bird Egg" />
-        <span><strong>Bird Egg</strong> - Found in nests on top of trees, cliffs, and rooftops.</span>
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Bamboo Shoot" />
+        <span><strong>Bamboo Shoot</strong> - Found in the wild. Sold by Chef Mao.</span>
       </div>
       <div class="ingredient">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Item_Fowl.png" alt="Fowl" />
-        <span><strong>Fowl</strong> - Dropped by wild birds and can be bought from some vendors.</span>
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Sakura Bloom" />
+        <span><strong>Sakura Bloom</strong> - Found in the wild on Narukami Island.</span>
       </div>
       <div class="ingredient">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Item_Fish.png" alt="Fish" />
-        <span><strong>Fish</strong> - Caught by fishing or bought from vendors in Liyue and Inazuma.</span>
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Seagrass" />
+        <span><strong>Seagrass</strong> - Found in the wild in Inazuma. Sold by Pam and Shimura Kanbei. Reward from Expeditions. Gardening with Orderly Meadow.</span>
       </div>
       <div class="ingredient">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Item_Rice.png" alt="Rice" />
-        <span><strong>Rice</strong> - Purchased from general goods stores in Liyue and Inazuma.</span>
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Lavender Melon" />
+        <span><strong>Lavender Melon</strong> - Found in the wild in Inazuma. Sold by Shimura Kanbei. Reward from Expeditions.</span>
       </div>
       <div class="ingredient">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Item_Potato.png" alt="Potato" />
-        <span><strong>Potato</strong> - Purchased from general goods stores in Mondstadt and Liyue.</span>
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Zaytun Peach" />
+        <span><strong>Zaytun Peach</strong> - Found in the wild. Sold by Aramani, Azalai, Eugenie, and Hamawi. Gardening with Jade Field. Reward from Expeditions.</span>
       </div>
       <div class="ingredient">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Item_Meat.png" alt="Raw Meat" />
-        <span><strong>Raw Meat</strong> - Dropped by wild boars and foxes, or bought from Draff in Springvale.</span>
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Sumeru Rose" />
+        <span><strong>Sumeru Rose</strong> - Found in the wild. Gardening with Luxuriant Glebe. Reward from Expeditions.</span>
       </div>
       <div class="ingredient">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Item_Crab.png" alt="Crab" />
-        <span><strong>Crab</strong> - Found near water bodies, especially in Liyue and Inazuma.</span>
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Ajilenakh Nut" />
+        <span><strong>Ajilenakh Nut</strong> - Found in the wild. Sold by Azalai and Eugenie.</span>
       </div>
       <div class="ingredient">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Item_Tofu.png" alt="Tofu" />
-        <span><strong>Tofu</strong> - Purchased from general goods stores in Liyue.</span>
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Marcotte" />
+        <span><strong>Marcotte</strong> - Found in the wild. Sold by Boucicaut and Eugenie. Reward from Expeditions. Gardening with Jade Field.</span>
       </div>
       <div class="ingredient">
-        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Item_Mushroom.png" alt="Mushroom" />
-        <span><strong>Mushroom</strong> - Found at the base of trees and buildings, especially in Mondstadt.</span>
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Tidalga" />
+        <span><strong>Tidalga</strong> - Diving. Sold by Hinterman. Reward from Expeditions.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Chenyu Adeptea" />
+        <span><strong>Chenyu Adeptea</strong> - Found in the wild in Chenyu Vale, especially in Qiaoying Village and Yilong Wharf. Sold by Fengtai and Lianfang.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Cacahuatl" />
+        <span><strong>Cacahuatl</strong> - Found in the wild. Sold by Cintli.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Quenepa Berry" />
+        <span><strong>Quenepa Berry</strong> - Found in Natlan. Sold by Cintli and Kuzmich.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Nocturnal Blossom" />
+        <span><strong>Nocturnal Blossom</strong> - Found in the wild. Sold by Kuzmich and Richeza.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Lakkaberry" />
+        <span><strong>Lakkaberry</strong> - Found in the wild. No vendor sells Lakkaberry.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Midsommar Berry" />
+        <span><strong>Midsommar Berry</strong> - Found in the wild. No vendor sells Midsommar Berry.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Windrest Flower" />
+        <span><strong>Windrest Flower</strong> - Found in the wild.</span>
+      </div>
+
+      <h3 class="section-title" id="processed">Processed or Bought</h3>
+        <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/d/da/Item_Chilled_Meat.png/revision/latest?cb=20220227084713" alt="Chilled Meat" />
+        <span><strong>Chilled Meat</strong> - Snowboars.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/0/06/Item_Wheat.png/revision/latest/thumbnail/width/360/height/360?cb=20210109222356" alt="Wheat" />
+        <span><strong>Wheat</strong> - Investigation. Sold by Aoi, Blanche (Mondstadt), Boucicaut, Bounama, Cairuo, Dongsheng, Hamawi, and Kiyoko.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/c/ca/Item_Cabbage.png/revision/latest?cb=20210109221337" alt="Cabbage" />
+        <span><strong>Cabbage</strong> - Investigation. Sold by Aoi, Blanche (Mondstadt), Boucicaut, Bounama, Cairuo, Dongsheng, Eugenie, and Hamawi. Dropped by Unusual Hilichurl.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/25/Item_Crab_Roe.png/revision/latest?cb=20210109222047" alt="Crab Roe" />
+        <span><strong>Crab Roe</strong> - Processing. Sold by Benthem, Chanca, Fengtai, Frith, Katya, Sanguinetti, and Sara.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/b/b5/Item_Salt.png/revision/latest/thumbnail/width/360/height/360?cb=20210119232803" alt="Salt" />
+        <span><strong>Salt</strong> - Sold by Aoi, Blanche (Mondstadt), Boucicaut, Bounama, Cairuo, Dongsheng, Hamawi, and Rama.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/b/b3/Item_Onion.png/revision/latest?cb=20210109222317" alt="Onion" />
+        <span><strong>Onion</strong> - Sold by Aoi, Blanche (Mondstadt), Boucicaut, Bounama, Cairuo, Dongsheng, and Hamawi.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/e/eb/Item_Pepper.png/revision/latest/thumbnail/width/360/height/360?cb=20210109222431" alt="Pepper" />
+        <span><strong>Pepper</strong> - Sold by Aoi, Blanche (Mondstadt), Boucicaut, Bounama, Cairuo, Dongsheng, Hamawi, and Rama.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/3/37/Item_Milk.png/revision/latest/thumbnail/width/360/height/360?cb=20210109223702" alt="Milk" />
+        <span><strong>Milk</strong> - Sold by Aoi, Blanche (Mondstadt), Boucicaut, Bounama, Cairuo, Dongsheng, Hamawi, Kiyoko, Kofitse, and Pitot.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/f/f1/Item_Tomato.png/revision/latest?cb=20210109223520" alt="Tomato" />
+        <span><strong>Tomato</strong> - Investigation. Sold by Aoi, Blanche (Mondstadt), Boucicaut, Bounama, Cairuo, Dongsheng, Eugenie, Hamawi, and Kiyoko.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2b/Item_Potato.png/revision/latest?cb=20210109223741" alt="Potato" />
+        <span><strong>Potato</strong> - Investigation. Sold by Aoi, Blanche (Mondstadt), Boucicaut, Bounama, Cairuo, Changshun, Cintli, Dongsheng, Hamawi, and Kiyoko.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/0/04/Item_Rice.png/revision/latest?cb=20210109215752" alt="Rice" />
+        <span><strong>Rice</strong> - Sold by Aoi, Dongsheng, Fengtai, and Hamawi.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/a/ad/Item_Tofu.png/revision/latest?cb=20210109222035" alt="Tofu" />
+        <span><strong>Tofu</strong> - Sold by Aoi, Dongsheng, Fengtai, Hamawi, Kiyoko, and Ms. Bai.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/3/30/Item_Almond.png/revision/latest?cb=20210113032957" alt="Almond" />
+        <span><strong>Almond</strong> - Sold by Boucicaut, Dongsheng, and Ms. Bai.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Fermented Juice" />
+        <span><strong>Fermented Juice</strong> - Sold by Boucicaut.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Rye" />
+        <span><strong>Rye</strong> - Investigation. Sold by Cairuo.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Flour" />
+        <span><strong>Flour</strong> - Processing. Sold by Azalai, Benthem, Chanca, Chef Mao, Frith, Katya, Lambad, Sanguinetti, Sara, and Shimura Kanbei.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Cream" />
+        <span><strong>Cream</strong> - Sold by Benthem, Chanca, Frith, Katya, Sanguinetti, and Sara. Processing.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Butter" />
+        <span><strong>Butter</strong> - Sold by Benthem, Chanca, Frith, Katya, Rama, Sanguinetti, Sara, and Verr Goldet. Processing.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Sugar" />
+        <span><strong>Sugar</strong> - Processing. Sold by Azalai, Benthem, Chanca, Changshun, Chef Mao, Frith, Katya, Lambad, Rama, Sanguinetti, Sara, and Shimura Kanbei.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Jam" />
+        <span><strong>Jam</strong> - Sold by Benthem, Chanca, Frith, Katya, Sanguinetti, and Sara. Processing.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://static.wikia.nocookie.net/gensin-impact/images/a/ac/Item_Cheese.png/revision/latest?cb=20210109222137" alt="Cheese" />
+        <span><strong>Cheese</strong> - Processing. Sold by Benthem, Chanca, Changshun, Frith, Katya, Pitot, Rama, Sanguinetti, and Sara.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Spice" />
+        <span><strong>Spice</strong> - Processing. Sold by Ashpazi, Azalai, Jut, Lambad, and Rama.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Smetana" />
+        <span><strong>Smetana</strong> - Processing. No vendor sells Smetana.</span>
+      </div>
+      <div class="ingredient">
+        <img src="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" alt="Rye Flour" />
+        <span><strong>Rye Flour</strong> - Details not provided in your list.</span>
       </div>
     </div>
   </main>
