@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>A Vast Journey Into the Wonders of Teyvat— Ingredients Guide</title>
   <link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:wght@600;700&family=Quicksand:wght@400;600&family=Spectral:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg:#fff9cc;
@@ -24,7 +24,7 @@
       --bg-overlay: rgba(0, 0, 0, 0.12);
       --sidenav-bg: #6262e7;
       --sidenav-link: #333;
-      --sidenav-link-hover: #4a55a2;
+      --sidenav-link-hover: #ebed6d;
     }
 
     :root.dark {
@@ -37,7 +37,7 @@
       --bg-overlay: rgba(0,0,0,0.36);
       --sidenav-bg: #3c0505;
       --sidenav-link: #e0e0e0;
-      --sidenav-link-hover: #f1c40f;
+      --sidenav-link-hover: #ffffff86;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -57,11 +57,9 @@
     .sidenav a {
       padding: 8px 32px; text-decoration: none; font-size: 20px;
       color: var(--sidenav-link); display: block; transition: 0.3s;
+      font-family: 'Quicksand', sans-serif;
     }
-    .sidenav a:hover {
-      color: var(--sidenav-link-hover);
-      background: rgba(74,85,162,0.08);
-    }
+    .sidenav a:hover { color: var(--sidenav-link-hover); background: rgba(74,85,162,0.08); }
     .sidenav .closebtn {
       position: absolute; top: 0; right: 25px; font-size: 36px;
       color: var(--sidenav-link);
@@ -185,124 +183,167 @@
       .book { width: 110vw; height: 100vh; }
     }
   </style>
-<style>
-    .sparkle-btn, .btn {
-      background: rgba(255,255,255,0.1); border: 1px solid var(--btn-border);
-      padding: 8px 10px; border-radius: 10px; color: white; cursor: pointer;
-    }
-
-    .nav-links { display: flex; align-items: center; gap: 12px; }
-    .nav-links a,
-    .sidenav a {
-      transition: opacity 0.35s ease, background-color 0.35s ease;
-    }
-
-    .nav-links a:hover,
-    .sidenav a:hover {
-      opacity: 0.7;
-      background-color: rgba(255,255,255,0.15);
-    }
-
-    footer { padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white; text-align: center; margin-top: auto; }
-
+  <style>
     .codex-wrapper {
-      display:flex; height:calc(100vh - 140px); margin-top:10px;
+      display:flex;
+      height:calc(100vh - 140px);
+      margin-top:10px;
+      gap:28px;
+      align-items:center;
+      justify-content:center;
+      transition: transform 0.4s ease;
+    }
+
+    .nav-open .codex-wrapper {
+      transform: translateX(90px);
     }
 
     .index {
-      width:180px; background: rgba(20,22,32,0.9); color: #e6c78c; padding:1rem; overflow-y:auto; border-radius: var(--radius);
+      width:270px;
+      min-width:220px;
+      max-height:min(520px, 70vh);
+      background: rgba(253,246,230,0.92);
+      color: #4a3922;
+      padding:1rem;
+      overflow-y:auto;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,0.12);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
     }
 
-    .index h3 { margin-top:0; font-size:1.1rem; text-align:center; }
+    .index h3 { margin-top:0; font-size:1.05rem; text-align:center; font-family:'Cinzel', serif; letter-spacing:0.8px; }
     .index ul { list-style:none; padding:0; }
-    .index li {
-      transition: opacity 0.35s ease, transform 0.35s ease, background-color 0.35s ease;
+    .index li { transition: opacity 0.35s ease, transform 0.35s ease, background-color 0.35s ease; border-radius:8px; padding:6px 8px; margin-bottom:4px; cursor:pointer; }
+    .index li:hover { opacity: 0.7; transform: translateX(4px); background: rgba(0,0,0,0.06); }
+
+    .scene { flex:1; display:grid; place-items:center; perspective:1200px; }
+    .book {
+      width:min(920px, 92vw);
+      height:min(560px, 72vh);
+      position:relative;
+      border-radius: 16px;
+      overflow: hidden;
+      font-family: 'Spectral', 'Times New Roman', serif;
+      background: linear-gradient(90deg, #c7b18a 0%, #efe0c4 8%, #f9f2e2 50%, #efe0c4 92%, #c7b18a 100%);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.22), inset 0 0 30px rgba(0,0,0,0.12);
+      padding: 16px 18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
 
-    .index li:hover {
-      opacity: 0.65;
-      transform: translateX(4px);
-      background: rgba(255,255,255,0.05);
+    .book::before {
+      content:"";
+      position:absolute;
+      top:14px;
+      bottom:14px;
+      left:50%;
+      width:8px;
+      transform:translateX(-50%);
+      background: linear-gradient(180deg, rgba(120,90,50,0.35), rgba(255,255,255,0.4), rgba(120,90,50,0.35));
+      border-radius: 8px;
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.25);
+      pointer-events:none;
     }
-
-    .scene { flex:1; display:grid; place-items:center; perspective:1600px; }
-    .book { width:320px; height:460px; position:relative; transform-style: preserve-3d; }
 
     .page {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 6px;
-      padding: 1.2rem;
-      box-sizing: border-box;
-      transform-origin: left;
-      transform-style: preserve-3d;
-      transition: transform 0.9s cubic-bezier(.4,0,.2,1);
-      box-shadow: 0 0 20px rgba(0,0,0,0.4), 0 0 8px rgba(255,200,150,0.2) inset;
-  
-      background: var(--box);
-      color: #111;
-      text-shadow: none;
-  
-      overflow-y: auto;
+      background: #fbf5e6;
+      border-radius: 12px;
+      padding: 22px 26px 48px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18), inset 0 0 16px rgba(0,0,0,0.08);
+      color:#2b241a;
+      overflow-y:auto;
+      position:relative;
       scroll-behavior: smooth;
     }
 
-    .page::-webkit-scrollbar {
-      width: 6px;
+    .page.left { transform: rotateY(1deg); }
+    .page.right { transform: rotateY(-1deg); }
+    .page.cover { background: linear-gradient(150deg,#e6c78c,#a67b3e); color:#1b140a; text-align:center; }
+    .page.cover h2 { font-size:1.4rem; }
+
+    .page h2 { color:#5b3b20; margin-top:0; font-size:1.15rem; font-family:'Playfair Display', 'Times New Roman', serif; letter-spacing:0.6px; }
+    .page img { width:100%; border-radius:8px; margin:0.6rem 0; }
+    .page p { font-size:1rem; line-height:1.75; }
+
+    .page-number {
+      position: sticky;
+      bottom: 8px;
+      float: right;
+      font-size:0.85rem;
+      color:#6b5b3e;
+      background: rgba(251,245,230,0.9);
+      padding: 2px 8px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      font-family: 'Spectral', 'Times New Roman', serif;
     }
-    .page::-webkit-scrollbar-thumb {
-      background-color: rgba(0,0,0,0.2);
-      border-radius: 3px;
+
+    .page.blank { background: #f6efdc; }
+
+    .book-cover {
+      position:absolute;
+      inset:16px 18px;
+      border-radius: 12px;
+      background: linear-gradient(150deg,#e6c78c,#a67b3e);
+      color:#1b140a;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: 28px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.2), inset 0 0 16px rgba(0,0,0,0.1);
+      transform-origin: left center;
+      transform: rotateY(0deg);
+      transition: transform 0.9s cubic-bezier(.4,0,.2,1);
+      z-index: 6;
+      cursor: pointer;
     }
 
-
-    .page.flipped { transform: rotateY(-180deg); }
-
-    .page h2 { color: var(--accent); margin-top:0; font-size:1rem; }
-    .page img { width:100%; border-radius:4px; margin:0.6rem 0; }
-    .page p { font-size:0.9rem; line-height:1.6; }
-
-    .page.cover {
-      background: linear-gradient(160deg,#e6c78c,#6b4f2f);
-      color:#111; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-      font-size:1.1rem;
-      text-shadow:0 0 4px #fff3aa;
-    }
-
-    .page.cover h2 { font-size:1.6rem; margin-bottom:1rem; text-shadow:0 0 6px #fff3aa; }
-    .page.cover img { width:70%; margin-top:1rem; border-radius:12px; box-shadow:0 0 20px rgba(255,255,200,0.4); }
-
-    .sparkle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: #fff3aa;
-      border-radius: 50%;
+    .book-cover.open {
+      transform: rotateY(-180deg);
       pointer-events: none;
-      animation: sparkleAnim 2.5s ease-in-out forwards;
+      z-index: 1;
     }
 
-    @keyframes sparkleAnim {
-      0% {
-        transform: scale(0.6);
-        opacity: 0;
-      }
-      20% {
-        opacity: 0.9;
-      }
-      80% {
-        opacity: 0.6;
-      }
-      100% {
-        transform: scale(1.4);
-        opacity: 0;
-      }
+    .book-cover h2 {
+      font-family:'Cinzel', serif;
+      font-size:1.6rem;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .book-cover p { font-size:0.98rem; line-height:1.6; font-family:'Spectral', 'Times New Roman', serif; }
+
+    .page-controls {
+      margin-top: 12px;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .page-btn {
+      background: rgba(0,0,0,0.18);
+      color:#fff;
+      border:1px solid rgba(255,255,255,0.3);
+      padding:8px 12px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    .page-btn:disabled { opacity:0.5; cursor:not-allowed; }
+
+    @media (max-width:1100px) {
+      .codex-wrapper { flex-direction: column; height:auto; }
+      .index { width:100%; max-width: 360px; }
     }
 
     @media (max-width:768px) { 
       .index { display:none; } 
-      .book { width:100vw; height:80vh; } 
+      .book { width:100vw; height:70vh; } 
     }
   </style>
 </head>
@@ -345,7 +386,16 @@
   <main>
     <div class="codex-wrapper">
       <div class="scene">
-        <div class="book" id="book"></div>
+        <div class="book" id="book">
+          <div class="page left" id="leftPage"></div>
+          <div class="page right" id="rightPage"></div>
+          <div class="book-cover" id="bookCover"></div>
+        </div>
+        <div class="page-controls" aria-label="Page controls">
+          <button class="page-btn" id="coverBtn">Cover</button>
+          <button class="page-btn" id="prevBtn">Prev</button>
+          <button class="page-btn" id="nextBtn">Next</button>
+        </div>
       </div>
       <aside class="index">
         <h3>Contents</h3>
@@ -357,8 +407,14 @@
   <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
 
   <script>
-    function openNav() { document.getElementById("mySidenav").style.width="250px"; }
-    function closeNav() { document.getElementById("mySidenav").style.width="0"; }
+    function openNav() {
+      document.getElementById("mySidenav").style.width="250px";
+      document.body.classList.add("nav-open");
+    }
+    function closeNav() {
+      document.getElementById("mySidenav").style.width="0";
+      document.body.classList.remove("nav-open");
+    }
     (function(){
       const btn=document.getElementById('themeBtn');
       const root=document.documentElement;
@@ -409,56 +465,123 @@
       },
     ];
 
-    const book=document.getElementById("book");
     const indexList=document.getElementById("indexList");
-    let currentPage=0;
+    const leftPage=document.getElementById("leftPage");
+    const rightPage=document.getElementById("rightPage");
+    const bookCover=document.getElementById("bookCover");
+    const coverBtn=document.getElementById("coverBtn");
+    const prevBtn=document.getElementById("prevBtn");
+    const nextBtn=document.getElementById("nextBtn");
+    let spreadStart=1;
+    let coverOpen=false;
+
+    function renderPage(container, page, pageNumber) {
+      if (!page) {
+        container.classList.add("blank");
+        container.classList.remove("cover");
+        container.innerHTML = "";
+        return;
+      }
+
+      container.classList.remove("blank");
+      container.classList.toggle("cover", !!page.cover);
+
+      const imageHtml = page.image ? `<img src="${page.image}" alt="${page.title}">` : "";
+      const textHtml = page.text ? page.text.replace(/\n/g,"<br><br>") : "";
+
+      const displayNumber = pageNumber - 1;
+      const numberHtml = displayNumber > 0 ? `<div class="page-number">Pg. ${displayNumber}</div>` : "";
+
+      container.innerHTML = `
+        <h2>${page.title}</h2>
+        ${imageHtml}
+        <p>${textHtml}</p>
+        ${numberHtml}
+      `;
+
+      container.scrollTop = 0;
+    }
+
+    function renderSpread() {
+      const coverPage = pages[0];
+      const coverImage = coverPage && coverPage.image ? `<img src="${coverPage.image}" alt="${coverPage.title}">` : "";
+      const coverText = coverPage && coverPage.text ? coverPage.text.replace(/\n/g,"<br><br>") : "";
+      bookCover.innerHTML = `
+        <h2>${coverPage ? coverPage.title : "Wonders of Teyvat"}</h2>
+        ${coverImage}
+        <p>${coverText}</p>
+        <div class="page-number">Cover</div>
+      `;
+
+      if (!coverOpen) {
+        bookCover.classList.remove("open");
+        renderPage(leftPage, null, 0);
+        renderPage(rightPage, null, 0);
+        prevBtn.disabled = true;
+        nextBtn.disabled = false;
+        coverBtn.disabled = true;
+        return;
+      }
+
+      bookCover.classList.add("open");
+      renderPage(leftPage, pages[spreadStart], spreadStart + 1);
+      renderPage(rightPage, pages[spreadStart + 1], spreadStart + 2);
+      prevBtn.disabled = spreadStart <= 1;
+      nextBtn.disabled = spreadStart + 2 >= pages.length;
+      coverBtn.disabled = false;
+    }
+
+    function goPrev() {
+      if (spreadStart <= 1) {
+        coverOpen = false;
+        renderSpread();
+        return;
+      }
+      spreadStart = Math.max(1, spreadStart - 2);
+      renderSpread();
+    }
+
+    function goNext() {
+      if (!coverOpen) {
+        coverOpen = true;
+        spreadStart = 1;
+        renderSpread();
+        return;
+      }
+      if (spreadStart + 2 < pages.length) {
+        spreadStart += 2;
+        renderSpread();
+      }
+    }
 
     pages.forEach((p,i)=>{
-      const page=document.createElement("div");
-      page.className="page";
-      if(p.cover) page.classList.add("cover");
-
-      page.style.zIndex=pages.length-i;
-      page.innerHTML=`<h2>${p.title}</h2>${p.image?`<img src="${p.image}">`:""}<p>${p.text.replace(/\n/g,"<br><br>")}</p>`;
-      page.addEventListener("click",()=>flipTo(i+1));
-      book.appendChild(page);
-
       const li=document.createElement("li");
       li.textContent=`Pg. ${i+1} — ${p.title}`;
-      li.onclick=()=>flipTo(i);
+      li.onclick=()=>{
+        if (i === 0) {
+          coverOpen = false;
+          renderSpread();
+          return;
+        }
+        coverOpen = true;
+        spreadStart = i % 2 === 1 ? i : i - 1;
+        spreadStart = Math.max(1, spreadStart);
+        renderSpread();
+      };
       indexList.appendChild(li);
     });
 
-    function flipTo(target){
-      const pagesDOM=document.querySelectorAll(".page");
-      pagesDOM.forEach((p,i)=>p.classList.toggle("flipped",i<target));
-      currentPage=target;
-    }
+    bookCover.addEventListener("click", goNext);
+    coverBtn.addEventListener("click", () => {
+      coverOpen = false;
+      renderSpread();
+    });
+    leftPage.addEventListener("click", goPrev);
+    rightPage.addEventListener("click", goNext);
+    prevBtn.addEventListener("click", goPrev);
+    nextBtn.addEventListener("click", goNext);
 
-    const coverPage = document.querySelector(".page.cover");
-
-    function spawnSparkle() {
-      if (!coverPage) return;
-
-      const s = document.createElement("div");
-      s.className = "sparkle";
-
-      s.style.top = Math.random() * 100 + "%";
-      s.style.left = Math.random() * 100 + "%";
-
-      const size = Math.random() * 4 + 4;
-      s.style.width = size + "px";
-      s.style.height = size + "px";
-      s.style.animationDuration = Math.random() * 1.5 + 1.5 + "s";
-
-      coverPage.appendChild(s);
-
-      setTimeout(() => {
-        s.remove();
-      }, 3000);
-    }
-
-    setInterval(spawnSparkle, 300);
+    renderSpread();
   </script>
 </body>
 </html>
