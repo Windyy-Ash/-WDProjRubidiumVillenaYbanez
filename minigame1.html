@@ -4,24 +4,136 @@
     <meta charset="UTF-8">
     <title>Coin Collector & Achievements</title>
     <style>
-        body { margin: 0; overflow: hidden; background: #1a1a1a; font-family: 'Segoe UI', sans-serif; display: flex; }
-        #game-container { position: relative; width: 800px; height: 400px; margin: auto; }
-        canvas { background: #87CEEB; border: 6px solid #333; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        
-        #ui-layer { position: absolute; top: 10px; left: 10px; pointer-events: none; color: white; text-shadow: 2px 2px 4px #000; }
-        #coin-count { font-size: 24px; font-weight: bold; color: #ffd700; }
+        body { 
+            margin: 0; 
+            overflow: hidden; 
+            background: url('https://www.dualshockers.com/static/uploads/2021/04/Genshin-Impact-Inazuma-concept-artwork-Tatarasuna-Kannazuka-resized-1024x512.jpg') no-repeat center center fixed; 
+            background-size: cover;
+            font-family: 'Quicksand', sans-serif; 
+            display: flex; 
+            height: 100vh;
+        }
 
-        #sidebar { width: 250px; background: #2c3e50; color: white; padding: 15px; border-left: 4px solid #1a252f; height: 100vh; overflow-y: auto; }
-        .achievement { background: #34495e; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #555; }
-        .achievement.complete { border-color: #2ecc71; }
-        .achievement h4 { margin: 0 0 5px 0; font-size: 14px; }
-        .progress-bar { height: 8px; background: #222; border-radius: 4px; overflow: hidden; margin: 5px 0; }
-        .progress-fill { height: 100%; background: #f1c40f; width: 0%; transition: width 0.3s; }
-        .claim-btn { background: #27ae60; border: none; color: white; padding: 5px 10px; border-radius: 3px; cursor: pointer; display: none; margin-top: 5px; }
+        #game-container { 
+            position: relative; 
+            width: 800px; 
+            height: 400px; 
+            margin: auto; 
+            border: 8px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8), 0 0 20px rgba(255, 215, 0, 0.2);
+            overflow: hidden;
+        }
+
+        canvas { 
+            background: url('https://upload-os-bbs.hoyolab.com/upload/2023/10/09/249619589/13d4969828ff54fde0c8e2634af8b5bb_769731514447414653.jpg') no-repeat center center fixed; 
+            border: 6px solid #333; 
+            border-radius: 8px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        #ui-layer { 
+            position: absolute; 
+            top: 20px; 
+            left: 20px; 
+            pointer-events: none; 
+            color: white; 
+            text-shadow: 2px 2px 8px #000; 
+            z-index: 10;
+        }
+
+        #coin-count { 
+            font-size: 28px; 
+            font-weight: bold; 
+            color: #ffd700; 
+            background: rgba(0,0,0,0.4);
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,215,0,0.3);
+        }
+
+        #sidebar { 
+            width: 300px; 
+            background: rgba(20, 25, 35, 0.9);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 20px;
+            border-left: 1px solid rgba(255,255,255,0.1); 
+            height: 100vh; 
+            overflow-y: auto; 
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        }
+        .achievement { 
+            background: #34495e; 
+            padding: 10px; 
+            margin-bottom: 10px; 
+            border-radius: 5px; 
+            border: 1px solid #555; 
+        }
+
+        .achievement.complete { 
+            border-color: #2ecc71; 
+        }
+
+        .achievement h4 { 
+            margin: 0 0 5px 0; 
+            font-size: 14px; 
+        }
+
+        .progress-bar { 
+            height: 8px; 
+            background: #222; 
+            border-radius: 4px; 
+            overflow: hidden; 
+            margin: 5px 0; 
+        }
+
+        .progress-fill { 
+            height: 100%; 
+            background: #f1c40f; 
+            width: 0%; 
+            transition: width 0.3s; 
+        }
+
+        .claim-btn { 
+            background: #27ae60; 
+            border: none; 
+            color: white; 
+            padding: 5px 10px; 
+            border-radius: 3px; 
+            cursor: pointer; 
+            display: none; 
+            margin-top: 5px; 
+        }
+
+        .simple-exit {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 15px;
+            background: #444;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            z-index: 100;
+            border: 1px solid #666;
+        }
+
+        .simple-exit:hover {
+            background: #660000;
+            border-color: #ff0000;
+        }
+
+        #ui-layer {
+            top: 50px;
+        }
     </style>
 </head>
 <body>
     <div id="game-container">
+        <a href="index.html" class="simple-exit">Exit Game</a>
+        
         <div id="ui-layer">
             <div id="coin-count">Coins: 0</div>
         </div>
@@ -58,12 +170,12 @@
 
         const imgUrls = {
             idle: [
-                'https://t3.ftcdn.net/jpg/01/09/92/14/360_F_109921421_Hq43saajpDYizncHS22zkZsCJNtg7fZF.jpg', 
-                'https://static.vecteezy.com/system/resources/thumbnails/024/861/074/small_2x/man-silhouette-in-expanding-arms-pose-vector.jpg',
-                'https://cdn4.iconfinder.com/data/icons/working-human-1/48/48-1024.png'
+                'https://s3.getstickerpack.com/storage/uploads/sticker-pack/genshin-impact-paimon-1/sticker_2.png?647046bbdaac1ca3728c9de02ad210dc', 
+                'https://s3.getstickerpack.com/storage/uploads/sticker-pack/genshin-impact-paimon-1/sticker_1.png?647046bbdaac1ca3728c9de02ad210dc',
+                'https://s3.getstickerpack.com/storage/uploads/sticker-pack/genshin-paimon/sticker_11.png?143f24af8ebc1c48ee46d647c272eea4'
             ],
-            move: 'https://i.ytimg.com/vi/DKELand1GoQ/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLBb4yzHfz5Bf7O0UcvBSh3o9LCUAw',
-            jump: 'https://imgcdn.stablediffusionweb.com/2025/1/18/8935b7b6-63b9-4068-b310-ea77aaace79c.jpg',
+            move: 'https://s3.getstickerpack.com/storage/uploads/sticker-pack/genshin-impact-paimon-1/sticker_4.png?647046bbdaac1ca3728c9de02ad210dc',
+            jump: 'https://s3.getstickerpack.com/storage/uploads/sticker-pack/genshin-impact-paimon-2/sticker_10.png?cee7e5a6b0ce2d328fcffee0d2b69b27&d=200x200',
             coin: 'https://cucucovers.com/cdn/shop/products/0123b.png?v=1682488856&width=1214'
         };
 
