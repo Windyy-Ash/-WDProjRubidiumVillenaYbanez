@@ -178,17 +178,17 @@ body { font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
   <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import { 
-  getFirestore, 
-  collection, 
-  addDoc, 
-  getDocs, 
-  query, 
-  orderBy, 
-  serverTimestamp 
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { 
+    getFirestore, 
+    collection, 
+    addDoc, 
+    getDocs, 
+    query, 
+    orderBy, 
+    serverTimestamp 
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyBW0ugMjPeoVAzavP9-nQ8-Hr61X-iwv-s",
@@ -200,7 +200,6 @@ import {
     measurementId: "G-2725K3KZK6"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
@@ -208,17 +207,15 @@ import {
   const postInput = document.getElementById("postInput");
   const postsContainer = document.getElementById("postsContainer");
 
-  // Load Posts Function
   async function loadPosts() {
     console.log("Attempting to load posts...");
     postsContainer.innerHTML = "<p style='color:white;'>Loading Teyvat records...</p>";
     
     try {
-      // If this fails, try removing 'orderBy' temporarily to see if it's an index issue
       const q = query(collection(db, "posts"));
       const snapshot = await getDocs(q);
       
-      postsContainer.innerHTML = ""; // Clear loading message
+      postsContainer.innerHTML = "";
       
       if (snapshot.empty) {
         postsContainer.innerHTML = "<p style='color:white;'>No discoveries found yet. Be the first to post!</p>";
@@ -250,7 +247,6 @@ import {
     }
   }
 
-  // Submit Post Event
   submitBtn.addEventListener("click", async () => {
     const text = postInput.value.trim();
     if (!text) return alert("Please write something first!");
@@ -275,10 +271,8 @@ import {
     }
   });
 
-  // Initial Load
   loadPosts();
 
-  // Navigation Logic (Expose to Window for HTML buttons)
   window.openNav = function() {
     document.getElementById("mySidenav").style.width = "250px";
   };
