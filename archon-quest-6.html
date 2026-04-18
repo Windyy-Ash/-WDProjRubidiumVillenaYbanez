@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Act VI — Aftermath</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
   :root { --gold:#f4d27a; --panel: rgba(255,255,255,0.14); --panel-dark: rgba(0,0,0,0.45); --accent:#8ad5ff; --text:#ffffff; --radius:18px; }
@@ -24,7 +26,7 @@
   .characters { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap:26px; padding-top:10px; }
   .char-card { cursor:pointer; border-radius:16px; overflow:hidden; position:relative; border:1px solid rgba(255,255,255,0.15); transition:transform 0.35s, box-shadow 0.35s; }
   .char-card::after { content:""; position:absolute; inset:0; box-shadow: inset 0 0 0 2px rgba(244,210,122,0); transition: box-shadow 0.35s; }
-  .char-card img { width:100%; height:260px; object-fit:cover; }
+    .char-card img { width:100%; height:260px; object-fit:cover; object-position: center 20%; }
   .char-card:hover { transform: translateY(-6px) scale(1.05); box-shadow:0 0 30px rgba(244,210,122,0.35); }
   .char-card:hover::after { box-shadow: inset 0 0 0 2px rgba(244,210,122,0.55); }
   .modal { position:fixed; inset:0; background:rgba(0,0,0,0.8); display:none; align-items:center; justify-content:center; z-index:10; }
@@ -39,50 +41,9 @@
   .particles span { position:absolute; width:6px; height:6px; background:rgba(138,213,255,0.7); border-radius:50%; filter:blur(1px); animation: float 18s linear infinite; }
   @keyframes float { from{transform: translateY(110vh) translateX(0); opacity:0;} 10%{opacity:0.65;} 90%{opacity:0.65;} to{transform: translateY(-20vh) translateX(40px); opacity:0;} }
 
-    .coming-soon {
-        position: fixed;
-        inset: 0;
-        backdrop-filter: blur(14px);
-        background: rgba(0,0,0,0.58);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 50;
-        text-align: center;
-        color: #fef6d8;
-        padding: 20px;
-    }
-
-    .coming-soon .cs-box {
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(244,210,122,0.6);
-        border-radius: 18px;
-        padding: 22px 28px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-        backdrop-filter: blur(6px);
-    }
-
-    .coming-soon .cs-title {
-        font-size: 2rem;
-        letter-spacing: 1px;
-        font-weight: 700;
-        margin-bottom: 8px;
-    }
-
-    .coming-soon .cs-note {
-        font-size: 1rem;
-        opacity: 0.85;
-        letter-spacing: 0.5px;
-    }
 </style>
 </head>
 <body>
-<div class="coming-soon">
-    <div class="cs-box">
-        <div class="cs-title">Coming Soon!</div>
-        <div class="cs-note">This act is still being finished. Thanks for your patience.</div>
-    </div>
-</div>
 <div class="particles"></div>
 <div class="container">
 
@@ -94,42 +55,123 @@
     </div>
 
     <div class="panel">
-        <h2>Key Characters</h2>
+        <h2>Playable Characters That Appeared in the Archon Quest</h2>
         <div class="characters">
             <div class="char-card" onclick="openModal(
-                'Dainsleif',
-                'The Twilight Sword, bound to the fate of Khaenri\'ah and the Abyss.',
-                'https://static.wikia.nocookie.net/gensin-impact/images/b/b4/Character_Dainsleif_Card.png',
-                'https://static.wikia.nocookie.net/gensin-impact/images/6/6c/Element_Cryo.png'
+                'Lauma',
+                'A composed figure tied to Nod Krai\'s shifting alliances, guiding the Traveler through frozen frontiers.',
+                'https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/644358904_932855779503820_915860173396706435_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=dd6889&_nc_eui2=AeEvyr5A7rH_fZDaqzU3xebBI2KZkkSsEsUjYpmSRKwSxTep3y2TEAv-ytqJI_oNaJQDH62llb5I1ZEOF64FfGBK&_nc_ohc=Z9tvs3YAIOcQ7kNvwFbj2Zd&_nc_oc=Ador1hjLNMgz8XX1nDRday9wLaqcY5ofrzHOcTg5W7lStqdg5Quf-7nm0RHQEdXvrBo&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=EBU3TfoZGuwYIQk_oxpxow&_nc_ss=7a3a8&oh=00_Af2DWdags5Xq1y_RwLSvbWtXOibhHhIl92hNKnVkpcns1Q&oe=69E8E11E',
+                'https://preview.redd.it/dendros-symbolism-in-connection-with-nahida-v0-yfwfhy96vvr91.png?width=360&format=png&auto=webp&s=8e6db1a1b43620713aeeae7a838fdb59077ab7d0'
             )">
-                <img src="https://static.wikia.nocookie.net/gensin-impact/images/b/b4/Character_Dainsleif_Card.png" alt="Dainsleif">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/d/d9/Lauma_Card.png/revision/latest?cb=20250805151400" alt="Lauma">
             </div>
 
             <div class="char-card" onclick="openModal(
-                'Lumine/Aether',
-                'The lost sibling leading the Abyss Order, pursuing a path apart from the Traveler.',
-                'https://static.wikia.nocookie.net/gensin-impact/images/1/1d/Character_Lumine_Card.png',
-                'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Element_Pyro.png'
+                'Varka',
+                'Grand Master of the Knights of Favonius, leading an expedition whose reach extends into Nod Krai.',
+                'https://preview.redd.it/am-i-the-only-one-whos-disappointed-with-varkas-design-v0-kozvuswtc1ff1.jpg?width=640&crop=smart&auto=webp&s=90c02a1ab76920d306fb4563de6817cae2fcacc8',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/03/Element_Anemo-(1).png'
             )">
-                <img src="https://static.wikia.nocookie.net/gensin-impact/images/1/1d/Character_Lumine_Card.png" alt="Lumine/Aether">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/e/e5/Varka_Card.png/revision/latest?cb=20260123040343" alt="Varka">
             </div>
 
             <div class="char-card" onclick="openModal(
-                'Pierro',
-                'The first of the Fatui Harbingers, manipulating events from the shadows.',
-                'https://static.wikia.nocookie.net/gensin-impact/images/a/a3/NPC_Pierro.png',
-                'https://static.wikia.nocookie.net/gensin-impact/images/7/7f/Element_Unknown.png'
+                'Kyryll Chudomirovich Flins',
+                'A Nod Krai insider with knowledge of the region\'s power struggles and hidden routes.',
+                'https://preview.redd.it/so-many-people-stressing-out-over-meta-builds-guys-tell-me-v0-vgoxmgcfeu8g1.jpg?width=640&crop=smart&auto=webp&s=bafbceeb5d300a36be6281a0b453111f4510d149',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/Electro.png'
             )">
-                <img src="https://static.wikia.nocookie.net/gensin-impact/images/a/a3/NPC_Pierro.png" alt="Pierro">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/6/64/Flins_Card.png/revision/latest?cb=20250805151240" alt="Flins">
             </div>
 
             <div class="char-card" onclick="openModal(
-                'Dottore',
-                'Favonian Cavalry Captain with secrets tied to Khaenri\'ah.',
-                'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Character_Kaeya_Card.png',
-                'https://static.wikia.nocookie.net/gensin-impact/images/6/6c/Element_Cryo.png'
+                'Durin',
+                'A presence tied to ancient power and lingering catastrophe, resurfacing in the northern narrative.',
+                'https://preview.redd.it/so-durin-is-currently-the-youngest-playable-character-v0-62r05ibxea4g1.jpeg?auto=webp&s=87c12827b7776733427e0f5eee0f089a553b707a',
+                'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7dd702d9-2cf1-40a6-a4a8-e3ce9a2aa249/de82i78-c5cb3870-e6c9-4974-9817-466556af806e.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzdkZDcwMmQ5LTJjZjEtNDBhNi1hNGE4LWUzY2U5YTJhYTI0OVwvZGU4Mmk3OC1jNWNiMzg3MC1lNmM5LTQ5NzQtOTgxNy00NjY1NTZhZjgwNmUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.rpjftn6SXR3tU8QA5r0rK-5Fx6IAarwc_fpe9vDQLRc'
             )">
-                <img src="https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Character_Kaeya_Card.png" alt="Kaeya">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/8/8e/Durin_Card.png/revision/latest?cb=20251024040817" alt="Durin">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Columbina',
+                'The Damselette of the Fatui Harbingers, an enigmatic figure whose calm presence masks unsettling power.',
+                'https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-6/603821549_122162106488696364_7029418954575349077_n.jpg?stp=cp6_dst-jpg_p526x296_tt6&_nc_cat=105&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGP3MtSmdPGdkGMRnUj5GNczyoMZA-gR0jPKgxkD6BHSMZeRIPbRXJ1ftwmaQBvFNEl99QDTIwbvIqucl-8xbhs&_nc_ohc=9cal4lxwSycQ7kNvwFFWvLa&_nc_oc=AdroKxJFinJZ0bfwfh_q3pVoABYndXsDLPR1cEqt9Pn5uScobxGkvtseKoCK7XFlKZY&_nc_zt=23&_nc_ht=scontent.fmnl17-4.fna&_nc_gid=JWG_4Lh5IPaf4W-h7dHxmg&_nc_ss=7a3a8&oh=00_Af19vWrSimdlZkSb-5dAFuP0O74QT1u4xqHXCjAkq8E9yQ&oe=69E8BB37',
+                'https://static.icy-veins.com/images/genshin-impact/elements/hydro.webp'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/d/d2/Columbina_Card_2.png/revision/latest/scale-to-width/360?cb=20260116040544" alt="Columbina">
+            </div>
+
+             <div class="char-card" onclick="openModal(
+                'Arlecchino',
+                'The Knave of the Fatui Harbingers, a formidable leader whose ambitions cast a long shadow over Teyvat’s politics.',
+                'https://i.redd.it/happy-birthday-arlecchino-v0-mtfrkju725kd1.jpg?width=3000&format=pjpg&auto=webp&s=d1e9962357c4a5fa4bb2403db6f2f2b2a85159ca',
+                'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7dd702d9-2cf1-40a6-a4a8-e3ce9a2aa249/de82i78-c5cb3870-e6c9-4974-9817-466556af806e.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzdkZDcwMmQ5LTJjZjEtNDBhNi1hNGE4LWUzY2U5YTJhYTI0OVwvZGU4Mmk3OC1jNWNiMzg3MC1lNmM5LTQ5NzQtOTgxNy00NjY1NTZhZjgwNmUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.rpjftn6SXR3tU8QA5r0rK-5Fx6IAarwc_fpe9vDQLRc'
+            )">
+                <img src="https://pic.bittopup.com/apiUpload/debbbc377724c590568d737ffd286f49.jpg">
+            </div>
+            
+          <div class="char-card" onclick="openModal(
+              'Childe/Tartaglia',
+              'A Fatui Harbinger who befriends the Traveler while secretly pursuing the Tsaritsa’s goals. His schemes trigger the final conflict in Liyue Harbor.',
+              'https://i.pinimg.com/736x/b3/65/b2/b365b2da4e97e38c478bd949e51f7cdc.jpg',
+              'https://static.icy-veins.com/images/genshin-impact/elements/hydro.webp'
+            )">
+              <img src="https://static.wikia.nocookie.net/gensin-impact/images/3/3c/Tartaglia_Card.png/revision/latest?cb=20231114211512">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Ineffa',
+                'A key figure in Nod Krai\'s unfolding conflict, balancing duty with emerging truths.',
+                'https://i.pinimg.com/736x/51/71/46/517146760cd4478242cb7437ed1a79c1.jpg',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/Electro.png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/3/39/Ineffa_Card.png/revision/latest?cb=20250623100844" alt="Ineffa">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Jahoda',
+                'A strategist from the northern reaches who steers the Traveler through Nod Krai\'s political storms.',
+                'https://i.pinimg.com/736x/5c/d5/cb/5cd5cb3bceb348e508e496772e1122af.jpg',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/03/Element_Anemo-(1).png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/6/6f/Jahoda_Card.png/revision/latest?cb=20251024100537" alt="Jahoda">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Nefer',
+                'A calm presence from Nod Krai whose guidance helps steady the Traveler amid shifting alliances.',
+                'https://i.pinimg.com/736x/65/2d/6e/652d6e3d5ddaa9495cfee2e04cdcda71.jpg',
+                'https://preview.redd.it/dendros-symbolism-in-connection-with-nahida-v0-yfwfhy96vvr91.png?width=360&format=png&auto=webp&s=8e6db1a1b43620713aeeae7a838fdb59077ab7d0'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/9/9a/Nefer_Card.png/revision/latest?cb=20250912040519" alt="Nefer">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Aino',
+                'A watcher of Nod Krai\'s frontiers, keeping the balance between outsiders and local clans.',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2025/07/genshin-impact-aino.jpg?w=1600&h=900&fit=crop',
+                'https://static.icy-veins.com/images/genshin-impact/elements/hydro.webp'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/e/e5/Aino_Card.png/revision/latest?cb=20250805151448" alt="Aino">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Scaramouche',
+                'A former Harbinger reborn as the Wanderer, he confronts his past and plays a pivotal role in Sumeru’s conflict.',
+                'https://pbs.twimg.com/profile_images/1610126027162005506/DU4_x-qb_400x400.jpg',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/03/Element_Anemo-(1).png'
+            )">
+                <img src="https://upload-os-bbs.hoyolab.com/upload/2022/11/01/6824160/d3a5ef07cdf3e89f5c496c51fda6ecf4_3565503706334858806.jpg" alt="Scaramouche">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Albedo',
+                'The Chief Alchemist of the Knights of Favonius, a reserved genius who pursues the secrets of life and creation through alchemy.',
+                'https://external-preview.redd.it/official-2022-birthday-illustration-albedo-v0-IxSg36R1TqVLgCqulU_oRZrIKul1bbAcDmh7UrXnQMU.jpg?auto=webp&s=a38a7348e8d23bdfb7f4db916e8580556673ce0e',
+                'https://static.icy-veins.com/images/genshin-impact/elements/geo.webp'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/0/01/Albedo_Card.png/revision/latest?cb=20240808210932" alt="Albedo">
             </div>
         </div>
     </div>

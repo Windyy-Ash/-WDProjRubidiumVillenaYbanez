@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Act V — Natlan</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
   :root { --gold:#f4d27a; --panel: rgba(255,255,255,0.14); --panel-dark: rgba(0,0,0,0.45); --accent:#f6a96b; --text:#ffffff; --radius:18px; }
@@ -24,7 +26,7 @@
   .characters { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap:26px; padding-top:10px; }
   .char-card { cursor:pointer; border-radius:16px; overflow:hidden; position:relative; border:1px solid rgba(255,255,255,0.15); transition:transform 0.35s, box-shadow 0.35s; }
   .char-card::after { content:""; position:absolute; inset:0; box-shadow: inset 0 0 0 2px rgba(244,210,122,0); transition: box-shadow 0.35s; }
-  .char-card img { width:100%; height:260px; object-fit:cover; }
+    .char-card img { width:100%; height:260px; object-fit:cover; object-position: center 20%; }
   .char-card:hover { transform: translateY(-6px) scale(1.05); box-shadow:0 0 30px rgba(244,210,122,0.35); }
   .char-card:hover::after { box-shadow: inset 0 0 0 2px rgba(244,210,122,0.55); }
   .modal { position:fixed; inset:0; background:rgba(0,0,0,0.8); display:none; align-items:center; justify-content:center; z-index:10; }
@@ -39,50 +41,9 @@
   .particles span { position:absolute; width:6px; height:6px; background:rgba(246,169,107,0.68); border-radius:50%; filter:blur(1px); animation: float 18s linear infinite; }
   @keyframes float { from{transform: translateY(110vh) translateX(0); opacity:0;} 10%{opacity:0.65;} 90%{opacity:0.65;} to{transform: translateY(-20vh) translateX(40px); opacity:0;} }
 
-    .coming-soon {
-        position: fixed;
-        inset: 0;
-        backdrop-filter: blur(14px);
-        background: rgba(0,0,0,0.58);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 50;
-        text-align: center;
-        color: #fef6d8;
-        padding: 20px;
-    }
-
-    .coming-soon .cs-box {
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(244,210,122,0.6);
-        border-radius: 18px;
-        padding: 22px 28px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-        backdrop-filter: blur(6px);
-    }
-
-    .coming-soon .cs-title {
-        font-size: 2rem;
-        letter-spacing: 1px;
-        font-weight: 700;
-        margin-bottom: 8px;
-    }
-
-    .coming-soon .cs-note {
-        font-size: 1rem;
-        opacity: 0.85;
-        letter-spacing: 0.5px;
-    }
 </style>
 </head>
 <body>
-<div class="coming-soon">
-    <div class="cs-box">
-        <div class="cs-title">Coming Soon!</div>
-        <div class="cs-note">This act is still being finished. Thanks for your patience.</div>
-    </div>
-</div>
 <div class="particles"></div>
 <div class="container">
 
@@ -95,42 +56,96 @@
     </div>
 
     <div class="panel">
-        <h2>Key Characters</h2>
+        <h2>Playable Characters That Appeared in the Archon Quest</h2>
         <div class="characters">
             <div class="char-card" onclick="openModal(
-                'Murata',
-                'The Pyro Archon whose fiery resolve shapes Natlan\'s spirit of competition.',
-                'https://static.wikia.nocookie.net/gensin-impact/images/0/0c/Concept_Art_Murata.png',
-                'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Element_Pyro.png'
+                'Ororon',
+                'The Pyro Archon whose fiery resolve shapes Natlan\'s spirit of competition and the trials that define the nation.',
+                'https://pbs.twimg.com/media/Gl-KcwbbYAEklS8.jpg',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/Electro.png'
             )">
-                <img src="https://static.wikia.nocookie.net/gensin-impact/images/0/0c/Concept_Art_Murata.png" alt="Murata">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/c/c1/Ororon_Card.png/revision/latest?cb=20241007100604" alt="Murata">
             </div>
 
             <div class="char-card" onclick="openModal(
-                'Xbalanque',
-                'A warrior bound to the volcanic drakes and their ancient pacts.',
-                'https://static.wikia.nocookie.net/gensin-impact/images/c/c1/Enemy_Great_Scalespawn.png',
-                'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Element_Pyro.png'
+                'Iansan',
+                'A fitness instructor and Pilgrimage of the Return of the Sacred Flame Champion Mentor from the Collective of Plenty.',
+                'https://act-upload.hoyoverse.com/event-ugc-hoyowiki/2025/08/15/35428890/9f196bb5fe8365524e79db35ad4d3145_6712055042830494409.png?x-oss-process=image%2Fformat%2Cwebp',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/Electro.png'
             )">
-                <img src="https://static.wikia.nocookie.net/gensin-impact/images/c/c1/Enemy_Great_Scalespawn.png" alt="Xbalanque">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/8/86/Iansan_Card.png/revision/latest?cb=20250218102049" alt="Xbalanque">
             </div>
 
             <div class="char-card" onclick="openModal(
                 'Citlali',
-                'A fleet-footed racer proving her strength in the Rite of Battle.',
-                'https://static.wikia.nocookie.net/gensin-impact/images/8/85/Character_Dehya_Card.png',
-                'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Element_Pyro.png'
+                'A fleet-footed racer proving her strength in the Rite of Battle and inspiring the clans with bold, practical courage.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/1/1e/Citlali_Birthday_2025.png/revision/latest/scale-to-width-down/1200?cb=20250120040137',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/Cryo.png'
             )">
-                <img src="https://static.wikia.nocookie.net/gensin-impact/images/8/85/Character_Dehya_Card.png" alt="Citlali">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/0/0a/Citlali_Card.png/revision/latest?cb=20241125101119" alt="Citlali">
             </div>
 
             <div class="char-card" onclick="openModal(
                 'Mavuika',
-                'Guardian of the arena, honoring both strength and mercy.',
-                'https://static.wikia.nocookie.net/gensin-impact/images/b/b7/Enemy_Legend_of_the_Void.png',
-                'https://static.wikia.nocookie.net/gensin-impact/images/6/6c/Element_Cryo.png'
+                'Guardian of the arena, honoring both strength and mercy as the nation\'s conflicts rise toward a final showdown.',
+                'https://scontent.fmnl17-8.fna.fbcdn.net/v/t39.30808-6/541046971_808977188453219_1557547275358775036_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeFi9XUJMJlvVGU7ykjO1_EJA7zy9YDQDBwDvPL1gNAMHPp_aNVSAFmaBmnK2afjqLdwX16giDwnS5fDmN8J9sSk&_nc_ohc=j8kEd81hWsoQ7kNvwG_llSe&_nc_oc=AdqKBtQTQl6hpQPT5zd_a_6oP9sVdfPp70sU3iEUkRB0zrbjnA7ijBQjGAV_AjHlxpM&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&_nc_gid=IOJlcgr_2Ys7Dhg0QZOUgg&_nc_ss=7a3a8&oh=00_Af2VDps729iRnpZTPu62g4YqC7iu98SNZhkuvjOmVquZEg&oe=69E810EE',
+                'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7dd702d9-2cf1-40a6-a4a8-e3ce9a2aa249/de82i78-c5cb3870-e6c9-4974-9817-466556af806e.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzdkZDcwMmQ5LTJjZjEtNDBhNi1hNGE4LWUzY2U5YTJhYTI0OVwvZGU4Mmk3OC1jNWNiMzg3MC1lNmM5LTQ5NzQtOTgxNy00NjY1NTZhZjgwNmUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.rpjftn6SXR3tU8QA5r0rK-5Fx6IAarwc_fpe9vDQLRc'
             )">
-                <img src="https://static.wikia.nocookie.net/gensin-impact/images/b/b7/Enemy_Legend_of_the_Void.png" alt="Mavuika">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2e/Mavuika_Card.png/revision/latest?cb=20241125041611" alt="Mavuika">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Kinich',
+                'A rising warrior known for decisive strikes and steadfast resolve amid Natlan\'s trials.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/f/f7/Kinich_Birthday_2024.png/revision/latest/scale-to-width-down/1200?cb=20241111040147',
+                'https://preview.redd.it/dendros-symbolism-in-connection-with-nahida-v0-yfwfhy96vvr91.png?width=360&format=png&auto=webp&s=8e6db1a1b43620713aeeae7a838fdb59077ab7d0'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/9/9a/Kinich_Card.png/revision/latest?cb=20240715100623" alt="Kinich">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Mualani',
+                'A swift scout who charts the volcanic paths and keeps the clans connected.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/5/57/Mualani_Birthday_2025.jpg/revision/latest/scale-to-width-down/1200?cb=20250803040935',
+                'https://static.icy-veins.com/images/genshin-impact/elements/hydro.webp'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/5/50/Mualani_Card.png/revision/latest/scale-to-width/360?cb=20240716011801" alt="Mualani">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Kachina',
+                'A bold challenger who thrives in Natlan\'s contests of strength and endurance.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/1/1b/Kachina_Birthday_2025.png/revision/latest/scale-to-width-down/1200?cb=20250422040103',
+                'https://static.icy-veins.com/images/genshin-impact/elements/geo.webp'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/f/f8/Kachina_Card.png/revision/latest?cb=20240715101101" alt="Kachina">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Chasca',
+                'A tactician who keeps the clans united as rivalries flare across the land.',
+                'https://i.redd.it/happy-birthday-chasca-v0-l5bryqe5la6g1.jpg?width=3000&format=pjpg&auto=webp&s=a8d1c8523d39f713b032faeafe36799d355ec4e5',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/03/Element_Anemo-(1).png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/7/72/Chasca_Card.png/revision/latest?cb=20241007100057" alt="Chasca">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Ifa',
+                'A clan guardian who stands watch over Natlan\'s sacred rites and borders.',
+                'https://static.wikia.nocookie.net/gensin-impact/images/d/dc/Ifa_Birthday_2026.png/revision/latest/scale-to-width-down/1200?cb=20260323040054',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/03/Element_Anemo-(1).png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/e/e8/Ifa_Card.png/revision/latest?cb=20250401114237" alt="Ifa">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Xilonen',
+                'A fearless contender whose ambition fuels the nation\'s blazing competitions.',
+                'https://preview.redd.it/happy-birthday-xilonen-v0-p2cw86xtzdoe1.jpg?width=640&crop=smart&auto=webp&s=0833f75b5cf02668dacf9c0158afa85b9acf1261',
+                'https://static.icy-veins.com/images/genshin-impact/elements/geo.webp'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/0/07/Xilonen_Card.png/revision/latest?cb=20240826112451" alt="Xilonen">
             </div>
         </div>
     </div>

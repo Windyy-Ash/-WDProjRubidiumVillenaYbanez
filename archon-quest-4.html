@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Act IV — Fontaine</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="https://yoolk.ninja/wp-content/uploads/2021/08/Games-GenshinImpact-1024x1024.png" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
   :root { --gold:#f4d27a; --panel: rgba(255,255,255,0.14); --panel-dark: rgba(0,0,0,0.45); --accent:#9fd3c7; --text:#ffffff; --radius:18px; }
@@ -39,50 +41,9 @@
   .particles span { position:absolute; width:6px; height:6px; background:rgba(159,211,199,0.65); border-radius:50%; filter:blur(1px); animation: float 18s linear infinite; }
   @keyframes float { from{transform: translateY(110vh) translateX(0); opacity:0;} 10%{opacity:0.6;} 90%{opacity:0.6;} to{transform: translateY(-20vh) translateX(40px); opacity:0;} }
 
-    .coming-soon {
-        position: fixed;
-        inset: 0;
-        backdrop-filter: blur(14px);
-        background: rgba(0,0,0,0.58);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 50;
-        text-align: center;
-        color: #fef6d8;
-        padding: 20px;
-    }
-
-    .coming-soon .cs-box {
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(244,210,122,0.6);
-        border-radius: 18px;
-        padding: 22px 28px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-        backdrop-filter: blur(6px);
-    }
-
-    .coming-soon .cs-title {
-        font-size: 2rem;
-        letter-spacing: 1px;
-        font-weight: 700;
-        margin-bottom: 8px;
-    }
-
-    .coming-soon .cs-note {
-        font-size: 1rem;
-        opacity: 0.85;
-        letter-spacing: 0.5px;
-    }
 </style>
 </head>
 <body>
-<div class="coming-soon">
-    <div class="cs-box">
-        <div class="cs-title">Coming Soon!</div>
-        <div class="cs-note">This act is still being finished. Thanks for your patience.</div>
-    </div>
-</div>
 <div class="particles"></div>
 <div class="container">
 
@@ -95,42 +56,96 @@
     </div>
 
     <div class="panel">
-        <h2>Key Characters</h2>
+        <h2>Playable Characters That Appeared in the Archon Quest</h2>
         <div class="characters">
             <div class="char-card" onclick="openModal(
                 'Furina',
-                'The Hydro Archon whose flair for drama conceals deeper resolve.',
-                'https://static.wikia.nocookie.net/gensin-impact/images/5/5a/Character_Furina_Card.png',
-                'https://static.wikia.nocookie.net/gensin-impact/images/6/6a/Element_Hydro.png'
+                'The Hydro Archon whose flair for drama conceals deeper resolve. Her role in Fontaine’s trials reveals a painful truth about justice.',
+                'https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/558989222_850641667620104_1580915319678243983_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEbT2xm6UKGwZt2uX8l7jOpcIvfk4dVD69wi9-Th1UPr36OJTpt-ATOfZWmyDJIfNDAhIYW1mHXluv6_9rOAkKK&_nc_ohc=cR5DGHlhoawQ7kNvwGd-K8u&_nc_oc=AdqCHUh77Mq5v4h6eQACBdP5u103vbF_BDjoz4zGuxmgvwHJcxaa3MocBsqKXAltk5M&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=K-alc1hY0Qh7TZ7_FLNztA&_nc_ss=7a3a8&oh=00_Af1pX8_Epo42ZLKPN-kJkDefzog_WWEsCveKObOygEc2GQ&oe=69E817D4',
+                'https://static.icy-veins.com/images/genshin-impact/elements/hydro.webp'
             )">
-                <img src="https://static.wikia.nocookie.net/gensin-impact/images/5/5a/Character_Furina_Card.png">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/27/Furina_Card.png/revision/latest?cb=20230925100151">
             </div>
 
             <div class="char-card" onclick="openModal(
                 'Neuvillette',
-                'The Chief Justice who seeks truth beyond staged verdicts.',
-                'https://static.wikia.nocookie.net/gensin-impact/images/6/65/Character_Neuvillette_Card.png',
-                'https://static.wikia.nocookie.net/gensin-impact/images/6/6a/Element_Hydro.png'
+                'The Chief Justice who seeks truth beyond staged verdicts. He guides the Traveler through Fontaine’s legal spectacle and hidden history.',
+                'https://i.pinimg.com/736x/c9/23/18/c92318565de7045ab5a99844270ce2d7.jpg',
+                'https://static.icy-veins.com/images/genshin-impact/elements/hydro.webp'
             )">
-                <img src="https://static.wikia.nocookie.net/gensin-impact/images/6/65/Character_Neuvillette_Card.png">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/7/76/Neuvillette_Card.png/revision/latest?cb=20230814101543">
             </div>
 
             <div class="char-card" onclick="openModal(
                 'Lyney',
-                'A magician entwined with Fontaine’s secrets and illusions.',
-                'https://static.wikia.nocookie.net/gensin-impact/images/2/2d/Character_Lyney_Card.png',
-                'https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Element_Pyro.png'
+                'A magician entwined with Fontaine’s secrets and illusions. His performances and trials pull the Traveler into the city’s conspiracy.',
+                'https://upload-os-bbs.hoyolab.com/upload/2024/12/26/258270127/4fed1b0d14b77347c45bdbcff781ac3d_1412384749750834199.png?x-oss-process=image%2Fresize%2Cs_600%2Fauto-orient%2C0%2Finterlace%2C1%2Fformat%2Cwebp%2Fquality%2Cq_70',
+                'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7dd702d9-2cf1-40a6-a4a8-e3ce9a2aa249/de82i78-c5cb3870-e6c9-4974-9817-466556af806e.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzdkZDcwMmQ5LTJjZjEtNDBhNi1hNGE4LWUzY2U5YTJhYTI0OVwvZGU4Mmk3OC1jNWNiMzg3MC1lNmM5LTQ5NzQtOTgxNy00NjY1NTZhZjgwNmUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.rpjftn6SXR3tU8QA5r0rK-5Fx6IAarwc_fpe9vDQLRc'
             )">
-                <img src="https://static.wikia.nocookie.net/gensin-impact/images/2/2d/Character_Lyney_Card.png">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/8/86/Lyney_Card.png/revision/latest?cb=20230703100649">
             </div>
 
             <div class="char-card" onclick="openModal(
                 'Navia',
-                'Leader of Spina di Rosula, balancing compassion with ironclad justice.',
-                'https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Character_Navia_Card.png',
-                'https://static.wikia.nocookie.net/gensin-impact/images/7/73/Element_Geo.png'
+                'Leader of Spina di Rosula, balancing compassion with ironclad justice. She supports the Traveler through the city’s unrest.',
+                'https://assetsio.gnwcdn.com/genshin-impact-navia-build.jpg?width=1200&height=1200&fit=crop&quality=100&format=png&enable=upscale&auto=webp',
+                'https://static.icy-veins.com/images/genshin-impact/elements/geo.webp'
             )">
-                <img src="https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Character_Navia_Card.png">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/0/09/Navia_Card.png/revision/latest?cb=20231106101023">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Lynette',
+                'Lyney’s partner and assistant who helps navigate the city’s secrets with quiet precision.',
+                'https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-6/480496067_662922323058707_2822416558190639282_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHZOH10y9Qp-MyixQS8kd4HAWQ8oyL_8bABZDyjIv_xsD2jEMxs1_3XJZjsc7lqqvaacZ2-FCl0Hy9iRvnbewOD&_nc_ohc=QjJoD5UiHI0Q7kNvwGYugFz&_nc_oc=Adpl5YLzR2OQk4i2G7o-eKwRALheSo3WkC5LmaV2Re4UzlQWsEzN_u_B2yvo0l-Wvbo&_nc_zt=23&_nc_ht=scontent.fmnl17-4.fna&_nc_gid=UwbaSY3_v9YsKntX4C97KQ&_nc_ss=7a3a8&oh=00_Af3BzrN_BMmOEtVwdiiBvo61N0QkBZZePog4duIbt2RP6g&oe=69E83102',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/03/Element_Anemo-(1).png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/e/e4/Lynette_Card.png/revision/latest?cb=20230703101903">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Wriothesley',
+                'The Duke of the Fortress of Meropide who balances order, fairness, and the people under his care.',
+                'https://preview.redd.it/wriothesley-is-finally-back-in-5-4s-second-banner-v0-k0p2pirvzxee1.jpeg?auto=webp&s=e74c6f7cdd269ab05b23187d5aca49099a6be7e9',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/Cryo.png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/9/94/Wriothesley_Card.png/revision/latest?cb=20230814130334">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Clorinde',
+                'Champion Duelist of Fontaine whose resolve and sense of duty shape the nation’s dramatic trials.',
+                'https://act-upload.hoyoverse.com/event-ugc-hoyowiki/2024/10/21/35428890/a7e857e468d947caea267f63c3ef21ab_5319442601064041315.png?x-oss-process=image%2Fformat%2Cwebp',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/Electro.png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/c/c4/Clorinde_Card.png/revision/latest?cb=20241010120050">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Arlecchino',
+                'The Knave of the Fatui Harbingers, a formidable leader whose ambitions cast a long shadow over Teyvat’s politics.',
+                'https://i.redd.it/happy-birthday-arlecchino-v0-mtfrkju725kd1.jpg?width=3000&format=pjpg&auto=webp&s=d1e9962357c4a5fa4bb2403db6f2f2b2a85159ca',
+                'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7dd702d9-2cf1-40a6-a4a8-e3ce9a2aa249/de82i78-c5cb3870-e6c9-4974-9817-466556af806e.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzdkZDcwMmQ5LTJjZjEtNDBhNi1hNGE4LWUzY2U5YTJhYTI0OVwvZGU4Mmk3OC1jNWNiMzg3MC1lNmM5LTQ5NzQtOTgxNy00NjY1NTZhZjgwNmUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.rpjftn6SXR3tU8QA5r0rK-5Fx6IAarwc_fpe9vDQLRc'
+            )">
+                <img src="https://pic.bittopup.com/apiUpload/debbbc377724c590568d737ffd286f49.jpg">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+                'Skirk',
+                'A mysterious master tied to the Abyss, known for her strength and connection to Tartaglia’s growth.',
+                'https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/576715565_870683848949219_1561313343990887710_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeFePCL7iMUl0cxpZwEbwUcxAHGUVv_bJQgAcZRW_9slCNTJNJZ70j0fNFRXczkZmAo5PxRNd2KKMOc0B5ShRuut&_nc_ohc=sZ2NSTEEXe0Q7kNvwHADlk1&_nc_oc=AdprS3kDo7DrC9AJ0CHcwkBnUoKgfICg7upFcn_jvdN8BUZLtsvyTewbBByPlGJUfWI&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=0GC1WMiiW1fECjEkr2evfQ&_nc_ss=7a3a8&oh=00_Af2eOswycIsP9wLO7UqxHdIylQDkYATt4V72HfM1Fte8lg&oe=69E82B7C',
+                'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/Cryo.png'
+            )">
+                <img src="https://static.wikia.nocookie.net/gensin-impact/images/3/35/Skirk_Card.png/revision/latest?cb=20250513040246">
+            </div>
+
+            <div class="char-card" onclick="openModal(
+              'Childe/Tartaglia',
+              'A Fatui Harbinger who befriends the Traveler while secretly pursuing the Tsaritsa’s goals. His schemes trigger the final conflict in Liyue Harbor.',
+              'https://i.pinimg.com/736x/b3/65/b2/b365b2da4e97e38c478bd949e51f7cdc.jpg',
+              'https://static.icy-veins.com/images/genshin-impact/elements/hydro.webp'
+            )">
+              <img src="https://static.wikia.nocookie.net/gensin-impact/images/3/3c/Tartaglia_Card.png/revision/latest?cb=20231114211512">
             </div>
         </div>
     </div>

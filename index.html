@@ -494,8 +494,7 @@
     function openNav() {
       const nav = document.getElementById("mySidenav");
       if (!nav) return;
-      const computedWidth = Math.min(window.innerWidth * 0.85, 320);
-      nav.style.width = `${computedWidth}px`;
+      nav.style.width = "250px";
       nav.dataset.open = 'true';
     }
     function closeNav() {
