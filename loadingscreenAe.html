@@ -50,6 +50,13 @@
       justify-content:center;
       z-index:10;
       flex-direction:column;
+      transition:opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .stage.fade-out {
+      opacity:0;
+      transform:scale(0.98);
+      pointer-events:none;
     }
     
     .card {
@@ -120,22 +127,28 @@
     .txt {
       font-size:18px;
       padding:6px 10px;
-      border-radius:8px;
-      opacity:0;transition:all 0.8s ease-in-out;
+      border-radius:10px;
+      opacity:0;
+      transition:all 0.8s ease-in-out;
       position:absolute;
       left:50%;
       transform:translateX(-50%);
+      color:#111;
+      background:rgba(255,255,255,0.75);
+      box-shadow:0 8px 18px rgba(0,0,0,0.12);
     }
     
     .txt.active {
       opacity:0.95;
       font-size:26px;
-      text-shadow:0 0 12px rgba(255,255,255,0.85),0 0 24px rgba(255,150,200,0.12);
+      font-weight:700;
+      letter-spacing:0.3px;
+      text-shadow:none;
     }
     
     .txt.glow {
-      color:white;
-      text-shadow:0 0 12px rgba(255,255,255,0.9),0 0 28px rgba(255,150,200,0.22);
+      color:#111;
+      text-shadow:none;
     }
 
     .enter-btn {
@@ -208,7 +221,18 @@
         'https://wallpapercave.com/wp/wp8932811.png',
         'https://wallpapercave.com/wp/wp10165118.jpg'
       ];
-      const textsList = Array.from({length:10},(_,i)=>`text${i+1}`);
+      const textsList = [
+        "Use Elemental Sight to spot puzzles and hidden clues.",
+        "Cook before a boss fight; buffs stack with food.",
+        "Mark ores and specialties on the map for quick farming.",
+        "Glide stamina low? Hug cliffs and drop to reset.",
+        "Crystals respawn every 72 hours - plan routes.",
+        "Paimon says: check the top of statues for chests.",
+        "You can cancel fall damage with a plunge attack.",
+        "That \"one\" chest you missed? It's on the roof.",
+        "Fishing tip: tap early for a faster catch.",
+        "If it sparkles, loot it. If it doesn't, loot it anyway."
+      ];
 
       const bgWrap = document.querySelector('.bg-wrap');
       const textsEl = document.getElementById('texts');
@@ -260,10 +284,8 @@
           n.classList.remove('active','glow');
         }
       );
-        if (txtIndex<txtNodes.length) {
-          txtNodes[txtIndex].classList.add('active','glow');
-          txtIndex++;
-        }
+        txtNodes[txtIndex].classList.add('active','glow');
+        txtIndex=(txtIndex+1)%txtNodes.length;
       }
       showNextText();
       const textTimer=setInterval(()=>{ showNextText(); },TEXT_INTERVAL);
@@ -295,9 +317,17 @@
       }
 
       enterBtn.addEventListener('click',()=>{ 
-        window.location.href='index.html'; 
+        stage.classList.add('fade-out');
+        setTimeout(() => {
+          window.location.href='index.html';
+        }, 900);
       }
     );
+
+      stage.addEventListener('click', (e) => {
+        if (enterBtn.classList.contains('show') || e.target === enterBtn) return;
+        showNextText();
+      });
     }
   )();
   </script>
