@@ -110,7 +110,57 @@
     .card { background: var(--card); padding: 22px; border-radius: var(--radius); box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin-bottom: 20px; backdrop-filter: blur(5px); }
 
     .quest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; margin-top: 24px; }
-    .quest-box { background: var(--box); padding: 16px; border-radius: 12px; font-weight: 500; text-decoration: none; color: inherit; display: block; }
+    .quest-box {
+      background: var(--box);
+      padding: 16px;
+      border-radius: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+    }
+
+    .quest-box::before,
+    .quest-box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      z-index: 0;
+    }
+
+    .quest-box::after {
+      background-image: var(--preview);
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05) contrast(1.05);
+    }
+
+    .quest-box::before {
+      background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.55));
+    }
+
+    .quest-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+      color: #fff;
+    }
+
+    .quest-box:hover::before,
+    .quest-box:hover::after {
+      opacity: 1;
+    }
+
+    .quest-text {
+      position: relative;
+      z-index: 1;
+      display: block;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.45);
+    }
 
     footer { padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white; text-align: center; margin-top: auto; }
 
@@ -161,16 +211,28 @@
       <h2>Archon Quests</h2>
       <p style="margin-bottom:15px; color: white;">Follow the Traveler's journey across Teyvat.</p>
       <div class="quest-grid">
-        <a href="archon-quest-0.html" class="quest-box">
-          Prologue<br>
-          <small>The Outlander Who Caught the Wind<br><b>Mondstadt</b></small>
+        <a href="archon-quest-0.html" class="quest-box" style="--preview: url('https://rare-gallery.com/mocahbig/1314350-Mondstadt-Genshin-ImpactGenshin-Impact-4k-Ultra-HD.jpg');">
+          <span class="quest-text">Prologue<br>
+          <small>The Outlander Who Caught the Wind<br><b>Mondstadt</b></small></span>
         </a>
-        <a href="archon-quest-1.html" class="quest-box">Act I<br><small>Of the Land Amidst Monoliths<br><b>Liyue</b></small></a>
-        <a href="archon-quest-2.html" class="quest-box">Act II<br><small>Omnipresence Over Mortals<br><b>Inazuma</b></small></a>
-        <a href="archon-quest-3.html" class="quest-box">Act III<br><small>Truth Amongst the Pages of Purana<br><b>Sumeru</b></small></a>
-        <a href="archon-quest-4.html" class="quest-box">Act IV<br><small>Masquerade of the Guilty<br><b>Fontaine</b></small></a>
-        <a href="archon-quest-5.html" class="quest-box">Act V<br><small>Pyroclastic Manifesto<br><b>Natlan</b></small></a>
-        <a href="archon-quest-6.html" class="quest-box">Act VI<br><small>Frost and Thunder<br><b>Nod Krai</b></small></a>
+        <a href="archon-quest-1.html" class="quest-box" style="--preview: url('https://w0.peakpx.com/wallpaper/234/548/HD-wallpaper-video-game-genshin-impact-liyue-genshin-impact.jpg');">
+          <span class="quest-text">Act I<br><small>Of the Land Amidst Monoliths<br><b>Liyue</b></small></span>
+        </a>
+        <a href="archon-quest-2.html" class="quest-box" style="--preview: url('https://cdn.mos.cms.futurecdn.net/xD659LuqzcF6iDNsyT3JJi.jpg');">
+          <span class="quest-text">Act II<br><small>Omnipresence Over Mortals<br><b>Inazuma</b></small></span>
+        </a>
+        <a href="archon-quest-3.html" class="quest-box" style="--preview: url('https://upload.wikimedia.org/wikipedia/en/9/91/Sumeru_City.jpg');">
+          <span class="quest-text">Act III<br><small>Truth Amongst the Pages of Purana<br><b>Sumeru</b></small></span>
+        </a>
+        <a href="archon-quest-4.html" class="quest-box" style="--preview: url('https://static.wikia.nocookie.net/gensin-impact/images/8/8d/Fontaine.png/revision/latest?cb=20230819002539');">
+          <span class="quest-text">Act IV<br><small>Masquerade of the Guilty<br><b>Fontaine</b></small></span>
+        </a>
+        <a href="archon-quest-5.html" class="quest-box" style="--preview: url('https://i.redd.it/just-realize-that-genshin-gonna-final-chapter-of-natlan-arc-v0-biw8h1brbl3e1.png?width=1920&format=png&auto=webp&s=c2f167f0a45eb434805c182c912d5cd7f621423a');">
+          <span class="quest-text">Act V<br><small>Pyroclastic Manifesto<br><b>Natlan</b></small></span>
+        </a>
+        <a href="archon-quest-6.html" class="quest-box" style="--preview: url('https://static0.gamerantimages.com/wordpress/wp-content/uploads/2025/05/genshin-impact-what-to-expect-from-nod-krai-featured-image-1-1.jpg');">
+          <span class="quest-text">Act VI<br><small>Frost and Thunder<br><b>Nod Krai</b></small></span>
+        </a>
       </div>
     </div>
   </main>
