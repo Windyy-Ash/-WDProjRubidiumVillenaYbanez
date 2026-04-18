@@ -178,17 +178,17 @@ body { font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
   <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
 
 <script type="module">
-  // 1. Added missing Firestore imports
-  import { initializeApp } from "firebase/app";
-  import { 
-    getFirestore, 
-    collection, 
-    addDoc, 
-    getDocs, 
-    query, 
-    orderBy, 
-    serverTimestamp 
-  } from "firebase/firestore";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import { 
+  getFirestore, 
+  collection, 
+  addDoc, 
+  getDocs, 
+  query, 
+  orderBy, 
+  serverTimestamp 
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyBW0ugMjPeoVAzavP9-nQ8-Hr61X-iwv-s",
@@ -200,9 +200,9 @@ body { font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
     measurementId: "G-2725K3KZK6"
   };
 
-  // 2. Initialize App and Firestore
+  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app); // This was missing!
+  const db = getFirestore(app);
 
   const submitBtn = document.getElementById("submitBtn");
   const postInput = document.getElementById("postInput");
@@ -210,10 +210,21 @@ body { font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 
   // Load Posts Function
   async function loadPosts() {
-    postsContainer.innerHTML = "";
+    console.log("Attempting to load posts...");
+    postsContainer.innerHTML = "<p style='color:white;'>Loading Teyvat records...</p>";
+    
     try {
-      const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+      // If this fails, try removing 'orderBy' temporarily to see if it's an index issue
+      const q = query(collection(db, "posts"));
       const snapshot = await getDocs(q);
+      
+      postsContainer.innerHTML = ""; // Clear loading message
+      
+      if (snapshot.empty) {
+        postsContainer.innerHTML = "<p style='color:white;'>No discoveries found yet. Be the first to post!</p>";
+        return;
+      }
+
       snapshot.forEach(doc => {
         const data = doc.data();
         const div = document.createElement("div");
@@ -232,8 +243,10 @@ body { font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
         div.appendChild(timeDiv);
         postsContainer.appendChild(div);
       });
+      console.log("Posts loaded successfully.");
     } catch (e) {
       console.error("Error loading posts: ", e);
+      postsContainer.innerHTML = "<p style='color:red;'>Failed to load posts. Check console for errors.</p>";
     }
   }
 
@@ -242,40 +255,52 @@ body { font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
     const text = postInput.value.trim();
     if (!text) return alert("Please write something first!");
     
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Posting...";
+
     try {
       await addDoc(collection(db, "posts"), { 
         text: text, 
         timestamp: serverTimestamp() 
       });
+      console.log("Post added!");
       postInput.value = "";
-      loadPosts();
+      await loadPosts();
     } catch (e) {
       console.error("Error adding document: ", e);
-      alert("Error sending message. Check console.");
+      alert("Error: " + e.message);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Post to Community";
     }
   });
 
+  // Initial Load
   loadPosts();
 
-  // Navigation Logic
+  // Navigation Logic (Expose to Window for HTML buttons)
   window.openNav = function() {
     document.getElementById("mySidenav").style.width = "250px";
-  }
+  };
   window.closeNav = function() {
     document.getElementById("mySidenav").style.width = "0";
-  }
+  };
 
   // Theme Logic
   const themeBtn = document.getElementById('themeBtn');
   const root = document.documentElement;
   const key = 'teyvat-theme';
+
   function apply(t){
     root.classList.toggle('dark', t === 'dark');
     localStorage.setItem(key, t);
   }
+
   const saved = localStorage.getItem(key) || 
     (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  
   apply(saved);
+
   themeBtn.addEventListener('click', () => {
     const isDark = root.classList.contains('dark');
     apply(isDark ? 'light' : 'dark');
