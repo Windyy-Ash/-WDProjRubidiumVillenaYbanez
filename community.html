@@ -177,94 +177,109 @@ body { font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 
   <footer>© 2025 Wonders of Teyvat — A fan resource</footer>
 
-  <script type="module">
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+<script type="module">
+  // 1. Added missing Firestore imports
+  import { initializeApp } from "firebase/app";
+  import { 
+    getFirestore, 
+    collection, 
+    addDoc, 
+    getDocs, 
+    query, 
+    orderBy, 
+    serverTimestamp 
+  } from "firebase/firestore";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBW0ugMjPeoVAzavP9-nQ8-Hr61X-iwv-s",
-  authDomain: "genshin-proj-community.firebaseapp.com",
-  projectId: "genshin-proj-community",
-  storageBucket: "genshin-proj-community.firebasestorage.app",
-  messagingSenderId: "816335172937",
-  appId: "1:816335172937:web:cc74ef5f033f07e9919698",
-  measurementId: "G-2725K3KZK6"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyBW0ugMjPeoVAzavP9-nQ8-Hr61X-iwv-s",
+    authDomain: "genshin-proj-community.firebaseapp.com",
+    projectId: "genshin-proj-community",
+    storageBucket: "genshin-proj-community.firebasestorage.app",
+    messagingSenderId: "816335172937",
+    appId: "1:816335172937:web:cc74ef5f033f07e9919698",
+    measurementId: "G-2725K3KZK6"
+  };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-  
-    const submitBtn = document.getElementById("submitBtn");
-    const postInput = document.getElementById("postInput");
-    const postsContainer = document.getElementById("postsContainer");
-  
-    async function loadPosts() {
-      postsContainer.innerHTML = "";
-      try {
-        const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
-        const snapshot = await getDocs(q);
-        snapshot.forEach(doc => {
-          const data = doc.data();
-          const div = document.createElement("div");
-          div.classList.add("post");
-          
-          const textDiv = document.createElement("div");
-          textDiv.classList.add("post-text");
-          textDiv.textContent = data.text;
-          
-          const timeDiv = document.createElement("div");
-          timeDiv.classList.add("post-time");
-          const time = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleString() : "Just now";
-          timeDiv.textContent = `Posted: ${time}`;
-          
-          div.appendChild(textDiv);
-          div.appendChild(timeDiv);
-          postsContainer.appendChild(div);
-        });
-      } catch (e) {
-        console.error("Error loading posts: ", e);
-      }
+  // 2. Initialize App and Firestore
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app); // This was missing!
+
+  const submitBtn = document.getElementById("submitBtn");
+  const postInput = document.getElementById("postInput");
+  const postsContainer = document.getElementById("postsContainer");
+
+  // Load Posts Function
+  async function loadPosts() {
+    postsContainer.innerHTML = "";
+    try {
+      const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+      const snapshot = await getDocs(q);
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const div = document.createElement("div");
+        div.classList.add("post");
+        
+        const textDiv = document.createElement("div");
+        textDiv.classList.add("post-text");
+        textDiv.textContent = data.text;
+        
+        const timeDiv = document.createElement("div");
+        timeDiv.classList.add("post-time");
+        const time = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleString() : "Just now";
+        timeDiv.textContent = `Posted: ${time}`;
+        
+        div.appendChild(textDiv);
+        div.appendChild(timeDiv);
+        postsContainer.appendChild(div);
+      });
+    } catch (e) {
+      console.error("Error loading posts: ", e);
     }
-  
-    submitBtn.addEventListener("click", async () => {
-      const text = postInput.value.trim();
-      if (!text) return alert("Please write something first!");
-      
-      try {
-        await addDoc(collection(db, "posts"), { 
-          text: text, 
-          timestamp: serverTimestamp() 
-        });
-        postInput.value = "";
-        loadPosts();
-      } catch (e) {
-        console.error("Error adding document: ", e);
-        alert("Error sending message. Check console.");
-      }
-    });
-  
-    loadPosts();
-  
-    const btn = document.getElementById('themeBtn');
-    const root = document.documentElement;
-    const key = 'teyvat-theme';
-    function apply(t){
-      root.classList.toggle('dark', t === 'dark');
-      localStorage.setItem(key, t);
+  }
+
+  // Submit Post Event
+  submitBtn.addEventListener("click", async () => {
+    const text = postInput.value.trim();
+    if (!text) return alert("Please write something first!");
+    
+    try {
+      await addDoc(collection(db, "posts"), { 
+        text: text, 
+        timestamp: serverTimestamp() 
+      });
+      postInput.value = "";
+      loadPosts();
+    } catch (e) {
+      console.error("Error adding document: ", e);
+      alert("Error sending message. Check console.");
     }
-    const saved = localStorage.getItem(key) || 
-      (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    apply(saved);
-    btn.addEventListener('click', () => {
-      const isDark = root.classList.contains('dark');
-      apply(isDark ? 'light' : 'dark');
-    });
-  </script>
+  });
+
+  loadPosts();
+
+  // Navigation Logic
+  window.openNav = function() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+  window.closeNav = function() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+
+  // Theme Logic
+  const themeBtn = document.getElementById('themeBtn');
+  const root = document.documentElement;
+  const key = 'teyvat-theme';
+  function apply(t){
+    root.classList.toggle('dark', t === 'dark');
+    localStorage.setItem(key, t);
+  }
+  const saved = localStorage.getItem(key) || 
+    (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  apply(saved);
+  themeBtn.addEventListener('click', () => {
+    const isDark = root.classList.contains('dark');
+    apply(isDark ? 'light' : 'dark');
+  });
+</script>
 </body>
 </html>
