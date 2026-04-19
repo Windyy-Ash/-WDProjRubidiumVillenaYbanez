@@ -40,34 +40,86 @@
       --sidenav-link-hover: #ffffff86;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+
+    html, body { 
+      height: 100%; 
+    }
+
     body {
       font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), var(--background-image), var(--bg);
-      background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;
-      color: var(--text); display: flex; flex-direction: column; min-height: 100vh; transition: background .35s ease;
+      background-size: cover; 
+      background-position: center; 
+      background-repeat: no-repeat; 
+      background-attachment: fixed;
+      color: var(--text); 
+      display: flex; 
+      flex-direction: column; 
+      min-height: 100vh; 
+      transition: background .35s ease;
     }
 
     .sidenav {
-      height: 100%; width: 0; position: fixed; z-index: 100; top: 0; left: 0;
-      background: var(--sidenav-bg); overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+      height: 100%; 
+      width: 0; 
+      position: fixed; 
+      z-index: 100; 
+      top: 0; 
+      left: 0;
+      background: var(--sidenav-bg); 
+      overflow-x: hidden; 
+      transition: 0.5s; 
+      padding-top: 60px;
       box-shadow: 2px 0 12px rgba(0,0,0,0.08);
     }
+
     .sidenav a {
-      padding: 8px 32px; text-decoration: none; font-size: 20px; color: var(--sidenav-link); display: block; transition: 0.3s;
+      padding: 8px 32px; 
+      text-decoration: none; 
+      font-size: 20px; 
+      color: var(--sidenav-link); 
+      display: block; 
+      transition: 0.3s;
       font-family: 'Quicksand', sans-serif;
     }
-    .sidenav a:hover { color: var(--sidenav-link-hover); background: rgba(74,85,162,0.08); }
-    .sidenav .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; color: var(--sidenav-link); }
-
-    header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white;
+    .sidenav a:hover { 
+      color: var(--sidenav-link-hover); 
+      background: rgba(74,85,162,0.08); 
     }
 
-    .brand { display: flex; align-items: center; gap: 14px; }
-    .brand img { width: 42px; height: 42px; border-radius: 8px; object-fit: cover; }
+    .sidenav .closebtn { 
+      position: absolute; 
+      top: 0; right: 25px; 
+      font-size: 36px; 
+      color: var(--sidenav-link); 
+    }
+
+    header {
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      padding: 18px 28px; 
+      background: linear-gradient(90deg, var(--accent), #49323239); 
+      color: white;
+    }
+
+    .brand { display: flex; 
+      align-items: center; 
+      gap: 14px; 
+    }
+
+    .brand img { 
+      width: 42px; 
+      height: 42px; 
+      border-radius: 8px; 
+      object-fit: cover; 
+    }
+
     .brand h1 {
       font-size: 1.15rem;
       margin: 0;
@@ -78,69 +130,180 @@
     }
 
     .sparkle-btn, .btn {
-      background: rgba(255,255,255,0.1); border: 1px solid var(--btn-border);
-      padding: 8px 10px; border-radius: 10px; color: white; cursor: pointer;
+      background: rgba(255,255,255,0.1); 
+      border: 1px solid var(--btn-border);
+      padding: 8px 10px; 
+      border-radius: 10px; 
+      color: white; 
+      cursor: pointer;
     }
 
-    .nav-links { display: flex; align-items: center; gap: 12px; }
-    .nav-links a { color: white; text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 600; font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    .nav-links a:hover { background-color: rgba(255,255,255,0.2); }
+    .nav-links { 
+      display: flex; 
+      align-items: center; 
+      gap: 12px; 
+    }
 
-    main { flex: 1; padding: 36px 20px; max-width: 880px; margin: 0 auto; width: 100%; text-align: center; }
-    .card { background: var(--card); padding: 22px; border-radius: var(--radius); box-shadow: 0 8px 24px rgba(0,0,0,0.15); margin-bottom: 20px; text-align: left; backdrop-filter: blur(5px); }
-    .section-title { margin: 18px 0 10px; font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 0.5px; }
+    .nav-links a { 
+      color: white; 
+      text-decoration: none; 
+      padding: 8px 12px; 
+      border-radius: 8px; 
+      font-weight: 600; 
+      font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    }
+
+    .nav-links a:hover { 
+      background-color: rgba(255,255,255,0.2); 
+    }
+
+    main { 
+      flex: 1; 
+      padding: 36px 20px; 
+      max-width: 880px; 
+      margin: 0 auto; 
+      width: 100%; 
+      text-align: center; 
+    }
+
+    .card { 
+      background: var(--card); 
+      padding: 22px; 
+      border-radius: var(--radius); 
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15); 
+      margin-bottom: 20px; 
+      text-align: left; 
+      backdrop-filter: blur(5px); 
+    }
+
+    .section-title { 
+      margin: 18px 0 10px; 
+      font-family: 'Cinzel', serif; 
+      font-size: 1.1rem; 
+      letter-spacing: 0.5px; 
+    }
     
-    .card img { width: 80px; height: 80px; object-fit: cover; border-radius: 10px; margin-right: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-    .ingredient { display: flex; align-items: center; margin-bottom: 12px; }
+    .card img { 
+      width: 80px; 
+      height: 80px; 
+      object-fit: cover; 
+      border-radius: 10px; 
+      margin-right: 12px; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
+    }
+
+    .ingredient { 
+      display: flex; 
+      align-items: center; 
+      margin-bottom: 12px; 
+    }
 
     .toc {
-      position: fixed;
-      top: 130px;
-      right: 18px;
-      width: 210px;
-      padding: 14px 12px;
-      background: #d4af37;
-      border: 1px solid var(--panel-border);
-      border-radius: 12px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-      text-align: left;
-      color: #ffffff;
-      z-index: 50;
-      backdrop-filter: blur(6px);
+      position: sticky;
+      top: 35%;
+      width: 100%;
+      background: rgba(212, 175, 55, 0.15);
+      backdrop-filter: blur(10px);
+      border: 2px solid #d4af37;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
     }
 
     .toc h3 {
       font-family: 'Cinzel', serif;
-      font-size: 0.95rem;
-      margin-bottom: 8px;
-      letter-spacing: 0.6px;
+      color: #d4af37;
+      font-size: 1.1rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
     }
 
     .toc a {
       display: block;
-      padding: 6px 8px;
-      margin: 4px 0;
+      padding: 10px 15px;
+      margin: 5px 0;
+      color: var(--text);
       text-decoration: none;
-      color: #ffffff;
-      border-radius: 8px;
       font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
     }
 
     .toc a:hover {
-      background: rgba(0,0,0,0.12);
+      background: rgba(212, 175, 55, 0.2);
+      border-left: 3px solid #d4af37;
+      padding-left: 20px; /* Slight slide effect */
     }
 
-    footer { padding: 18px 28px; background: linear-gradient(90deg, var(--accent), #49323239); color: white; text-align: center; margin-top: auto; }
+    footer { 
+      padding: 18px 28px; 
+      background: linear-gradient(90deg, var(--accent), #49323239); 
+      color: white; 
+      text-align: center; 
+      margin-top: auto; 
+    }
 
     @media (max-width: 900px) {
-      .nav-links { display: none; }
-      .toc { display: none; }
+      .nav-links { 
+        display: none; 
+      }
+      .toc { 
+        display: none; 
+      }
     }
     @media (max-width: 600px) {
-      .brand h1 { font-size: 1rem; }
-      header { padding: 12px 15px; }
-      .ingredient { flex-direction: column; text-align: center; }
-      .card img { margin-right: 0; margin-bottom: 10px; }
+      .brand h1 { 
+        font-size: 1rem; 
+      }
+      header { 
+        padding: 12px 15px; 
+      }
+      .ingredient { 
+        flex-direction: column; 
+        text-align: center; 
+      }
+      .card img { 
+        margin-right: 0;
+        margin-bottom: 10px; 
+        }
+    }
+
+    .ingredient {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .ingredient ul {
+      margin-top: 6px;
+      padding-left: 18px;
+      font-size: 0.9rem;
+      opacity: 0.95;
+    }
+
+    .ingredient li {
+      margin-bottom: 2px;
+    }
+
+    .section-title {
+      margin: 28px 0 12px;
+      font-size: 1.2rem;
+      border-bottom: 2px solid rgba(255,255,255,0.3);
+      padding-bottom: 4px;
+    }
+
+    .ingredient:hover {
+      transform: translateY(-2px);
+      transition: 0.2s;
+    }
+
+    body {
+      letter-spacing: 0.3px;
     }
   </style>
 </head>
@@ -180,15 +343,15 @@
     </nav>
   </header>
 
-  <main>
-    <aside class="toc" aria-label="Table of contents">
-      <h3>Sections</h3>
-      <a href="#meats">Meats & Seafood</a>
-      <a href="#wild">Wild Gathered</a>
-      <a href="#processed">Processed or Bought</a>
+  <main style="display: flex; gap: 30px; align-items: flex-start;">
+    <aside class="toc" style="flex: 0 0 220px;">
+      <h3>Categories</h3>
+      <a href="#meats">🍖 Meats & Seafood</a>
+      <a href="#wild">🌿 Wild Gathered</a>
+      <a href="#processed">📦 Processed / Bought</a>
     </aside>
-    <div class="card">
-      <h2 style="margin-bottom: 20px;">Ingredients || How to get it</h2>
+    <div class="card" style="flex: 1;">
+      <h2 style="font-family: 'Cinzel'; margin-bottom: 25px;">Ingredients || How to get it</h2>
 
       <h3 class="section-title" id="meats">Meats & Seafood</h3>
       
