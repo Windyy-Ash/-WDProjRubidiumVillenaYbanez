@@ -121,9 +121,28 @@
             border: 1px solid #666;
         }
 
+        .wish {
+            position: absolute;
+            top: 55px;
+            right: 10px;
+            padding: 8px 15px;
+            background: #444;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            z-index: 100;
+            border: 1px solid #666;
+        }
+
         .simple-exit:hover {
             background: #660000;
             border-color: #ff0000;
+        }
+
+        .wish:hover {
+            background: #000966;
+            border-color: #0037ff;
         }
 
         #ui-layer {
@@ -134,7 +153,7 @@
 <body>
     <div id="game-container">
         <a href="index.html" class="simple-exit">Exit Game</a>
-        <a href="m-wishgame1.html" class="simple-exit">Wishing</a>
+        <a href="m-wishgame1.html" class="wish">Wishing</a>
         
         <div id="ui-layer">
             <div id="coin-count">Coins: 0</div>
