@@ -347,6 +347,34 @@ for (let i = 0; i < 35; i++) {
     particleContainer.appendChild(p);
 }
 </script>
+<audio id="bgm" loop>
+  <source src="Mondsound.mp3" type="audio/mpeg">
+</audio>
 
+<button id="muteBtn">🔊 Sound On</button>
+<script>
+    const audio = document.getElementById("bgm");
+    const btn = document.getElementById("muteBtn");
+    let started = false;
+
+    function startAudio() {
+        if (started) return;
+
+        audio.play().then(() => {
+        started = true;
+        btn.style.display = "block";
+        audio.loop = true;
+        }).catch(() => {});
+    }
+
+    window.addEventListener("click", startAudio, { once: true });
+    window.addEventListener("keydown", startAudio, { once: true });
+    window.addEventListener("scroll", startAudio, { once: true });
+
+    btn.addEventListener("click", () => {
+        audio.muted = !audio.muted;
+        btn.textContent = audio.muted ? "🔇 Muted" : "🔊 Sound On";
+    });
+</script>
 </body>
 </html>
